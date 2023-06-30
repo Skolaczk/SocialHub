@@ -6,4 +6,8 @@
     body {
         @apply dark:bg-black dark:text-white
     }
+
+    svg {
+        @apply stroke-black dark:stroke-white
+    }
 }

@@ -1,19 +1,16 @@
-import {
-  CreateIcon,
-  ExploreIcon,
-  HomeIcon,
-  NotificationsIcon,
-  ProfileIcon,
-} from './icons';
+import Link from 'next/link';
+import { navigationsData } from './utils';
 
 export const NavigationMenu = () => {
   return (
-    <div>
-      <HomeIcon />
-      <ExploreIcon />
-      <CreateIcon />
-      <NotificationsIcon />
-      <ProfileIcon />
+    <div className="flex justify-center w-full fixed bottom-0 border-t-neutral-500 border-t-2">
+      <nav className="flex justify-between items-center w-full max-w-md px-5 py-3">
+        {navigationsData.map(({ name, path, icon }) => (
+          <Link href={path} key={name}>
+            {icon}
+          </Link>
+        ))}
+      </nav>
     </div>
   );
 };
