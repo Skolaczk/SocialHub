@@ -8,7 +8,7 @@ import {
 
 export const NavigationMenu = () => {
   return (
-    <div className="bg-black">
+    <div>
       <HomeIcon />
       <ExploreIcon />
       <CreateIcon />
