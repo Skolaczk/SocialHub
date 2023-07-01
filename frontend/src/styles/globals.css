@@ -8,6 +8,6 @@
     }
 
     svg {
-        @apply stroke-black dark:stroke-white
+        @apply fill-black stroke-black dark:fill-white dark:stroke-white
     }
 }

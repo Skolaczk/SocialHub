@@ -49,7 +49,7 @@ export const Menu = ({ username }: IProps) => {
         <span className="xl:hidden">
           <CreateIcon />
         </span>
-        <span className="hidden xl:block">Create</span>
+        <span className="hidden xl:block text-white">Create</span>
       </Link>
     </nav>
   );
