@@ -1,13 +1,13 @@
 import { NavigationMenu } from '@/components';
-import { Posts } from '@/features';
+import { getPosts } from '@/services';
+import { PostsList } from '@/features';
 
-const Home = () => {
+const Home = async () => {
+  const posts = await getPosts();
+
   return (
     <>
-      <div className="absolute left-1/2">
-        <h1>Hello world</h1>
-        <Posts />
-      </div>
+      <PostsList posts={posts} />
       <NavigationMenu />
     </>
   );
