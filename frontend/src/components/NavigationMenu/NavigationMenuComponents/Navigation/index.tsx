@@ -5,13 +5,13 @@ import {
   HomeIcon,
   NotificationsIcon,
   ProfileIcon,
-} from '@/components/NavigationMenu/icons';
+} from '@/assets/icons';
 
 interface IProps {
   readonly username: string;
 }
 
-export const Menu = ({ username }: IProps) => {
+export const Navigation = ({ username }: IProps) => {
   return (
     <nav className="flex justify-between items-center w-full max-w-md px-5 py-3 md:flex-col md:w-auto md:max-w-auto md:w-fit md:gap-8 md:mt-8 xl:items-start xl:p-0 xl:mt-12">
       <Link
