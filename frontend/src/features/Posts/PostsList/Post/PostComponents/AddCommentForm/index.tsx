@@ -1,4 +1,4 @@
-import { SendArrowIcon } from '@/features/Posts/icons';
+import { SendArrowIcon } from '@/assets/icons';
 
 export const AddCommentForm = () => {
   return (

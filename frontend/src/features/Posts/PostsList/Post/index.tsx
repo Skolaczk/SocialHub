@@ -1,7 +1,5 @@
 import { IPost } from '@/interfaces';
-import { AddCommentForm } from './AddCommentForm';
-import { PostHeader } from './PostHeader';
-import { PostContent } from './PostContent';
+import { AddCommentForm, PostContent, PostHeader } from './PostComponents';
 
 export const Post = (post: IPost) => {
   return (

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { LikeIcon } from '@/features/Posts/icons';
+import { LikeIcon } from '@/assets/icons';
 import { IPost } from '@/interfaces';
 
 export const PostContent = ({ content, image, _count: count }: IPost) => {
