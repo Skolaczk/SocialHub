@@ -6,10 +6,13 @@ import { User } from '@prisma/client';
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
-  findAll(): Promise<User[]> {
+  findAllByUsername(username: string): Promise<User[]> {
     return this.prisma.user.findMany({
-      include: {
-        posts: true,
+      where: {
+        username: {
+          contains: username,
+          mode: 'insensitive',
+        },
       },
     });
   }

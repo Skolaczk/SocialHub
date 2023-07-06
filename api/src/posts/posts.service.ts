@@ -6,7 +6,7 @@ import { Post } from '@prisma/client';
 export class PostsService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll(): Promise<Post[]> {
+  findAll(): Promise<Post[]> {
     return this.prisma.post.findMany({
       include: {
         user: {
