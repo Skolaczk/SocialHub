@@ -12,15 +12,15 @@ export const CreateIcon = () => {
         d="M18 11L18 25"
         fill="none"
         stroke="white"
-        stroke-width="2"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
       <path
         d="M25 18L11 18"
         fill="none"
         stroke="white"
-        stroke-width="2"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
     </svg>
   );

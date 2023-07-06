@@ -18,7 +18,7 @@ export const LogoIcon = () => {
         height="34"
         rx="9"
         fill="none"
-        stroke-width="2"
+        strokeWidth="2"
       />
     </svg>
   );
