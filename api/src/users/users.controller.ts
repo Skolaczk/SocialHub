@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, HttpCode, HttpStatus, Post, Query } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { User } from '@prisma/client';
 
@@ -6,7 +6,8 @@ import { User } from '@prisma/client';
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @Get()
+  @Post()
+  @HttpCode(HttpStatus.OK)
   findAllByUsername(@Query('username') username: string): Promise<User[]> {
     return this.usersService.findAllByUsername(username);
   }

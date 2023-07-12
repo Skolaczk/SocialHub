@@ -1,4 +1,4 @@
-import { NavigationMenu } from '@/components';
+import { NavigationMenu, SearchBar } from '@/components';
 import { getPosts } from '@/services';
 import { PostsList } from '@/features';
 
@@ -7,6 +7,7 @@ const Home = async () => {
 
   return (
     <>
+      <SearchBar />
       <PostsList posts={posts} />
       <NavigationMenu />
     </>

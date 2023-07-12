@@ -7,7 +7,7 @@ interface IProps {
 
 export const PostsList = ({ posts }: IProps) => {
   return (
-    <div className="flex items-center flex-col my-14 md:ml-20 xl:ml-0">
+    <div className="flex items-center flex-col mt-8 mb-14 md:ml-20 xl:ml-0">
       {posts.map((post) => (
         <Post key={post.id} {...post} />
       ))}

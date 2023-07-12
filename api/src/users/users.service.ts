@@ -7,6 +7,8 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   findAllByUsername(username: string): Promise<User[]> {
+    if (!username) return;
+
     return this.prisma.user.findMany({
       where: {
         username: {

@@ -1,1 +1,2 @@
-export * from './GetPosts';
+export * from './GetUsersByUsername.service';
+export * from './GetPosts.service';
