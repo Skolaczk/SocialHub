@@ -1,9 +1,9 @@
-import axios from 'axios';
 import { IUser } from '@/interfaces';
+import { api, endpoints } from '@/api';
 
 export const getUsersByUsername = async (username: string) => {
-  const { data } = await axios.post<IUser[]>(
-    `http://localhost:8080/users?username=${username}`,
+  const { data } = await api.post<IUser[]>(
+    `${endpoints.users}?username=${username}`,
   );
   return data;
 };

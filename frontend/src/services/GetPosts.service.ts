@@ -1,7 +1,7 @@
 import { IPost } from '@/interfaces';
-import axios from 'axios';
+import { api, endpoints } from '@/api';
 
 export const getPosts = async () => {
-  const { data } = await axios.get<IPost[]>('http://localhost:8080/posts');
+  const { data } = await api.get<IPost[]>(endpoints.posts);
   return data;
 };
