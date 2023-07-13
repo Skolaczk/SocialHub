@@ -8,7 +8,7 @@ interface IProps {
 
 export const UsersList = ({ users }: IProps) => {
   return (
-    <div className="w-full w-full max-w-2xl bg-neutral-500 absolute top-10 rounded-sm z-10">
+    <div className="w-full w-full max-w-2xl bg-neutral-100 dark:bg-neutral-500 absolute top-10 rounded-sm z-10">
       {users &&
         users.map(({ id, username, image }) => (
           <Link
