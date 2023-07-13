@@ -25,7 +25,7 @@ export const SearchBar = () => {
         id="username"
         placeholder="Search"
         onChange={handleChange}
-        className="bg-neutral-500 w-full max-w-2xl rounded-sm p-2 text-sm"
+        className="bg-neutral-100 dark:bg-neutral-500 w-full max-w-2xl rounded-sm p-2 text-sm"
       />
       <UsersList users={users} />
     </div>
