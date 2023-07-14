@@ -1,10 +1,26 @@
-import { Controller, HttpCode, HttpStatus, Post, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { User } from '@prisma/client';
+import { JwtGuard } from 'src/common/guards';
+import { GetUser } from 'src/common/decorators';
 
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
+
+  @UseGuards(JwtGuard)
+  @Get('me')
+  getMe(@GetUser() user: User): User {
+    return user;
+  }
 
   @Post()
   @HttpCode(HttpStatus.OK)
