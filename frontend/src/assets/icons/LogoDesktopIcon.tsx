@@ -1,8 +1,12 @@
-export const LogoDesktopIcon = () => {
+interface IProps {
+  isBig?: boolean;
+}
+
+export const LogoDesktopIcon = ({ isBig }: IProps) => {
   return (
     <svg
-      width="105"
-      height="24"
+      width={isBig ? '200' : '105'}
+      height={isBig ? '40' : '24'}
       viewBox="0 0 105 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
