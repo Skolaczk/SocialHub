@@ -3,6 +3,7 @@
 import { FormField } from '@/components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { login } from '@/services';
 
 const regex = {
   EMAIL: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
@@ -40,7 +41,8 @@ export const AuthForm = ({ isSignUp }: IProps) => {
           )
           .required('Password field is required'),
       }),
-      onSubmit: () => {
+      onSubmit: async (body) => {
+        const data = await login(isSignUp, body);
         resetForm();
       },
     });
