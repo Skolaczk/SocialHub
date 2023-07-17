@@ -1,19 +1,31 @@
+import { ChangeEventHandler } from 'react';
+
 interface IProps {
   type: string;
   label: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  value?: string;
+  error: string | false | undefined;
 }
 
-export const FormField = ({ type, label }: IProps) => {
+export const FormField = ({ type, label, onChange, value, error }: IProps) => {
   return (
     <>
-      <label htmlFor={label}>{label}</label>
+      <label htmlFor={label} className="mt-5 first-letter:uppercase">
+        {label}
+      </label>
       <input
         type={type}
         name={label}
         id={label}
         placeholder={label}
-        className="mt-1.5 mb-5 p-2 rounded-sm bg-neutral-500 text-sm"
+        onChange={onChange}
+        value={value}
+        className={`my-1.5 p-2 rounded-sm bg-neutral-500 text-sm border-danger ${
+          error && 'border'
+        }`}
       />
+      {error && <span className="text-danger text-sm">{error}</span>}
     </>
   );
 };
