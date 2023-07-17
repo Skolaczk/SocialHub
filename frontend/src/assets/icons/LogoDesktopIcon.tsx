@@ -1,12 +1,13 @@
 interface IProps {
-  isBig?: boolean;
+  width?: string;
+  height?: string;
 }
 
-export const LogoDesktopIcon = ({ isBig }: IProps) => {
+export const LogoDesktopIcon = ({ width, height }: IProps) => {
   return (
     <svg
-      width={isBig ? '200' : '105'}
-      height={isBig ? '40' : '24'}
+      width={width ? width : '105'}
+      height={height ? height : '24'}
       viewBox="0 0 105 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
