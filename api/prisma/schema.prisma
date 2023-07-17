@@ -16,7 +16,7 @@ model User {
   email     String    @unique
   password  String
   bio       String?
-  image     String?
+  image     String?   @default("https://i.postimg.cc/GpjBs2yq/sbcf-default-avatar.png")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   posts     Post[]
