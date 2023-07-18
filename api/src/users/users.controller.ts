@@ -27,4 +27,10 @@ export class UsersController {
   findAllByUsername(@Query('username') username: string): Promise<User[]> {
     return this.usersService.findAllByUsername(username);
   }
+
+  @UseGuards(JwtGuard)
+  @Get('random')
+  findRandom(@GetUser() user: User, @Query('count') count: string) {
+    return this.usersService.findRandom(+count, user.id);
+  }
 }
