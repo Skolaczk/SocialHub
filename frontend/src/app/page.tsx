@@ -1,6 +1,4 @@
-'use client';
-
-import { NavigationMenu, SearchBar } from '@/components';
+import { NavigationMenu, SearchBar, SocialPanel } from '@/components';
 import { PostsList } from '@/features';
 
 const Home = () => {
@@ -9,6 +7,7 @@ const Home = () => {
       <SearchBar />
       <PostsList />
       <NavigationMenu />
+      <SocialPanel />
     </>
   );
 };

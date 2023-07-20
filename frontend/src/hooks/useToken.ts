@@ -3,10 +3,16 @@ import { api } from '@/api';
 export const useToken = () => {
   const userToken = localStorage.getItem('token');
 
-  const setAccessToken = (accessToken: string) => {
-    localStorage.setItem('token', accessToken);
-    api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+  const setTokenToHeaders = (accessToken?: string) => {
+    api.defaults.headers.common['Authorization'] = `Bearer ${
+      accessToken ? accessToken : userToken
+    }`;
   };
 
-  return { userToken, setAccessToken };
+  const setAccessToken = (accessToken: string) => {
+    localStorage.setItem('token', accessToken);
+    setTokenToHeaders(accessToken);
+  };
+
+  return { setTokenToHeaders, setAccessToken };
 };
