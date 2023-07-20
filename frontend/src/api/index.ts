@@ -5,7 +5,10 @@ export const api = axios.create({
 });
 
 export const endpoints = {
-  users: 'users',
+  users: {
+    base: 'users',
+    me: 'users/me',
+  },
   posts: 'posts',
   auth: {
     signIn: 'auth/sign-in',
