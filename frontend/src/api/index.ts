@@ -8,6 +8,7 @@ export const endpoints = {
   users: {
     base: 'users',
     me: 'users/me',
+    random: 'users/random',
   },
   posts: 'posts',
   auth: {
