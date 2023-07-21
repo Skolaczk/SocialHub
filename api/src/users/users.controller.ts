@@ -3,6 +3,7 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Param,
   Post,
   Query,
   UseGuards,
@@ -30,7 +31,17 @@ export class UsersController {
 
   @UseGuards(JwtGuard)
   @Get('random')
-  findRandom(@GetUser() user: User, @Query('count') count: string) {
+  findRandom(
+    @GetUser() user: User,
+    @Query('count') count: string,
+  ): Promise<User[]> {
     return this.usersService.findRandom(+count, user.id);
+  }
+
+  @Get(':username')
+  findOneByUsername(
+    @Param() { username }: { username: string },
+  ): Promise<User> {
+    return this.usersService.findOneByUsername(username);
   }
 }
