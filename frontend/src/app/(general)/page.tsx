@@ -4,7 +4,9 @@ import { PostsList } from '@/features';
 const Home = () => {
   return (
     <>
-      <SearchBar />
+      <div className="hidden md:block mt-8 md:ml-20 xl:ml-0">
+        <SearchBar />
+      </div>
       <PostsList />
     </>
   );

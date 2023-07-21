@@ -18,7 +18,7 @@ export const SearchBar = () => {
   };
 
   return (
-    <div className="hidden md:flex flex-col items-center mt-8 md:ml-20 xl:ml-0 relative">
+    <div className="flex flex-col items-center relative">
       <input
         type="text"
         name="username"
