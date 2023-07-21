@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { LogoDesktopIcon } from '@/assets/icons';
 import { AuthForm } from '@/components';
 import Link from 'next/link';
@@ -15,11 +15,10 @@ const auth = {
 };
 
 const Auth = ({ params }: IProps) => {
-  const router = useRouter();
   const isSignUp = params.slug === auth.SIGN_UP;
 
   if (params.slug !== auth.SIGN_UP && params.slug !== auth.SIGN_IN) {
-    router.push(`/auth/${auth.SIGN_IN}`);
+    notFound();
   }
 
   return (
@@ -35,14 +34,14 @@ const Auth = ({ params }: IProps) => {
         {isSignUp ? (
           <p>
             Already have an account?{' '}
-            <Link href={`/auth/${auth.SIGN_IN}`} className="text-primary">
+            <Link href={auth.SIGN_IN} className="text-primary">
               Log in
             </Link>
           </p>
         ) : (
           <p>
             You do not have an account yet?{' '}
-            <Link href={`/auth/${auth.SIGN_UP}`} className="text-primary">
+            <Link href={auth.SIGN_UP} className="text-primary">
               Register
             </Link>
           </p>

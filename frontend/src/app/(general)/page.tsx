@@ -1,4 +1,4 @@
-import { NavigationMenu, SearchBar, SocialPanel } from '@/components';
+import { SearchBar } from '@/components';
 import { PostsList } from '@/features';
 
 const Home = () => {
@@ -6,8 +6,6 @@ const Home = () => {
     <>
       <SearchBar />
       <PostsList />
-      <NavigationMenu />
-      <SocialPanel />
     </>
   );
 };
