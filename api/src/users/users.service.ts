@@ -25,7 +25,13 @@ export class UsersService {
   }
 
   findOneByUsername(username: string): Promise<User> {
-    return this.prisma.user.findFirst({ where: { username } });
+    return this.prisma.user.findFirst({
+      where: { username },
+      include: {
+        posts: true,
+        _count: { select: { posts: true, followers: true, following: true } },
+      },
+    });
   }
 
   create(data: SignUpDto) {
