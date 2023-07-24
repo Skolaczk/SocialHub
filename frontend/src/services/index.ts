@@ -3,3 +3,4 @@ export * from './GetPosts.service';
 export * from './Login.service';
 export * from './GetMe.service';
 export * from './GetRandomUsers.service';
+export * from './GetUser.service';
