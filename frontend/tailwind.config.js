@@ -79,6 +79,9 @@ module.exports = {
       14: '3.5rem',
       16: '4rem',
       20: '5rem',
+      24: '6rem',
+      28: '7rem',
+      32: '8rem',
     },
     borderRadius: {
       DEFAULT: '0.625rem',
@@ -110,7 +113,7 @@ module.exports = {
       black: 900,
     },
     screens: {
-      xs: '480px',
+      xs: '450px',
       sm: '640px',
       md: '768px',
       lg: '1024px',

@@ -1,3 +1,5 @@
+import { IPost } from './post.interface';
+
 export interface IUser {
   bio: string;
   createdAt: string;
@@ -7,4 +9,10 @@ export interface IUser {
   password: string;
   updatedAt: string;
   username: string;
+  posts: IPost[];
+  _count: {
+    posts: number;
+    followers: number;
+    following: number;
+  };
 }
