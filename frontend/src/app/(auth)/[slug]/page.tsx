@@ -4,17 +4,14 @@ import { notFound } from 'next/navigation';
 import { LogoDesktopIcon } from '@/assets/icons';
 import { AuthForm } from '@/components';
 import Link from 'next/link';
-
-interface IProps {
-  params: { slug: string };
-}
+import { IParam } from '@/interfaces';
 
 const auth = {
   SIGN_IN: 'sign-in',
   SIGN_UP: 'sign-up',
 };
 
-const Auth = ({ params }: IProps) => {
+const Auth = ({ params }: IParam) => {
   const isSignUp = params.slug === auth.SIGN_UP;
 
   if (params.slug !== auth.SIGN_UP && params.slug !== auth.SIGN_IN) {
