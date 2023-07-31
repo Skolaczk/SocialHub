@@ -12,7 +12,7 @@ export const UsersList = ({ users }: IProps) => {
       {users &&
         users.map(({ id, username, image }) => (
           <Link
-            href={`/user/${username}`}
+            href={`/profile/${username}`}
             key={id}
             className="flex items-center gap-2 p-2 [&:not(:last-child)]:border-b border-neutral-100 dark:border-neutral-900"
           >

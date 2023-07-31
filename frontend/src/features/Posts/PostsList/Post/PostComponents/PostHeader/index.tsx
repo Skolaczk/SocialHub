@@ -8,7 +8,7 @@ export const PostHeader = ({ user, createdAt }: IPost) => {
     <div className="flex justify-between items-center p-5">
       <div className="flex items-center gap-3">
         <Link
-          href={`/user/${user.username}`}
+          href={`/profile/${user.username}`}
           className="flex items-center gap-2"
         >
           <Image
