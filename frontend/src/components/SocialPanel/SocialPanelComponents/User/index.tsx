@@ -1,15 +1,19 @@
 import { IUser } from '@/interfaces';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface IProps {
   user: IUser;
-  buttonText: string;
+  buttonText?: string;
 }
 
 export const User = ({ user, buttonText }: IProps) => {
   return (
     <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
+      <Link
+        href={`/profile/${user.username}`}
+        className="flex items-center gap-2"
+      >
         <Image
           src={user.image}
           alt=""
@@ -18,8 +22,10 @@ export const User = ({ user, buttonText }: IProps) => {
           className="rounded-full"
         />
         <p>{user.username}</p>
-      </div>
-      <button className="text-primary font-bold text-sm">{buttonText}</button>
+      </Link>
+      {buttonText && (
+        <button className="text-primary font-bold text-sm">{buttonText}</button>
+      )}
     </div>
   );
 };

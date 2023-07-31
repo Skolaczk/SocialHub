@@ -4,7 +4,7 @@ import { User } from '@/components/SocialPanel/SocialPanelComponents/User';
 interface IProps {
   users: IUser[] | undefined;
   title: string;
-  buttonText: string;
+  buttonText?: string;
 }
 
 export const UsersList = ({ users, title, buttonText }: IProps) => {

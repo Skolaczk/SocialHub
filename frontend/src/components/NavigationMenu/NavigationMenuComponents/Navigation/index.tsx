@@ -36,7 +36,7 @@ export const Navigation = ({ username }: IProps) => {
         <span className="hidden xl:block">Notifications</span>
       </Link>
       <Link
-        href={`/user/${username}`}
+        href={`/profile/${username}`}
         className="order-5 flex items-center gap-3 xl:w-full xl:py-1 xl:pr-20"
       >
         <ProfileIcon />
