@@ -5,7 +5,6 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { login } from '@/services';
 import { useRouter } from 'next/navigation';
-import { useToken } from '@/hooks';
 
 const regex = {
   EMAIL: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
@@ -18,7 +17,6 @@ interface IProps {
 
 export const AuthForm = ({ isSignUp }: IProps) => {
   const router = useRouter();
-  const { setAccessToken } = useToken();
   const { handleSubmit, values, handleChange, errors, touched, resetForm } =
     useFormik({
       initialValues: {
@@ -46,8 +44,7 @@ export const AuthForm = ({ isSignUp }: IProps) => {
           .required('Password field is required'),
       }),
       onSubmit: async (body) => {
-        const { access_token } = await login(isSignUp, body);
-        setAccessToken(access_token);
+        await login(isSignUp, body);
         router.push('/');
 
         resetForm();
