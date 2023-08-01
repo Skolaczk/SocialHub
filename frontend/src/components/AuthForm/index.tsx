@@ -1,6 +1,6 @@
 'use client';
 
-import { FormField } from '@/components';
+import { FormField } from '../FormField';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { login } from '@/services';
