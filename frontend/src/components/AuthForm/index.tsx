@@ -2,14 +2,9 @@
 
 import { FormField } from '../FormField';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { login } from '@/services';
 import { useRouter } from 'next/navigation';
-
-const regex = {
-  EMAIL: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-  PASSWORD: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).+$/,
-};
+import { getValidationSchema, initialValues, setTokenToCookies } from './utils';
 
 interface IProps {
   isSignUp: boolean;
@@ -19,32 +14,11 @@ export const AuthForm = ({ isSignUp }: IProps) => {
   const router = useRouter();
   const { handleSubmit, values, handleChange, errors, touched, resetForm } =
     useFormik({
-      initialValues: {
-        email: '',
-        username: '',
-        password: '',
-      },
-      validationSchema: Yup.object({
-        email: Yup.string()
-          .matches(regex.EMAIL, 'Invalid email address')
-          .required('Email field is required'),
-        username: isSignUp
-          ? Yup.string()
-              .min(5, 'Username is too short')
-              .max(30, 'Username is too long')
-              .required('Username field is required')
-          : Yup.string(),
-        password: Yup.string()
-          .min(8, 'Password is too short')
-          .max(50, 'Password is too long')
-          .matches(
-            regex.PASSWORD,
-            'The password must contain one lowercase, one uppercase letter, a number, or a special character',
-          )
-          .required('Password field is required'),
-      }),
+      initialValues,
+      validationSchema: getValidationSchema(isSignUp),
       onSubmit: async (body) => {
-        await login(isSignUp, body);
+        const { access_token } = await login(isSignUp, body);
+        setTokenToCookies(access_token);
         router.push('/');
 
         resetForm();

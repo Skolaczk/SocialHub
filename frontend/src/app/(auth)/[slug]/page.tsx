@@ -31,14 +31,14 @@ const Auth = ({ params }: IParam) => {
         {isSignUp ? (
           <p>
             Already have an account?{' '}
-            <Link href={auth.SIGN_IN} className="text-primary">
+            <Link href={`/${auth.SIGN_IN}`} className="text-primary">
               Log in
             </Link>
           </p>
         ) : (
           <p>
             You do not have an account yet?{' '}
-            <Link href={auth.SIGN_UP} className="text-primary">
+            <Link href={`/${auth.SIGN_UP}`} className="text-primary">
               Register
             </Link>
           </p>
