@@ -1,7 +1,13 @@
 export interface INotification {
   id: number;
-  sender: { image: string; username: string };
-  type: string;
+  type: 'follow' | 'like' | 'comment';
+  postId?: number;
+  userId: number;
+  senderId: number;
   createdAt: string;
-  message: string;
+  sender: {
+    id: number;
+    username: string;
+    image: string;
+  };
 }

@@ -8,9 +8,13 @@ interface IProps {
 export const NotificationsList = ({ notifications }: IProps) => {
   return (
     <div className="max-w-2xl w-full">
-      {notifications.map((notification) => (
-        <Notification key={notification.id} {...notification} />
-      ))}
+      {notifications?.length > 0 ? (
+        notifications.map((notification) => (
+          <Notification key={notification.id} {...notification} />
+        ))
+      ) : (
+        <h2>No notifications</h2>
+      )}
     </div>
   );
 };
