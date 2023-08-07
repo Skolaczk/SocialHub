@@ -7,6 +7,19 @@ import { SignUpDto } from 'src/auth/dto';
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
+  findOneById(id: number): Promise<User> {
+    return this.prisma.user.findFirst({
+      where: { id },
+      include: {
+        notifications: {
+          include: {
+            sender: { select: { id: true, username: true, image: true } },
+          },
+        },
+      },
+    });
+  }
+
   findAllByUsername(username: string): Promise<User[]> {
     if (!username) return;
 
