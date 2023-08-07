@@ -34,27 +34,13 @@ export class UsersService {
     });
   }
 
-  create(data: SignUpDto) {
+  create(data: SignUpDto): Promise<User> {
     return this.prisma.user.create({
       data,
     });
   }
 
-  async findRandom(count: number, excludedUserId: number) {
-    const totalUsers = await this.prisma.user.count();
-    const randomIds = new Set<number>();
-
-    while (randomIds.size < count) {
-      const randomId = Math.floor(Math.random() * totalUsers) + 1;
-      if (randomId !== excludedUserId) {
-        randomIds.add(randomId);
-      }
-    }
-
-    return this.prisma.user.findMany({
-      where: {
-        id: { in: Array.from(randomIds) },
-      },
-    });
+  findRandom(): Promise<User[]> {
+    return this.prisma.user.findMany({ take: 5 });
   }
 }
