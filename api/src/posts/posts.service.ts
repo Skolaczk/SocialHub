@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Post } from '@prisma/client';
+import { CreatePost } from 'src/posts/types';
 
 @Injectable()
 export class PostsService {
@@ -22,6 +23,12 @@ export class PostsService {
           },
         },
       },
+    });
+  }
+
+  create(data: CreatePost): Promise<Post> {
+    return this.prisma.post.create({
+      data,
     });
   }
 }
