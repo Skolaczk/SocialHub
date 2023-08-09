@@ -9,7 +9,7 @@ import { v4 as uuid } from 'uuid';
 
 export const multerOptions: MulterOptions = {
   limits: {
-    fileSize: +process.env.MAX_FILE_SIZE || 5242880,
+    fileSize: +process.env.MAX_FILE_SIZE || 10485760,
   },
   fileFilter(
     req: Request,
@@ -34,7 +34,7 @@ export const multerOptions: MulterOptions = {
       file: Express.Multer.File,
       done: (error: Error | null, filename: string) => void,
     ) {
-      const uploadPath = process.env.UPLOAD_TEMP_DIR;
+      const uploadPath = process.env.UPLOAD_DIR;
 
       if (!existsSync(uploadPath)) {
         mkdirSync(uploadPath);
