@@ -26,6 +26,35 @@ export class PostsService {
     });
   }
 
+  findOne(id: number): Promise<Post> {
+    return this.prisma.post.findFirst({
+      where: { id },
+      include: {
+        user: {
+          select: {
+            username: true,
+            image: true,
+          },
+        },
+        comments: {
+          include: {
+            user: {
+              select: {
+                username: true,
+                image: true,
+              },
+            },
+          },
+        },
+        _count: {
+          select: {
+            likes: true,
+          },
+        },
+      },
+    });
+  }
+
   create(data: CreatePost): Promise<Post> {
     return this.prisma.post.create({
       data,
