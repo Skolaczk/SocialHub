@@ -7,3 +7,6 @@ export * from './CreateIcon';
 export * from './ProfileIcon';
 export * from './NotificationsIcon';
 export * from './ExploreIcon';
+export * from './ArrowLeftIcon';
+export * from './XIcon';
+export * from './UploadIcon';
