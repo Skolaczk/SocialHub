@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Headers,
+  Param,
   Post,
   UploadedFile,
   UseGuards,
@@ -23,6 +24,11 @@ export class PostsController {
   @Get()
   findAll(): Promise<PostType[]> {
     return this.postsService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param() { id }: { id: string }): Promise<PostType> {
+    return this.postsService.findOne(+id);
   }
 
   @Post()
