@@ -4,6 +4,6 @@ import { CommentsService } from './comments.service';
 
 @Module({
   controllers: [CommentsController],
-  providers: [CommentsService]
+  providers: [CommentsService],
 })
 export class CommentsModule {}
