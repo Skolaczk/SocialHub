@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { IPost } from '@/interfaces';
+import Link from 'next/link';
 
 interface IProps {
   posts: IPost[];
@@ -9,7 +10,7 @@ export const PostsGrid = ({ posts }: IProps) => {
   return (
     <div className="grid grid-cols-3 justify-center w-full max-w-2xl">
       {posts.map(({ id, image }) => (
-        <div key={id}>
+        <Link href={`?post=${id}`} key={id}>
           <Image
             src={image}
             alt=""
@@ -18,7 +19,7 @@ export const PostsGrid = ({ posts }: IProps) => {
             sizes="100vw"
             className="w-full h-auto"
           />
-        </div>
+        </Link>
       ))}
     </div>
   );
