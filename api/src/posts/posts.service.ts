@@ -49,6 +49,7 @@ export class PostsService {
         _count: {
           select: {
             likes: true,
+            comments: true,
           },
         },
       },

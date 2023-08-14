@@ -11,3 +11,13 @@
         @apply fill-black stroke-black dark:fill-white dark:stroke-white
     }
 }
+
+@layer utilities {
+    .scrollbar::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb {
+        @apply bg-neutral-300 rounded
+    }
+}
