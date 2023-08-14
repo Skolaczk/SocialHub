@@ -14,7 +14,7 @@ export const PostContent = ({ content, image, _count: count }: IPost) => {
         sizes="100vw"
         className="w-full h-auto"
       />
-      <div className="flex items-center justify-between px-5 py-3 text-sm">
+      <div className="flex items-center justify-between p-5 text-sm">
         <div className="flex items-center gap-1">
           <button type="button">
             <LikeIcon />
