@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { User } from '@prisma/client';
 import { SignUpDto } from 'src/auth/dto';
@@ -37,14 +37,18 @@ export class UsersService {
     return this.prisma.user.findFirst({ where: { email } });
   }
 
-  findOneByUsername(username: string): Promise<User> {
-    return this.prisma.user.findFirst({
+  async findOneByUsername(username: string): Promise<User> {
+    const user = await this.prisma.user.findFirst({
       where: { username },
       include: {
         posts: true,
         _count: { select: { posts: true, followers: true, following: true } },
       },
     });
+
+    if (!user) throw new NotFoundException('User not found');
+
+    return user;
   }
 
   create(data: SignUpDto): Promise<User> {
