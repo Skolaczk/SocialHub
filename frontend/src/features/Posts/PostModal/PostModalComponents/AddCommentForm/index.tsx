@@ -3,13 +3,18 @@
 import { SendArrowIcon } from '@/assets/icons';
 import { useFormik } from 'formik';
 import { initialValues, validationSchema } from './utils';
+import { createComment } from '@/services';
 
-export const AddCommentForm = () => {
+interface IProps {
+  postId: number;
+}
+
+export const AddCommentForm = ({ postId }: IProps) => {
   const { handleSubmit, handleChange, values, resetForm } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async ({ content }) => {
+      const data = await createComment({ postId, content });
       resetForm();
     },
   });
@@ -19,11 +24,11 @@ export const AddCommentForm = () => {
       <input
         className="bg-transparent w-full text-sm"
         type="text"
-        id="comment"
-        name="comment"
+        id="content"
+        name="content"
         placeholder="Add comment ..."
         onChange={handleChange}
-        value={values.comment}
+        value={values.content}
       />
       <button type="submit">
         <SendArrowIcon />

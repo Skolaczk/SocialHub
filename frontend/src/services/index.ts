@@ -6,3 +6,4 @@ export * from './GetRandomUsers.service';
 export * from './GetUser.service';
 export * from './CreatePost.service';
 export * from './GetPost.service';
+export * from './CreateComment.service';

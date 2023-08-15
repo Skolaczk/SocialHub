@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
 
 export const initialValues = {
-  comment: '',
+  content: '',
 };
 
 export const validationSchema = Yup.object({
-  comment: Yup.string().required(),
+  content: Yup.string().required(),
 });

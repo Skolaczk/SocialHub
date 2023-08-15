@@ -31,7 +31,7 @@ export const PostModal = () => {
           <div className="w-full h-screen bg-white dark:bg-black max-w-xl overflow-y-scroll md:h-auto md:rounded md:max-h-[90vh] md:overflow-y-auto md:scrollbar">
             <PostModalHeader />
             <Post {...post} />
-            <AddCommentForm />
+            <AddCommentForm postId={post.id} />
             <PostModalComments comments={post.comments} />
           </div>
         </div>
