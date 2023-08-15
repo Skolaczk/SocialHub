@@ -10,6 +10,14 @@ export class CommentsService {
   create(data: CreateComment): Promise<Comment> {
     return this.prisma.comment.create({
       data,
+      include: {
+        user: {
+          select: {
+            username: true,
+            image: true,
+          },
+        },
+      },
     });
   }
 }

@@ -9,6 +9,7 @@ export const endpoints = {
     base: 'users',
     me: 'users/me',
   },
+  comments: 'comments',
   posts: 'posts',
   auth: {
     signIn: 'auth/sign-in',
