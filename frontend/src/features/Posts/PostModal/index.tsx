@@ -4,10 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getPost } from '@/services';
 import { Post } from '@/features/Posts/PostsList/Post';
-import {
-  PostModalComments,
-  PostModalHeader,
-} from '@/features/Posts/PostModal/PostModalComponents';
+import { PostModalComments, PostModalHeader } from './PostModalComponents';
 import { IPostWithComments } from '@/interfaces';
 
 export const PostModal = () => {
