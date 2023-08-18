@@ -1,5 +1,7 @@
-import { Logo, Navigation, OptionsModal } from './components';
 import { getMe } from '@/services';
+import { Logo } from './Logo';
+import { Navigation } from './Navigation';
+import { OptionsModal } from './OptionsModal';
 
 export const NavigationMenu = async () => {
   const { username } = await getMe();

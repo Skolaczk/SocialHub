@@ -1,5 +1,5 @@
 import { IUser } from '@/interfaces';
-import { User } from '@/components/SocialPanel/components/User';
+import { User } from '@/components/SocialPanel/User';
 
 interface IProps {
   users: IUser[] | undefined;

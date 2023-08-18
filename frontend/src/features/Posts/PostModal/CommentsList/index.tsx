@@ -1,11 +1,11 @@
 import { IComment } from '@/interfaces';
-import { Comment } from '@/features/Posts/PostModal/PostModalComponents/Comment';
+import { Comment } from './Comment';
 
 interface IProps {
   comments: IComment[];
 }
 
-export const PostModalComments = ({ comments }: IProps) => {
+export const CommentsList = ({ comments }: IProps) => {
   return (
     <>
       {comments.length > 0 && (

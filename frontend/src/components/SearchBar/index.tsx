@@ -4,7 +4,7 @@ import { ChangeEvent, useState } from 'react';
 import { getUsersByUsername } from '@/services';
 import { IUser } from '@/interfaces';
 import debounce from 'lodash.debounce';
-import { UsersList } from './components';
+import { UsersList } from './UsersList';
 
 export const SearchBar = () => {
   const [users, setUsers] = useState<IUser[]>();
