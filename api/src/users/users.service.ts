@@ -37,7 +37,11 @@ export class UsersService {
     return this.prisma.user.findFirst({ where: { email } });
   }
 
-  async findOneByUsername(username: string): Promise<User> {
+  findOneByUsername(username: string): Promise<User> {
+    return this.prisma.user.findFirst({ where: { username } });
+  }
+
+  async findOneByUsernameWithPosts(username: string): Promise<User> {
     const user = await this.prisma.user.findFirst({
       where: { username },
       include: {

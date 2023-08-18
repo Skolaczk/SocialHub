@@ -38,6 +38,6 @@ export class UsersController {
   findOneByUsername(
     @Param() { username }: { username: string },
   ): Promise<User> {
-    return this.usersService.findOneByUsername(username);
+    return this.usersService.findOneByUsernameWithPosts(username);
   }
 }
