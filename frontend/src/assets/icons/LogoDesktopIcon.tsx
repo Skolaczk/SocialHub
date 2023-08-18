@@ -1,13 +1,8 @@
-interface IProps {
-  width?: string;
-  height?: string;
-}
-
-export const LogoDesktopIcon = ({ width, height }: IProps) => {
+export const LogoDesktopIcon = () => {
   return (
     <svg
-      width={width ? width : '105'}
-      height={height ? height : '24'}
+      width="130"
+      height="40"
       viewBox="0 0 105 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
