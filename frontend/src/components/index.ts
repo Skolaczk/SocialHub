@@ -3,3 +3,4 @@ export * from './SearchBar';
 export * from './FormField';
 export * from './AuthForm';
 export * from './SocialPanel';
+export * from './ModalHeader';

@@ -1,4 +1,4 @@
-import { api, endpoints } from '@/api';
+import { api } from '@/api';
 import { getCookie } from 'cookies-next';
 import { IComment } from '@/interfaces';
 
@@ -8,7 +8,7 @@ interface IBody {
 }
 
 export const createComment = async (body: IBody): Promise<IComment> => {
-  const { data } = await api.post(endpoints.comments, body, {
+  const { data } = await api.post('comments', body, {
     headers: {
       Authorization: `Bearer ${getCookie('token')}`,
     },

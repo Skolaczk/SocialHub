@@ -1,5 +1,6 @@
 import { getMe, getRandomUsers } from '@/services';
-import { User, UsersList } from './SocialPanelComponents';
+import { User } from './User';
+import { UsersList } from './UsersList';
 
 export const SocialPanel = async () => {
   const user = await getMe();

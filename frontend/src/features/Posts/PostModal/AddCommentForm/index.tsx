@@ -6,7 +6,7 @@ import { initialValues, validationSchema } from './utils';
 import { createComment } from '@/services';
 import { useState } from 'react';
 import { IComment } from '@/interfaces';
-import { Comment } from '../Comment';
+import { Comment } from '../CommentsList/Comment';
 
 interface IProps {
   postId: number;
