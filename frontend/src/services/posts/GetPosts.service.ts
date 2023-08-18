@@ -1,7 +1,7 @@
 import { IPost } from '@/interfaces';
-import { api, endpoints } from '@/api';
+import { api } from '@/api';
 
 export const getPosts = async () => {
-  const { data } = await api.get<IPost[]>(endpoints.posts);
+  const { data } = await api.get<IPost[]>('posts');
   return data;
 };

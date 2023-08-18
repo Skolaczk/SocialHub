@@ -1,7 +1,7 @@
 import { IUser } from '@/interfaces';
-import { api, endpoints } from '@/api';
+import { api } from '@/api';
 
 export const getRandomUsers = async () => {
-  const { data } = await api.get<IUser[]>(endpoints.users.base);
+  const { data } = await api.get<IUser[]>('users');
   return data;
 };
