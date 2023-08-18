@@ -1,3 +1,5 @@
+import { IComment } from '@/interfaces/comment.interface';
+
 export interface IPost {
   id: number;
   content: string;
@@ -10,4 +12,5 @@ export interface IPost {
     image: string;
   };
   _count: { comments: number; likes: number };
+  comments: IComment[];
 }

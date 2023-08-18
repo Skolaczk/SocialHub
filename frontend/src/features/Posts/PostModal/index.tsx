@@ -9,11 +9,11 @@ import {
   PostModalComments,
   PostModalHeader,
 } from './PostModalComponents';
-import { IPostWithComments } from '@/interfaces';
+import { IPost } from '@/interfaces';
 
 export const PostModal = () => {
   const id = useSearchParams().get('post');
-  const [post, setPost] = useState<IPostWithComments>();
+  const [post, setPost] = useState<IPost>();
 
   useEffect(() => {
     (async () => {
