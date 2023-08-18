@@ -1,4 +1,4 @@
-import { Logo, Navigation, OptionsModal } from './NavigationMenuComponents';
+import { Logo, Navigation, OptionsModal } from './components';
 import { getMe } from '@/services';
 
 export const NavigationMenu = async () => {

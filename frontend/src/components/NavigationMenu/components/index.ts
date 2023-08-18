@@ -1,3 +1,3 @@
 export * from './Logo';
-export * from './OptionsModal';
 export * from './Navigation';
+export * from './OptionsModal';
