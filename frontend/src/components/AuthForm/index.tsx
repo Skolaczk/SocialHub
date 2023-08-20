@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import { login } from '@/services';
 import { useRouter } from 'next/navigation';
 import { getValidationSchema, initialValues, setTokenToCookies } from './utils';
+import { useState } from 'react';
 
 interface IProps {
   isSignUp: boolean;
@@ -12,16 +13,21 @@ interface IProps {
 
 export const AuthForm = ({ isSignUp }: IProps) => {
   const router = useRouter();
+  const [error, setError] = useState('');
   const { handleSubmit, values, handleChange, errors, touched, resetForm } =
     useFormik({
       initialValues,
       validationSchema: getValidationSchema(isSignUp),
       onSubmit: async (body) => {
-        const { access_token } = await login(isSignUp, body);
-        setTokenToCookies(access_token);
-        router.push('/');
+        const { data, error } = await login(isSignUp, body);
+        if (data) {
+          setTokenToCookies(data.access_token);
+          router.push('/');
+        }
 
-        resetForm();
+        if (error) {
+          setError(error.message);
+        }
       },
     });
 
@@ -50,9 +56,10 @@ export const AuthForm = ({ isSignUp }: IProps) => {
         onChange={handleChange}
         error={touched.password && errors.password}
       />
-      <button type="submit" className="bg-primary p-2 rounded-sm my-5">
+      <button type="submit" className="bg-primary p-2 rounded-sm mt-5 mb-3">
         {isSignUp ? 'Register' : 'Login'}
       </button>
+      {error && <p className="text-center text-danger">{error}</p>}
     </form>
   );
 };
