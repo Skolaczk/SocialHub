@@ -10,13 +10,13 @@ export class LikesController {
 
   @Post(':postId')
   @UseGuards(JwtGuard)
-  create(@Param('postId') postId: string, @GetUser() user: User) {
-    return this.likesService.create(+postId, user.id);
+  create(@Param() { postId }: { postId: string }, @GetUser() user: User) {
+    return this.likesService.create({ postId: +postId, userId: user.id });
   }
 
   @Delete(':postId')
   @UseGuards(JwtGuard)
-  delete(@Param('postId') postId: string, @GetUser() user: User) {
-    return this.likesService.delete(+postId, user.id);
+  delete(@Param() { postId }: { postId: string }, @GetUser() user: User) {
+    return this.likesService.delete({ postId: +postId, userId: user.id });
   }
 }

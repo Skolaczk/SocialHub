@@ -4,6 +4,7 @@ import { LikesService } from './likes.service';
 
 @Module({
   controllers: [LikesController],
-  providers: [LikesService]
+  providers: [LikesService],
+  exports: [LikesService],
 })
 export class LikesModule {}
