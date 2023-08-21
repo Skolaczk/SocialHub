@@ -7,6 +7,7 @@ import { AuthModule } from 'src/auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { CommentsModule } from './comments/comments.module';
+import { LikesModule } from './likes/likes.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { CommentsModule } from './comments/comments.module';
     AuthModule,
     PrismaModule,
     CommentsModule,
+    LikesModule,
   ],
 })
 export class AppModule {}

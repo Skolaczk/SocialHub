@@ -16,19 +16,44 @@ import { JwtGuard } from 'src/common/guards';
 import { GetUser } from 'src/common/decorators';
 import { Post as PostType, User } from '@prisma/client';
 import { CreatePostDto } from 'src/posts/dto';
+import { LikesService } from 'src/likes/likes.service';
 
 @Controller('posts')
 export class PostsController {
-  constructor(private postsService: PostsService) {}
+  constructor(
+    private postsService: PostsService,
+    private likesService: LikesService,
+  ) {}
 
   @Get()
-  findAll(): Promise<PostType[]> {
-    return this.postsService.findAll();
+  @UseGuards(JwtGuard)
+  async findAll(@GetUser() user: User): Promise<PostType[]> {
+    const posts = await this.postsService.findAll();
+
+    return await Promise.all(
+      posts.map(async (post) => {
+        const isLiked = !!(await this.likesService.findOne({
+          postId: post.id,
+          userId: user.id,
+        }));
+        return { ...post, isLiked };
+      }),
+    );
   }
 
   @Get(':id')
-  findOne(@Param() { id }: { id: string }): Promise<PostType> {
-    return this.postsService.findOne(+id);
+  @UseGuards(JwtGuard)
+  async findOne(
+    @Param() { id }: { id: string },
+    @GetUser() user: User,
+  ): Promise<PostType & { isLiked: boolean }> {
+    const post = await this.postsService.findOne(+id);
+    const isLiked = !!(await this.likesService.findOne({
+      postId: post.id,
+      userId: user.id,
+    }));
+
+    return { ...post, isLiked };
   }
 
   @Post()
