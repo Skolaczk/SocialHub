@@ -13,4 +13,5 @@ export interface IPost {
   };
   _count: { comments: number; likes: number };
   comments: IComment[];
+  isLiked: boolean;
 }
