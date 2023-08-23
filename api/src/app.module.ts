@@ -8,6 +8,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { CommentsModule } from './comments/comments.module';
 import { LikesModule } from './likes/likes.module';
+import { FollowsModule } from './follows/follows.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { LikesModule } from './likes/likes.module';
     PrismaModule,
     CommentsModule,
     LikesModule,
+    FollowsModule,
   ],
 })
 export class AppModule {}
