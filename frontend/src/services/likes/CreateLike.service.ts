@@ -1,5 +1,14 @@
 import { api } from '@/api';
+import { getCookie } from 'cookies-next';
 
-export const CreateLike = async (postId: number) => {
-  return await api.post(`likes/${postId}`);
+export const createLike = async (postId: number) => {
+  return await api.post(
+    `likes/${postId}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${getCookie('token')}`,
+      },
+    },
+  );
 };
