@@ -1,12 +1,7 @@
 import { NotificationsList } from '@/features';
 import { getMe } from '@/services';
-import { api } from '@/api';
-import { cookies } from 'next/headers';
 
 const Notifications = async () => {
-  api.defaults.headers.common['Authorization'] = `Bearer ${
-    cookies().get('token')?.value
-  }`;
   const { notifications } = await getMe();
 
   return (

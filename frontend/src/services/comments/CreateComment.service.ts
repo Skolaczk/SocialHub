@@ -1,5 +1,4 @@
 import { api } from '@/api';
-import { getCookie } from 'cookies-next';
 import { IComment } from '@/interfaces';
 
 interface IBody {
@@ -8,10 +7,6 @@ interface IBody {
 }
 
 export const createComment = async (body: IBody): Promise<IComment> => {
-  const { data } = await api.post('comments', body, {
-    headers: {
-      Authorization: `Bearer ${getCookie('token')}`,
-    },
-  });
+  const { data } = await api.post('comments', body);
   return data;
 };
