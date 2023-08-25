@@ -47,8 +47,8 @@ export class UsersController {
     const user = await this.usersService.findOneByUsernameWithPosts(username);
 
     const isFollowing = !!(await this.followsService.findOne({
-      followerId: currentUser.id,
-      followingId: user.id,
+      followerId: user.id,
+      followingId: currentUser.id,
     }));
 
     return { ...user, isFollowing };

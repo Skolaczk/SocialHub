@@ -8,27 +8,27 @@ import { User } from '@prisma/client';
 export class FollowsController {
   constructor(private followsService: FollowsService) {}
 
-  @Post(':followingId')
+  @Post(':followerId')
   @UseGuards(JwtGuard)
   create(
-    @Param() { followingId }: { followingId: string },
+    @Param() { followerId }: { followerId: string },
     @GetUser() user: User,
   ) {
     return this.followsService.create({
-      followingId: +followingId,
-      followerId: user.id,
+      followingId: user.id,
+      followerId: +followerId,
     });
   }
 
-  @Delete(':followingId')
+  @Delete(':followerId')
   @UseGuards(JwtGuard)
   delete(
-    @Param() { followingId }: { followingId: string },
+    @Param() { followerId }: { followerId: string },
     @GetUser() user: User,
   ) {
     return this.followsService.delete({
-      followingId: +followingId,
-      followerId: user.id,
+      followingId: user.id,
+      followerId: +followerId,
     });
   }
 }
