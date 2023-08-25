@@ -15,4 +15,5 @@ export interface IUser {
     followers: number;
     following: number;
   };
+  isFollowing: boolean;
 }
