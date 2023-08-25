@@ -26,7 +26,7 @@ export class FollowsController {
     @Param() { followingId }: { followingId: string },
     @GetUser() user: User,
   ) {
-    return this.followsService.create({
+    return this.followsService.delete({
       followingId: +followingId,
       followerId: user.id,
     });
