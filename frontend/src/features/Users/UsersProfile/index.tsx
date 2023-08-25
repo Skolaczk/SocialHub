@@ -1,11 +1,28 @@
+'use client';
+
 import { IUser } from '@/interfaces';
 import Image from 'next/image';
+import { useState } from 'react';
+import { createFollow, deleteFollow } from '@/services';
 
 interface IProps {
   user: IUser;
 }
 
 export const UsersProfile = ({ user }: IProps) => {
+  const [isFollowing, setIsFollowing] = useState(user.isFollowing);
+
+  const handleFollow = async () => {
+    console.log(user._count);
+    if (isFollowing) {
+      await deleteFollow(user.id);
+      setIsFollowing(false);
+    } else {
+      await createFollow(user.id);
+      setIsFollowing(true);
+    }
+  };
+
   return (
     <div className="p-5 md:pt-0">
       <h1 className="text-center text-xl font-medium xs:hidden">
@@ -23,7 +40,12 @@ export const UsersProfile = ({ user }: IProps) => {
         <div>
           <div className="hidden xs:flex gap-3">
             <h1 className="text-xl font-medium">{user.username}</h1>
-            <button className="bg-primary rounded-sm py-1 px-5">Follow</button>
+            <button
+              onClick={handleFollow}
+              className="bg-primary rounded-sm py-1 px-5"
+            >
+              {isFollowing ? 'Unfollow' : 'Follow'}
+            </button>
           </div>
           <div className="flex gap-3 xs:my-5 xs:gap-4">
             {Object.entries(user._count).map(([key, value]) => (
@@ -41,8 +63,11 @@ export const UsersProfile = ({ user }: IProps) => {
         </div>
       </div>
       <p className="text-sm mt-2 mb-5 xs:hidden">{user.bio}</p>
-      <button className="w-full bg-primary rounded-sm p-1 xs:hidden">
-        Follow
+      <button
+        onClick={handleFollow}
+        className="w-full bg-primary rounded-sm p-1 xs:hidden"
+      >
+        {isFollowing ? 'Unfollow' : 'Follow'}
       </button>
     </div>
   );
