@@ -11,14 +11,18 @@ interface IProps {
 
 export const UsersProfile = ({ user }: IProps) => {
   const [isFollowing, setIsFollowing] = useState(user.isFollowing);
+  const [followersCounter, setFollowersCounter] = useState(
+    user._count.followers,
+  );
 
   const handleFollow = async () => {
-    console.log(user._count);
     if (isFollowing) {
       await deleteFollow(user.id);
+      setFollowersCounter((prevState) => prevState - 1);
       setIsFollowing(false);
     } else {
       await createFollow(user.id);
+      setFollowersCounter((prevState) => prevState + 1);
       setIsFollowing(true);
     }
   };
@@ -42,7 +46,11 @@ export const UsersProfile = ({ user }: IProps) => {
             <h1 className="text-xl font-medium">{user.username}</h1>
             <button
               onClick={handleFollow}
-              className="bg-primary rounded-sm py-1 px-5"
+              className={`rounded-sm py-1 px-5 ${
+                isFollowing
+                  ? 'bg-neutral-100 dark:bg-neutral-500'
+                  : 'bg-primary'
+              }`}
             >
               {isFollowing ? 'Unfollow' : 'Follow'}
             </button>
@@ -53,7 +61,9 @@ export const UsersProfile = ({ user }: IProps) => {
                 key={key}
                 className="flex flex-col items-center xs:flex-row-reverse"
               >
-                <span className="font-bold">{value}</span>
+                <span className="font-bold">
+                  {key === 'followers' ? followersCounter : value}
+                </span>
                 <span className="hidden xs:block mr-1">:</span>
                 <span className="first-letter:uppercase">{key}</span>
               </div>
@@ -65,7 +75,9 @@ export const UsersProfile = ({ user }: IProps) => {
       <p className="text-sm mt-2 mb-5 xs:hidden">{user.bio}</p>
       <button
         onClick={handleFollow}
-        className="w-full bg-primary rounded-sm p-1 xs:hidden"
+        className={`w-full rounded-sm p-1 xs:hidden ${
+          isFollowing ? 'bg-neutral-100 dark:bg-neutral-500' : 'bg-primary'
+        }`}
       >
         {isFollowing ? 'Unfollow' : 'Follow'}
       </button>
