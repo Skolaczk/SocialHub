@@ -20,7 +20,7 @@ export class FollowsService {
     const follow = await this.findOne(data);
 
     if (follow) {
-      throw new ConflictException('Like already exists');
+      throw new ConflictException('This user already followed');
     }
 
     return this.prisma.follow.create({ data });
