@@ -10,7 +10,7 @@ export const PostsGrid = ({ posts }: IProps) => {
   return (
     <div className="grid grid-cols-3 justify-center w-full max-w-2xl">
       {posts.map(({ id, image }) => (
-        <Link href={`?post=${id}`} key={id}>
+        <Link href={`/posts/${id}`} key={id}>
           <Image
             src={image}
             alt=""
