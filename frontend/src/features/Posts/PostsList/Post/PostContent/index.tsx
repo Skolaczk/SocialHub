@@ -25,7 +25,7 @@ export const PostContent = ({
       </Link>
       <div className="flex items-center justify-between p-5 text-sm">
         <AddLike id={id} isLiked={isLiked} likes={count.likes} />
-        <Link href={`?post=${id}`}>{count.comments} comments</Link>
+        <Link href={`/posts/${id}`}>{count.comments} comments</Link>
       </div>
     </>
   );

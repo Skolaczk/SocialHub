@@ -2,10 +2,10 @@
 
 @layer components {
     .modal-background {
-        @apply flex justify-center items-center fixed top-0 left-0 w-full h-screen bg-neutral-500 bg-opacity-50 backdrop-blur-sm;
+        @apply flex justify-center items-center fixed top-0 left-0 w-full h-screen bg-neutral-500 bg-opacity-50 backdrop-blur-sm z-10;
     }
 
     .modal {
-        @apply w-full h-screen bg-white dark:bg-black md:rounded;
+        @apply w-full h-screen bg-white dark:bg-black md:rounded z-20;
     }
 }
