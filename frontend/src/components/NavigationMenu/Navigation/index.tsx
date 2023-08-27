@@ -43,7 +43,7 @@ export const Navigation = ({ username }: IProps) => {
         <span className="hidden xl:block">Profile</span>
       </Link>
       <Link
-        href="?create-post=true"
+        href="/create"
         className="order-3 md:order-last xl:bg-primary xl:py-2 xl:rounded-sm xl:w-full xl:text-center"
       >
         <span className="xl:hidden">
