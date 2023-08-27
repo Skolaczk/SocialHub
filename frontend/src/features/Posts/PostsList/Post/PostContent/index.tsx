@@ -13,7 +13,7 @@ export const PostContent = ({
   return (
     <>
       <p className="px-5 pb-5">{content}</p>
-      <Link href={`?post=${id}`}>
+      <Link href={`/posts/${id}`}>
         <Image
           src={image}
           alt=""
