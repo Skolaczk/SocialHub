@@ -6,7 +6,6 @@ export interface IUser {
   email: string;
   id: number;
   image: string;
-  password: string;
   updatedAt: string;
   username: string;
   posts: IPost[];
@@ -16,4 +15,5 @@ export interface IUser {
     following: number;
   };
   isFollowing: boolean;
+  isCurrentUserProfile: boolean;
 }

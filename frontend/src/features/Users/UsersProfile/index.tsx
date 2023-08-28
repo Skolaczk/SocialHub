@@ -44,16 +44,23 @@ export const UsersProfile = ({ user }: IProps) => {
         <div>
           <div className="hidden xs:flex gap-3">
             <h1 className="text-xl font-medium">{user.username}</h1>
-            <button
-              onClick={handleFollow}
-              className={`rounded-sm py-1 px-5 ${
-                isFollowing
-                  ? 'bg-neutral-100 dark:bg-neutral-500'
-                  : 'bg-primary'
-              }`}
-            >
-              {isFollowing ? 'Unfollow' : 'Follow'}
-            </button>
+            {user.isCurrentUserProfile ? (
+              <button type="button" className="rounded-sm py-1 px-5 bg-primary">
+                Edit profile
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={handleFollow}
+                className={`rounded-sm py-1 px-5 ${
+                  isFollowing
+                    ? 'bg-neutral-100 dark:bg-neutral-500'
+                    : 'bg-primary'
+                }`}
+              >
+                {isFollowing ? 'Unfollow' : 'Follow'}
+              </button>
+            )}
           </div>
           <div className="flex gap-3 xs:my-5 xs:gap-4">
             {Object.entries(user._count).map(([key, value]) => (
@@ -73,14 +80,24 @@ export const UsersProfile = ({ user }: IProps) => {
         </div>
       </div>
       <p className="text-sm mt-2 mb-5 xs:hidden">{user.bio}</p>
-      <button
-        onClick={handleFollow}
-        className={`w-full rounded-sm p-1 xs:hidden ${
-          isFollowing ? 'bg-neutral-100 dark:bg-neutral-500' : 'bg-primary'
-        }`}
-      >
-        {isFollowing ? 'Unfollow' : 'Follow'}
-      </button>
+      {user.isCurrentUserProfile ? (
+        <button
+          type="button"
+          className="w-full rounded-sm p-1 bg-primary xs:hidden"
+        >
+          Edit profile
+        </button>
+      ) : (
+        <button
+          onClick={handleFollow}
+          type="button"
+          className={`w-full rounded-sm p-1 xs:hidden ${
+            isFollowing ? 'bg-neutral-100 dark:bg-neutral-500' : 'bg-primary'
+          }`}
+        >
+          {isFollowing ? 'Unfollow' : 'Follow'}
+        </button>
+      )}
     </div>
   );
 };
