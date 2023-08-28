@@ -21,7 +21,11 @@ export const NavigationItem = ({ label, href, order, icon }: IProps) => {
       className={`flex items-center gap-3 xl:w-full xl:py-1 xl:pr-20 ${order}`}
     >
       {icon}
-      <span className={`hidden xl:block ${isActive ? 'text-primary-500' : ''}`}>
+      <span
+        className={`hidden xl:block  ${
+          isActive ? 'text-primary-500 font-bold' : ''
+        }`}
+      >
         {label}
       </span>
     </Link>
