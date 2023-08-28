@@ -13,6 +13,7 @@ import { User } from '@prisma/client';
 import { JwtGuard } from 'src/common/guards';
 import { GetUser } from 'src/common/decorators';
 import { FollowsService } from 'src/follows/follows.service';
+import { UserWithStatus } from 'src/users/types';
 
 @Controller('users')
 export class UsersController {
@@ -43,7 +44,7 @@ export class UsersController {
   async findOneByUsername(
     @Param() { username }: { username: string },
     @GetUser() currentUser: User,
-  ): Promise<User & { isFollowing: boolean }> {
+  ): Promise<UserWithStatus> {
     const user = await this.usersService.findOneByUsernameWithPosts(username);
 
     const isFollowing = !!(await this.followsService.findOne({
@@ -51,6 +52,8 @@ export class UsersController {
       followingId: currentUser.id,
     }));
 
-    return { ...user, isFollowing };
+    const isCurrentUserProfile = user.username === currentUser.username;
+
+    return { ...user, isFollowing, isCurrentUserProfile };
   }
 }
