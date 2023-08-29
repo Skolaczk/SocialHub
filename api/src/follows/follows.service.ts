@@ -5,10 +5,14 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateFollow } from 'src/follows/types';
+import { NotificationsService } from 'src/notifications/notifications.service';
 
 @Injectable()
 export class FollowsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private notificationService: NotificationsService,
+  ) {}
 
   findOne({ followingId, followerId }: CreateFollow) {
     return this.prisma.follow.findFirst({
@@ -22,6 +26,12 @@ export class FollowsService {
     if (follow) {
       throw new ConflictException('This user already followed');
     }
+
+    await this.notificationService.create({
+      type: 'follow',
+      senderId: data.followingId,
+      userId: data.followerId,
+    });
 
     return this.prisma.follow.create({ data });
   }

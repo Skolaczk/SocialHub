@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateNotifacation } from 'src/notifications/types';
+import { CreateNotification } from 'src/notifications/types';
 
 @Injectable()
 export class NotificationsService {
   constructor(private prisma: PrismaService) {}
 
-  create(data: CreateNotifacation) {
+  create(data: CreateNotification) {
     return this.prisma.notification.create({
       data,
     });

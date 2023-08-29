@@ -1,6 +1,6 @@
-export type CreateNotifacation = {
-  type: 'Like' | 'Follow' | 'Comment';
-  postId: number;
+export type CreateNotification = {
+  type: 'like' | 'follow' | 'comment';
+  postId?: number;
   userId: number;
   senderId: number;
 };
