@@ -10,8 +10,12 @@ export function middleware(request: NextRequest) {
       return NextResponse.rewrite(new URL('/', request.url));
     }
   } else {
-    const routes = ['/', '/explore', '/notifications'];
-    if (routes.includes(url.pathname) || url.pathname.startsWith('/profile')) {
+    const staticRoutes = ['/', '/explore', '/notifications', '/create'];
+    const dynamicRoutes = ['/profile', '/posts'];
+    if (
+      staticRoutes.includes(url.pathname) ||
+      dynamicRoutes.some((route) => url.pathname.startsWith(route))
+    ) {
       {
         return NextResponse.rewrite(new URL('/sign-in', request.url));
       }
