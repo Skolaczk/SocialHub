@@ -36,7 +36,7 @@ export const Notification = (notification: INotification) => {
         href={
           notification.type === 'follow'
             ? `/profile/${notification.sender.username}`
-            : `/posts/${notification.id}`
+            : `/posts/${notification.postId}`
         }
         className="text-primary font-bold"
       >
