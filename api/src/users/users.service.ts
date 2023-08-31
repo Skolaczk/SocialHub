@@ -15,6 +15,9 @@ export class UsersService {
           include: {
             sender: { select: { id: true, username: true, image: true } },
           },
+          orderBy: {
+            createdAt: 'desc',
+          },
         },
       },
     });
