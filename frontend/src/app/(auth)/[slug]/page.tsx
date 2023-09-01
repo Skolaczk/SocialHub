@@ -51,7 +51,7 @@ const Auth = ({ params }: IParam) => {
         </p>
       </div>
       <div className="hidden xl:flex w-1/2 justify-center items-center bg-primary">
-        <LogoDesktopIcon width="500" height="200" />
+        <LogoDesktopIcon width="500" height="200" fill="white" />
       </div>
     </div>
   );

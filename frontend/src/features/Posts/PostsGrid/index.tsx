@@ -8,7 +8,7 @@ interface IProps {
 
 export const PostsGrid = ({ posts }: IProps) => {
   return (
-    <div className="grid grid-cols-3 justify-center w-full max-w-2xl">
+    <div className="grid grid-cols-3 justify-center w-full max-w-2xl gap-1">
       {posts.map(({ id, image }) => (
         <Link href={`/posts/${id}`} key={id}>
           <Image
@@ -17,7 +17,7 @@ export const PostsGrid = ({ posts }: IProps) => {
             width={0}
             height={0}
             sizes="100vw"
-            className="w-full h-auto"
+            className="w-full h-auto aspect-[1/1] object-cover"
           />
         </Link>
       ))}

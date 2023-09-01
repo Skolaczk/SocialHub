@@ -21,7 +21,7 @@ export const FormField = ({ type, label, onChange, value, error }: IProps) => {
         placeholder={label}
         onChange={onChange}
         value={value}
-        className={`my-1.5 p-2 rounded-sm bg-neutral-500 text-sm border-danger ${
+        className={`my-1.5 p-2 rounded-sm bg-neutral-100 dark:bg-neutral-500 text-sm border-danger ${
           error && 'border'
         }`}
       />

@@ -44,7 +44,7 @@ export const AddCommentForm = ({ postId }: IProps) => {
         </button>
       </form>
       {newComments?.length > 0 && (
-        <div className="flex flex-col gap-3 px-5 py-2 bg-primary-500">
+        <div className="flex flex-col gap-3 px-5 py-2 bg-neutral-100 dark:bg-neutral-900">
           {newComments.map((comment) => (
             <Comment key={comment.id} {...comment} />
           ))}
