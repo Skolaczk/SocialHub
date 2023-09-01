@@ -6,6 +6,6 @@
     }
 
     .scrollbar::-webkit-scrollbar-thumb {
-        @apply bg-neutral-300 rounded
+        @apply bg-neutral-200 dark:bg-neutral-300 rounded
     }
 }

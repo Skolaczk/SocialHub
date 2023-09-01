@@ -20,7 +20,7 @@ export const PostHeader = ({ user, createdAt }: IPost) => {
           />
           <p>{user.username}</p>
         </Link>
-        <span className="text-neutral-200 text-sm relative before:absolute before:h-1 before:w-1 before:bg-neutral-200 before:rounded-full before:-left-2 before:top-1/2 before:-translate-y-1/2">
+        <span className="text-neutral-200 -z-10 text-sm relative before:absolute before:h-1 before:w-1 before:bg-neutral-200 before:rounded-full before:-left-2 before:top-1/2 before:-translate-y-1/2">
           {moment(createdAt).fromNow()}
         </span>
       </div>

@@ -8,4 +8,8 @@
     svg {
         @apply fill-black stroke-black dark:fill-white dark:stroke-white
     }
+
+    button {
+        @apply text-white
+    }
 }

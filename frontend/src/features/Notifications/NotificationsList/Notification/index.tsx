@@ -8,7 +8,7 @@ export const Notification = (notification: INotification) => {
   const message = getNotificationMessage(notification.type);
 
   return (
-    <div className="flex items-center justify-between px-5 py-3 [&:not(:last-child)]:border-b border-neutral-100 dark:border-neutral-900">
+    <div className="flex items-center gap-2 justify-between px-5 py-3 [&:not(:last-child)]:border-b border-neutral-100 dark:border-neutral-900 xs:gap-0">
       <div className="flex items-center gap-2">
         <Link href={`/profile/${notification.sender.username}`}>
           <Image
