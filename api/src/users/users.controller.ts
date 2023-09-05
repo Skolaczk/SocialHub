@@ -8,7 +8,9 @@ import {
   Patch,
   Post,
   Query,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { User } from '@prisma/client';
@@ -17,6 +19,9 @@ import { GetUser } from 'src/common/decorators';
 import { FollowsService } from 'src/follows/follows.service';
 import { UserWithStatus } from 'src/users/types';
 import { EditUserDto } from 'src/users/dto/edit-user.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { multerOptions } from 'src/config';
+import { getImageUrl } from 'src/common/helpers';
 
 @Controller('users')
 export class UsersController {
@@ -44,8 +49,16 @@ export class UsersController {
 
   @Patch()
   @UseGuards(JwtGuard)
-  edit(@GetUser() user: User, @Body() editUserDto: EditUserDto) {
-    return this.usersService.edit(user.id, editUserDto);
+  @UseInterceptors(FileInterceptor('image', multerOptions))
+  edit(
+    @UploadedFile() file: Express.Multer.File,
+    @GetUser() user: User,
+    @Body() editUserDto: EditUserDto,
+  ) {
+    return this.usersService.edit(user.id, {
+      ...editUserDto,
+      image: getImageUrl(file.filename),
+    });
   }
 
   @Get(':username')

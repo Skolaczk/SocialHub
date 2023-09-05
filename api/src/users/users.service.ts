@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { User } from '@prisma/client';
 import { SignUpDto } from 'src/auth/dto';
@@ -69,7 +73,13 @@ export class UsersService {
     return this.prisma.user.findMany({ take: 5 });
   }
 
-  edit(id, data): Promise<User> {
+  async edit(id, data): Promise<User> {
+    const user = await this.findOneByUsername(data.username);
+
+    if (user) {
+      throw new ConflictException('This username already exists');
+    }
+
     return this.prisma.user.update({ where: { id }, data });
   }
 }

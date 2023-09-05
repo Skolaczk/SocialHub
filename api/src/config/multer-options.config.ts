@@ -52,7 +52,7 @@ export const multerOptions: MulterOptions = {
   }),
 };
 
-function generateFileName(originalname: string) {
-  const fileExtension = extname(originalname);
+function generateFileName(originalName: string) {
+  const fileExtension = extname(originalName);
   return `${uuid()}${fileExtension}`;
 }
