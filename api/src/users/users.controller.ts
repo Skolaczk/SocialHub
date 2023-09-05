@@ -1,9 +1,11 @@
 import {
+  Body,
   Controller,
   Get,
   HttpCode,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Query,
   UseGuards,
@@ -14,6 +16,7 @@ import { JwtGuard } from 'src/common/guards';
 import { GetUser } from 'src/common/decorators';
 import { FollowsService } from 'src/follows/follows.service';
 import { UserWithStatus } from 'src/users/types';
+import { EditUserDto } from 'src/users/dto/edit-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -37,6 +40,12 @@ export class UsersController {
   @Get()
   findRandom(): Promise<User[]> {
     return this.usersService.findRandom();
+  }
+
+  @Patch()
+  @UseGuards(JwtGuard)
+  edit(@GetUser() user: User, @Body() editUserDto: EditUserDto) {
+    return this.usersService.edit(user.id, editUserDto);
   }
 
   @Get(':username')

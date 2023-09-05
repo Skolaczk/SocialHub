@@ -68,4 +68,8 @@ export class UsersService {
   findRandom(): Promise<User[]> {
     return this.prisma.user.findMany({ take: 5 });
   }
+
+  edit(id, data): Promise<User> {
+    return this.prisma.user.update({ where: { id }, data });
+  }
 }
