@@ -57,7 +57,7 @@ export class UsersController {
   ) {
     return this.usersService.edit(user.id, {
       ...editUserDto,
-      image: getImageUrl(file.filename),
+      image: getImageUrl(file?.filename),
     });
   }
 

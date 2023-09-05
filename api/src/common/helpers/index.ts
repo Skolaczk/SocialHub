@@ -1,1 +1,1 @@
-export * from 'src/common/helpers/getImageUrl.helper';
+export * from 'src/common/helpers/get-image-url.helper';

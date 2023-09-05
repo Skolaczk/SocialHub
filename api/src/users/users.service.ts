@@ -6,6 +6,7 @@ import {
 import { PrismaService } from 'src/prisma/prisma.service';
 import { User } from '@prisma/client';
 import { SignUpDto } from 'src/auth/dto';
+import { EditUserData } from 'src/users/types';
 
 @Injectable()
 export class UsersService {
@@ -73,11 +74,24 @@ export class UsersService {
     return this.prisma.user.findMany({ take: 5 });
   }
 
-  async edit(id, data): Promise<User> {
-    const user = await this.findOneByUsername(data.username);
+  async edit(id: number, data: EditUserData): Promise<User> {
+    if (!data.image) delete data.image;
 
-    if (user) {
-      throw new ConflictException('This username already exists');
+    const userToUpdate = await this.findOneById(id);
+
+    if (data.username && data.username !== userToUpdate.username) {
+      const existingUserWithUsername = await this.prisma.user.findFirst({
+        where: {
+          username: data.username,
+          NOT: {
+            id: id,
+          },
+        },
+      });
+
+      if (existingUserWithUsername) {
+        throw new ConflictException('This username already exists');
+      }
     }
 
     return this.prisma.user.update({ where: { id }, data });
