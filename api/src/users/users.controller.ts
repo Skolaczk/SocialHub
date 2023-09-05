@@ -1,12 +1,16 @@
 import {
+  Body,
   Controller,
   Get,
   HttpCode,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Query,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { User } from '@prisma/client';
@@ -14,6 +18,10 @@ import { JwtGuard } from 'src/common/guards';
 import { GetUser } from 'src/common/decorators';
 import { FollowsService } from 'src/follows/follows.service';
 import { UserWithStatus } from 'src/users/types';
+import { EditUserDto } from 'src/users/dto/edit-user.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { multerOptions } from 'src/config';
+import { getImageUrl } from 'src/common/helpers';
 
 @Controller('users')
 export class UsersController {
@@ -37,6 +45,20 @@ export class UsersController {
   @Get()
   findRandom(): Promise<User[]> {
     return this.usersService.findRandom();
+  }
+
+  @Patch()
+  @UseGuards(JwtGuard)
+  @UseInterceptors(FileInterceptor('image', multerOptions))
+  edit(
+    @UploadedFile() file: Express.Multer.File,
+    @GetUser() user: User,
+    @Body() editUserDto: EditUserDto,
+  ) {
+    return this.usersService.edit(user.id, {
+      ...editUserDto,
+      image: getImageUrl(file?.filename),
+    });
   }
 
   @Get(':username')

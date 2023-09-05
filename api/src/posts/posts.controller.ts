@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Get,
-  Headers,
   Param,
   Post,
   UploadedFile,
@@ -17,6 +16,7 @@ import { GetUser } from 'src/common/decorators';
 import { Post as PostType, User } from '@prisma/client';
 import { CreatePostDto } from 'src/posts/dto';
 import { LikesService } from 'src/likes/likes.service';
+import { getImageUrl } from 'src/common/helpers';
 
 @Controller('posts')
 export class PostsController {
@@ -63,12 +63,11 @@ export class PostsController {
     @UploadedFile() file: Express.Multer.File,
     @GetUser() user: User,
     @Body() createPostDto: CreatePostDto,
-    @Headers() headers,
   ): Promise<PostType> {
     return this.postsService.create({
       userId: user.id,
       content: createPostDto.content,
-      image: `http://${headers.host}/${file.filename}`,
+      image: getImageUrl(file.filename),
     });
   }
 }
