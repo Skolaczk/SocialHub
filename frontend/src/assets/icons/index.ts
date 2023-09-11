@@ -11,3 +11,4 @@ export * from './ArrowLeftIcon';
 export * from './XIcon';
 export * from './UploadIcon';
 export * from './SpinnerIcon';
+export * from './CameraIcon';
