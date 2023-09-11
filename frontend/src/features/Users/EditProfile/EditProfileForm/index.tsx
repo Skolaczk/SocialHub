@@ -1,6 +1,6 @@
 'use client';
 
-import { IUser } from '@/interfaces';
+import { IError, IUser } from '@/interfaces';
 import Image from 'next/image';
 import { FormField } from '@/components';
 import { useFormik } from 'formik';
@@ -8,14 +8,23 @@ import { CameraIcon } from '@/assets/icons';
 import { validationSchema } from './utils';
 import { useDropzone } from 'react-dropzone';
 import { useCallback, useState } from 'react';
+import { editUser } from '@/services';
+import { useRouter } from 'next/navigation';
 
 export const EditProfileForm = ({ username, bio, image }: IUser) => {
+  const router = useRouter();
   const [file, setFile] = useState<(File & { preview: string }) | null>();
+  const [error, setError] = useState<IError | null>();
   const { handleSubmit, values, handleChange, errors, touched } = useFormik({
     initialValues: { username, bio: bio ?? '' },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async ({ username, bio }) => {
+      const { data, error } = await editUser({ username, bio, image: file });
+      setError(error ?? null);
+
+      if (!error) {
+        router.push(`/profile/${data?.username}`);
+      }
     },
   });
 
@@ -77,6 +86,7 @@ export const EditProfileForm = ({ username, bio, image }: IUser) => {
           Save
         </button>
       </div>
+      <p className="text-center text-danger mt-5">{error?.message}</p>
     </form>
   );
 };
