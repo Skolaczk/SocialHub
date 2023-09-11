@@ -4,7 +4,7 @@ import { ArrowLeftIcon, XIcon } from '@/assets/icons';
 import { useRouter } from 'next/navigation';
 
 interface IProps {
-  heading: 'post' | 'create post';
+  heading: 'post' | 'create post' | 'edit profile';
 }
 
 export const ModalHeader = ({ heading }: IProps) => {

@@ -4,6 +4,7 @@ import { IUser } from '@/interfaces';
 import Image from 'next/image';
 import { useState } from 'react';
 import { createFollow, deleteFollow } from '@/services';
+import Link from 'next/link';
 
 interface IProps {
   user: IUser;
@@ -45,9 +46,9 @@ export const UsersProfile = ({ user }: IProps) => {
           <div className="hidden xs:flex gap-3">
             <h1 className="text-xl font-medium">{user.username}</h1>
             {user.isCurrentUserProfile ? (
-              <button type="button" className="rounded-sm py-1 px-5 bg-primary">
+              <Link href="/edit" className="rounded-sm py-1 px-5 bg-primary">
                 Edit profile
-              </button>
+              </Link>
             ) : (
               <button
                 type="button"
@@ -81,12 +82,12 @@ export const UsersProfile = ({ user }: IProps) => {
       </div>
       <p className="text-sm mt-2 mb-5 xs:hidden">{user.bio}</p>
       {user.isCurrentUserProfile ? (
-        <button
-          type="button"
-          className="w-full rounded-sm p-1 bg-primary xs:hidden"
+        <Link
+          href="/edit"
+          className="block text-center w-full rounded-sm p-1 bg-primary xs:hidden"
         >
           Edit profile
-        </button>
+        </Link>
       ) : (
         <button
           onClick={handleFollow}
