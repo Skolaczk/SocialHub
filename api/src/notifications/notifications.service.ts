@@ -7,6 +7,8 @@ export class NotificationsService {
   constructor(private prisma: PrismaService) {}
 
   create(data: CreateNotification) {
+    if (data.userId === data.senderId) return;
+
     return this.prisma.notification.create({
       data,
     });
