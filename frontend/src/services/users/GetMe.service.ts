@@ -1,4 +1,4 @@
-import { api } from '@/api';
+import { fetchApi } from '@/api';
 import { INotification, IUser } from '@/interfaces';
 
 interface IUserWithNotifications extends IUser {
@@ -6,6 +6,5 @@ interface IUserWithNotifications extends IUser {
 }
 
 export const getMe = async () => {
-  const { data } = await api.get<IUserWithNotifications>('users/me');
-  return data;
+  return await fetchApi.get<IUserWithNotifications>('users/me');
 };
