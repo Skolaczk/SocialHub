@@ -19,7 +19,12 @@ export const EditProfileForm = ({ username, bio, image }: IUser) => {
     initialValues: { username, bio: bio ?? '' },
     validationSchema: validationSchema,
     onSubmit: async ({ username, bio }) => {
-      const { data, error } = await editUser({ username, bio, image: file });
+      const formData = new FormData();
+      formData.append('username', username);
+      formData.append('bio', bio);
+      formData.append('image', file as File);
+
+      const { data, error } = await editUser(formData);
       setError(error ?? null);
 
       if (!error) {

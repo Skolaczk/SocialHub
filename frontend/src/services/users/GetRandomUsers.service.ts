@@ -1,7 +1,7 @@
 import { IUser } from '@/interfaces';
-import { api } from '@/api';
+import { fetchApi } from '@/api/fetchApi';
 
 export const getRandomUsers = async () => {
-  const { data } = await api.get<IUser[]>('users');
+  const { data } = await fetchApi.get<IUser[]>('users');
   return data;
 };

@@ -10,7 +10,11 @@ export const SearchBar = () => {
   const [users, setUsers] = useState<IUser[]>();
 
   const debouncedSearch = debounce(async (username: string) => {
-    setUsers(await getUsersByUsername(username));
+    if (username) {
+      setUsers(await getUsersByUsername(username));
+    } else {
+      setUsers([]);
+    }
   }, 300);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

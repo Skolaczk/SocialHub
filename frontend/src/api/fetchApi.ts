@@ -1,3 +1,5 @@
+import { IError, IResponse } from '@/interfaces';
+
 const isServer = typeof window === 'undefined';
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -16,28 +18,38 @@ const getToken = async () => {
 type HttpMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 
 export const fetchApi = {
-  get: async <T>(endpoint: string): Promise<T> => {
+  get: async <T>(endpoint: string): Promise<IResponse<T>> => {
     return await makeRequest('GET', endpoint);
   },
-  post: async <T>(endpoint: string, body?: any): Promise<T> => {
+  post: async <T>(endpoint: string, body?: FormData): Promise<IResponse<T>> => {
     return await makeRequest('POST', endpoint, body);
+  },
+  patch: async <T>(
+    endpoint: string,
+    body?: FormData,
+  ): Promise<IResponse<T>> => {
+    return await makeRequest('PATCH', endpoint, body);
   },
 };
 
 const makeRequest = async <T>(
   method: HttpMethod,
   endpoint: string,
-  body?: any,
-): Promise<T> => {
+  body?: FormData,
+): Promise<IResponse<T>> => {
   const token = await getToken();
 
   const res = await fetch(`${baseURL}${endpoint}`, {
     method,
+    body,
     headers: {
-      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-    body: body ? JSON.stringify(body) : undefined,
   });
-  return (await res.json()) as T;
+
+  if (res.ok) {
+    return { data: (await res.json()) as T };
+  } else {
+    return { error: (await res.json()) as IError };
+  }
 };

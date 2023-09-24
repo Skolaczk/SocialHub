@@ -1,7 +1,7 @@
 import { IUser } from '@/interfaces';
-import { api } from '@/api';
+import { fetchApi } from '@/api/fetchApi';
 
 export const getUsersByUsername = async (username: string) => {
-  const { data } = await api.post<IUser[]>(`users?username=${username}`);
+  const { data } = await fetchApi.post<IUser[]>(`users?username=${username}`);
   return data;
 };

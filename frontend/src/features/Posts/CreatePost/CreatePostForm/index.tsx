@@ -16,12 +16,15 @@ export const CreatePostForm = () => {
     initialValues,
     validationSchema,
     onSubmit: async ({ content }) => {
-      if (image) {
-        await createPost({ content, image });
-        setImage(null);
-        resetForm();
-        router.back();
-      }
+      if (!image) return;
+
+      const formData = new FormData();
+      formData.append('content', content);
+      formData.append('image', image);
+
+      await createPost(formData);
+      setImage(null);
+      router.back();
     },
   });
 

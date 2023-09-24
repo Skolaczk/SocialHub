@@ -6,5 +6,6 @@ interface IUserWithNotifications extends IUser {
 }
 
 export const getMe = async () => {
-  return await fetchApi.get<IUserWithNotifications>('users/me');
+  const { data } = await fetchApi.get<IUserWithNotifications>('users/me');
+  return data;
 };
