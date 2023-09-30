@@ -1,10 +1,9 @@
-import { getUser } from '@/services';
-import { IParam } from '@/interfaces';
+import { IParam, userMock } from '@/interfaces';
 import { PostsGrid, UsersProfile } from '@/features';
 import { notFound } from 'next/navigation';
 
 const Profile = async ({ params }: IParam) => {
-  const user = await getUser(params.slug);
+  const user = userMock;
 
   if (!user) {
     notFound();

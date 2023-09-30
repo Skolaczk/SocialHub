@@ -1,53 +1,14 @@
-'use client';
-
-import { IError, IUser } from '@/interfaces';
-import Image from 'next/image';
+import { IUser } from '@/interfaces';
 import { FormField } from '@/components';
-import { useFormik } from 'formik';
 import { CameraIcon } from '@/assets/icons';
-import { validationSchema } from './utils';
-import { useDropzone } from 'react-dropzone';
-import { useCallback, useState } from 'react';
-import { editUser } from '@/services';
-import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export const EditProfileForm = ({ username, bio, image }: IUser) => {
-  const router = useRouter();
-  const [file, setFile] = useState<(File & { preview: string }) | null>();
-  const [error, setError] = useState<IError | null>();
-  const { handleSubmit, values, handleChange, errors, touched } = useFormik({
-    initialValues: { username, bio: bio ?? '' },
-    validationSchema: validationSchema,
-    onSubmit: async ({ username, bio }) => {
-      const { data, error } = await editUser({ username, bio, image: file });
-      setError(error ?? null);
-
-      if (!error) {
-        router.push(`/profile/${data?.username}`);
-      }
-    },
-  });
-
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFile(
-      Object.assign(acceptedFiles[0], {
-        preview: URL.createObjectURL(acceptedFiles[0]),
-      }),
-    );
-  }, []);
-
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    maxFiles: 1,
-    accept: { 'image/*': ['.jpeg', '.jpg', '.png'] },
-  });
-
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col">
-      <div {...getRootProps()} className="flex justify-center relative mt-5">
-        <input {...getInputProps()} />
+    <form className="flex flex-col">
+      <div className="flex justify-center relative mt-5">
         <Image
-          src={file ? file.preview : image}
+          src={image}
           alt=""
           width={0}
           height={0}
@@ -58,13 +19,7 @@ export const EditProfileForm = ({ username, bio, image }: IUser) => {
           <CameraIcon />
         </div>
       </div>
-      <FormField
-        type="text"
-        label="username"
-        onChange={handleChange}
-        error={touched.username && errors.username}
-        value={values.username}
-      />
+      <FormField type="text" label="username" value={username} />
       <div className="flex flex-col w-full">
         <label htmlFor="bio" className="mb-2">
           Content
@@ -72,8 +27,7 @@ export const EditProfileForm = ({ username, bio, image }: IUser) => {
         <textarea
           id="bio"
           name="bio"
-          onChange={handleChange}
-          value={values.bio}
+          value={bio}
           className="resize-none bg-neutral-100 dark:bg-neutral-500 rounded-sm p-2 h-24"
           placeholder={`I'm ${username} ...`}
         ></textarea>
@@ -86,7 +40,6 @@ export const EditProfileForm = ({ username, bio, image }: IUser) => {
           Save
         </button>
       </div>
-      <p className="text-center text-danger mt-5">{error?.message}</p>
     </form>
   );
 };

@@ -1,16 +1,15 @@
 'use client';
 
 import { ChangeEvent, useState } from 'react';
-import { getUsersByUsername } from '@/services';
-import { IUser } from '@/interfaces';
+import { IUser, userMock } from '@/interfaces';
 import debounce from 'lodash.debounce';
 import { UsersList } from './UsersList';
 
 export const SearchBar = () => {
   const [users, setUsers] = useState<IUser[]>();
 
-  const debouncedSearch = debounce(async (username: string) => {
-    setUsers(await getUsersByUsername(username));
+  const debouncedSearch = debounce((username: string) => {
+    setUsers([userMock]);
   }, 300);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

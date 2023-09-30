@@ -15,3 +15,22 @@ export interface IPost {
   comments: IComment[];
   isLiked: boolean;
 }
+
+export const postMock: IPost = {
+  id: 1,
+  content: 'To jest zawartość posta',
+  image: 'https://i.postimg.cc/GpjBs2yq/sbcf-default-avatar.png',
+  createdAt: '2023-09-30',
+  updatedAt: '2023-09-30',
+  userId: 2,
+  user: {
+    username: 'username_uzytkownika',
+    image: 'https://i.postimg.cc/GpjBs2yq/sbcf-default-avatar.png',
+  },
+  _count: {
+    comments: 0,
+    likes: 0,
+  },
+  comments: [],
+  isLiked: false,
+};

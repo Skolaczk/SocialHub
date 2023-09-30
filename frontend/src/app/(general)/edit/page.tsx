@@ -1,10 +1,8 @@
-import { getMe } from '@/services';
 import { EditProfile } from '@/features';
+import { userMock } from '@/interfaces';
 
-const Edit = async () => {
-  const user = await getMe();
-
-  return <EditProfile {...user} />;
+const Edit = () => {
+  return <EditProfile {...userMock} />;
 };
 
 export default Edit;

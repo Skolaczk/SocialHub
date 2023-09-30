@@ -3,9 +3,9 @@ import { ChangeEventHandler } from 'react';
 interface IProps {
   type: string;
   label: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   value?: string;
-  error: string | false | undefined;
+  error?: string | false | undefined;
 }
 
 export const FormField = ({ type, label, onChange, value, error }: IProps) => {

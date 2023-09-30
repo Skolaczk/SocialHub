@@ -1,9 +1,5 @@
-'use client';
-
 import { IUser } from '@/interfaces';
 import Image from 'next/image';
-import { useState } from 'react';
-import { createFollow, deleteFollow } from '@/services';
 import Link from 'next/link';
 
 interface IProps {
@@ -11,23 +7,6 @@ interface IProps {
 }
 
 export const UsersProfile = ({ user }: IProps) => {
-  const [isFollowing, setIsFollowing] = useState(user.isFollowing);
-  const [followersCounter, setFollowersCounter] = useState(
-    user._count.followers,
-  );
-
-  const handleFollow = async () => {
-    if (isFollowing) {
-      await deleteFollow(user.id);
-      setFollowersCounter((prevState) => prevState - 1);
-      setIsFollowing(false);
-    } else {
-      await createFollow(user.id);
-      setFollowersCounter((prevState) => prevState + 1);
-      setIsFollowing(true);
-    }
-  };
-
   return (
     <div className="p-5 md:pt-0">
       <h1 className="text-center text-xl font-medium xs:hidden">
@@ -52,14 +31,13 @@ export const UsersProfile = ({ user }: IProps) => {
             ) : (
               <button
                 type="button"
-                onClick={handleFollow}
                 className={`rounded-sm py-1 px-5 ${
-                  isFollowing
+                  user.isFollowing
                     ? 'bg-neutral-100 dark:bg-neutral-500'
                     : 'bg-primary'
                 }`}
               >
-                {isFollowing ? 'Unfollow' : 'Follow'}
+                {user.isFollowing ? 'Unfollow' : 'Follow'}
               </button>
             )}
           </div>
@@ -69,9 +47,7 @@ export const UsersProfile = ({ user }: IProps) => {
                 key={key}
                 className="flex flex-col items-center xs:flex-row-reverse"
               >
-                <span className="font-bold">
-                  {key === 'followers' ? followersCounter : value}
-                </span>
+                <span className="font-bold">{value}</span>
                 <span className="hidden xs:block mr-1">:</span>
                 <span className="first-letter:uppercase">{key}</span>
               </div>
@@ -90,13 +66,14 @@ export const UsersProfile = ({ user }: IProps) => {
         </Link>
       ) : (
         <button
-          onClick={handleFollow}
           type="button"
           className={`w-full rounded-sm p-1 xs:hidden ${
-            isFollowing ? 'bg-neutral-100 dark:bg-neutral-500' : 'bg-primary'
+            user.isFollowing
+              ? 'bg-neutral-100 dark:bg-neutral-500'
+              : 'bg-primary'
           }`}
         >
-          {isFollowing ? 'Unfollow' : 'Follow'}
+          {user.isFollowing ? 'Unfollow' : 'Follow'}
         </button>
       )}
     </div>
