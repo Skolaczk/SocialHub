@@ -21,8 +21,12 @@ export const fetchApi = {
   get: async <T>(endpoint: string): Promise<IResponse<T>> => {
     return await makeRequest('GET', endpoint);
   },
-  post: async <T>(endpoint: string, body?: FormData): Promise<IResponse<T>> => {
-    return await makeRequest('POST', endpoint, body);
+  post: async <T>(
+    endpoint: string,
+    body?: FormData | any,
+    config?: any,
+  ): Promise<IResponse<T>> => {
+    return await makeRequest('POST', endpoint, body, config);
   },
   patch: async <T>(
     endpoint: string,
@@ -35,15 +39,17 @@ export const fetchApi = {
 const makeRequest = async <T>(
   method: HttpMethod,
   endpoint: string,
-  body?: FormData,
+  body?: FormData | any,
+  config?: any,
 ): Promise<IResponse<T>> => {
   const token = await getToken();
 
   const res = await fetch(`${baseURL}${endpoint}`, {
     method,
-    body,
+    body: body instanceof FormData ? body : JSON.stringify(body),
     headers: {
       Authorization: `Bearer ${token}`,
+      ...config,
     },
   });
 
