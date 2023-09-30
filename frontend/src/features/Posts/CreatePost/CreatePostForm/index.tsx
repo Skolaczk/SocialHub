@@ -1,50 +1,11 @@
-'use client';
-
 import { UploadIcon, XIcon } from '@/assets/icons';
-import { useFormik } from 'formik';
-import { createPost } from '@/services';
-import { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { useRouter } from 'next/navigation';
-import { initialValues, validationSchema } from './utils';
 
 export const CreatePostForm = () => {
-  const router = useRouter();
-  const [image, setImage] = useState<File | null>();
-
-  const { values, handleChange, handleSubmit, resetForm } = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: async ({ content }) => {
-      if (image) {
-        await createPost({ content, image });
-        setImage(null);
-        resetForm();
-        router.back();
-      }
-    },
-  });
-
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    setImage(acceptedFiles[0]);
-  }, []);
-
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    maxFiles: 1,
-    accept: { 'image/*': ['.jpeg', '.jpg', '.png'] },
-  });
+  const image = { name: 'elo' };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col items-center w-full gap-y-5 mt-8"
-    >
-      <div
-        {...getRootProps()}
-        className="flex flex-col items-center py-10 w-full border border-dashed border-primary rounded-sm"
-      >
-        <input {...getInputProps()} />
+    <form className="flex flex-col items-center w-full gap-y-5 mt-8">
+      <div className="flex flex-col items-center py-10 w-full border border-dashed border-primary rounded-sm">
         <UploadIcon />
         <p className="text-neutral-500 dark:text-neutral-100 my-1">
           Drop your image here, or browse
@@ -56,7 +17,7 @@ export const CreatePostForm = () => {
       {image && (
         <div className="flex justify-between items-center w-full bg-neutral-100 dark:bg-neutral-500 rounded-sm p-2">
           <p>{image.name}</p>
-          <button onClick={() => setImage(null)}>
+          <button>
             <XIcon />
           </button>
         </div>
@@ -68,8 +29,6 @@ export const CreatePostForm = () => {
         <textarea
           id="content"
           name="content"
-          onChange={handleChange}
-          value={values.content}
           className="resize-none bg-neutral-100 dark:bg-neutral-500 rounded-sm p-2 h-24"
           placeholder="Type content ..."
         ></textarea>
