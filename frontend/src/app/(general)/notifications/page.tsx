@@ -1,8 +1,8 @@
 import { NotificationsList } from '@/features';
-import { notificationMock } from '@/interfaces';
+import { getMe } from '@/services';
 
 const Notifications = async () => {
-  const notifications = [notificationMock];
+  const { notifications } = await getMe();
 
   return (
     <div className="flex flex-col items-center mt-8 mb-14 md:ml-20 xl:ml-0">

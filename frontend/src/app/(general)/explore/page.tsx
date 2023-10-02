@@ -1,9 +1,9 @@
 import { SearchBar } from '@/components';
 import { PostsGrid } from '@/features';
-import { postMock } from '@/interfaces';
+import { getPosts } from '@/services';
 
-const Explore = () => {
-  const posts = [postMock];
+const Explore = async () => {
+  const posts = await getPosts();
 
   return (
     <div className="flex items-center flex-col mt-8 mb-14 md:ml-20 xl:ml-0">
