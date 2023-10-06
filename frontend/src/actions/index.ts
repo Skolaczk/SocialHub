@@ -1,8 +1,9 @@
 'use server';
 
-import { getUsersByUsername, login } from '../services';
+import { createComment, getUsersByUsername, login } from '../services';
 import { AuthSchema } from '@/components/AuthForm/utils';
 import { cookies } from 'next/headers';
+import { revalidateTag } from 'next/cache';
 
 export const getUsersByUsernameAction = async (username: string) => {
   return await getUsersByUsername(username);
@@ -19,4 +20,16 @@ export const loginAction = async (isSignUp: boolean, body: AuthSchema) => {
 
     cookies().set('token', data.access_token, { expires: expirationDate });
   }
+};
+
+export const createCommentAction = async (
+  formData: FormData,
+  postId: number,
+) => {
+  const content = formData.get('content')?.toString();
+
+  if (!content) return;
+
+  await createComment({ content, postId });
+  revalidateTag(`posts/${postId}`);
 };

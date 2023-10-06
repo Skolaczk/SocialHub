@@ -37,6 +37,9 @@ export class PostsService {
           },
         },
         comments: {
+          orderBy: {
+            createdAt: 'desc',
+          },
           include: {
             user: {
               select: {
