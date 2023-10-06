@@ -6,7 +6,7 @@ import { getUser } from '@/services';
 const Profile = async ({ params }: IParam) => {
   const user = await getUser(params.slug);
 
-  if (!user.id) {
+  if (!user) {
     notFound();
   }
 

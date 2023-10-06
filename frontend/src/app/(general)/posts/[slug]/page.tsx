@@ -6,7 +6,7 @@ import { getPost } from '@/services';
 const Post = async ({ params }: IParam) => {
   const post = await getPost(+params.slug);
 
-  if (!post.id) {
+  if (!post) {
     notFound();
   }
 

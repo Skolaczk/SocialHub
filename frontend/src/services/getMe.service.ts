@@ -5,6 +5,7 @@ interface IUserWithNotifications extends IUser {
   notifications: INotification[];
 }
 
-export const getMe = async (): Promise<IUserWithNotifications> => {
-  return await api.get<IUserWithNotifications>('users/me');
+export const getMe = async () => {
+  const { data } = await api.get<IUserWithNotifications>('users/me');
+  return data;
 };
