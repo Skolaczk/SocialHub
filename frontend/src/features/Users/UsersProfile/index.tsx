@@ -1,12 +1,24 @@
 import { IUser } from '@/interfaces';
 import Image from 'next/image';
 import Link from 'next/link';
+import { revalidateTag } from 'next/cache';
+import { deleteFollow } from '@/services/deleteFollow.service';
+import { addFollow } from '@/services/addFollow.service';
 
 interface IProps {
   user: IUser;
 }
 
 export const UsersProfile = ({ user }: IProps) => {
+  const followAction = async () => {
+    'use server';
+    try {
+      user.isFollowing ? await deleteFollow(user.id) : await addFollow(user.id);
+    } catch (e) {}
+
+    revalidateTag(`users/${user.id}`);
+  };
+
   return (
     <div className="p-5 md:pt-0">
       <h1 className="text-center text-xl font-medium xs:hidden">
@@ -29,16 +41,18 @@ export const UsersProfile = ({ user }: IProps) => {
                 Edit profile
               </Link>
             ) : (
-              <button
-                type="button"
-                className={`rounded-sm py-1 px-5 ${
-                  user.isFollowing
-                    ? 'bg-neutral-100 dark:bg-neutral-500'
-                    : 'bg-primary'
-                }`}
-              >
-                {user.isFollowing ? 'Unfollow' : 'Follow'}
-              </button>
+              <form action={followAction}>
+                <button
+                  type="submit"
+                  className={`rounded-sm py-1 px-5 ${
+                    user.isFollowing
+                      ? 'bg-neutral-100 dark:bg-neutral-500'
+                      : 'bg-primary'
+                  }`}
+                >
+                  {user.isFollowing ? 'Unfollow' : 'Follow'}
+                </button>
+              </form>
             )}
           </div>
           <div className="flex gap-3 xs:my-5 xs:gap-4">
