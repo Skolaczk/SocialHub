@@ -8,6 +8,9 @@ export const api = {
   post: async <T>(endpoint: string, body?: any): Promise<IResponse<T>> => {
     return await request('POST', endpoint, body);
   },
+  delete: async <T>(endpoint: string): Promise<IResponse<T>> => {
+    return await request('DELETE', endpoint);
+  },
 };
 
 const request = async <T>(
@@ -19,7 +22,7 @@ const request = async <T>(
 
   const requestOptions: RequestInit = {
     method,
-    body: JSON.stringify(body),
+    body: body ? JSON.stringify(body) : null,
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',

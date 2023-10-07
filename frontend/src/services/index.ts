@@ -6,3 +6,5 @@ export * from './getUser.service';
 export * from './getUsersByUsername.service';
 export * from './login.service';
 export * from './createComment.service';
+export * from './deleteLike.service';
+export * from './addLike.service';
