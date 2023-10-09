@@ -1,7 +1,7 @@
 'use client';
 
 import { FormField } from '../FormField';
-import { FormProvider, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginAction } from '@/actions';
 import { useRouter } from 'next/navigation';
@@ -15,7 +15,11 @@ interface IProps {
 export const AuthForm = ({ isSignUp }: IProps) => {
   const [error, setError] = useState<string | undefined>();
   const router = useRouter();
-  const methods = useForm<AuthSchema>({
+  const {
+    handleSubmit,
+    formState: { errors },
+    register,
+  } = useForm<AuthSchema>({
     resolver: zodResolver(authSchema(isSignUp)),
   });
 
@@ -30,19 +34,30 @@ export const AuthForm = ({ isSignUp }: IProps) => {
   };
 
   return (
-    <FormProvider {...methods}>
-      <form
-        onSubmit={methods.handleSubmit(onSubmit)}
-        className="flex flex-col w-full"
-      >
-        <FormField type="text" label="email" />
-        {isSignUp && <FormField type="text" label="username" />}
-        <FormField type="password" label="password" />
-        <button type="submit" className="bg-primary p-2 rounded-sm mt-5 mb-3">
-          {isSignUp ? 'Register' : 'Login'}
-        </button>
-        {error && <p className="text-center text-danger">{error}</p>}
-      </form>
-    </FormProvider>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full">
+      <FormField
+        type="email"
+        label="email"
+        register={register('email')}
+        error={errors.email?.message}
+      />
+      {isSignUp && (
+        <FormField
+          label="username"
+          register={register('username')}
+          error={errors.username?.message}
+        />
+      )}
+      <FormField
+        type="password"
+        label="password"
+        register={register('password')}
+        error={errors.password?.message}
+      />
+      <button type="submit" className="bg-primary p-2 rounded-sm mt-5 mb-3">
+        {isSignUp ? 'Register' : 'Login'}
+      </button>
+      {error && <p className="text-center text-danger">{error}</p>}
+    </form>
   );
 };
