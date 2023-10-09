@@ -26,7 +26,7 @@ export const FormField = ({
           {...register}
           placeholder={label}
           id={label}
-          className={`my-1.5 resize-none p-2 rounded-sm bg-neutral-100 dark:bg-neutral-500 text-sm border-danger ${
+          className={`my-1.5 resize-none p-2 rounded-sm bg-neutral-100 dark:bg-neutral-500 h-24 border-danger ${
             error && 'border'
           }`}
         ></textarea>

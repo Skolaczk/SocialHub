@@ -4,6 +4,7 @@ import { createComment, getUsersByUsername, login } from '../services';
 import { AuthSchema } from '@/components/AuthForm/utils';
 import { cookies } from 'next/headers';
 import { revalidateTag } from 'next/cache';
+import { createPost } from '@/services';
 
 export const getUsersByUsernameAction = async (username: string) => {
   return await getUsersByUsername(username);
@@ -32,4 +33,8 @@ export const createCommentAction = async (
 
   await createComment({ content, postId });
   revalidateTag(`posts/${postId}`);
+};
+
+export const createPostAction = async (formData: FormData) => {
+  await createPost(formData);
 };

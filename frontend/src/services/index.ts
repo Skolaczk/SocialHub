@@ -9,3 +9,4 @@ export * from './createComment.service';
 export * from './deleteLike.service';
 export * from './addLike.service';
 export * from './deleteLike.service';
+export * from './createPost.service';

@@ -1,11 +1,14 @@
-import { baseURL, getToken } from './utils';
+import { baseURL, getContentTypeHeader, getToken } from './utils';
 import { IError, IResponse } from '@/interfaces';
 
 export const api = {
   get: async <T>(endpoint: string): Promise<IResponse<T>> => {
     return await request('GET', endpoint);
   },
-  post: async <T>(endpoint: string, body?: any): Promise<IResponse<T>> => {
+  post: async <T>(
+    endpoint: string,
+    body?: FormData | any,
+  ): Promise<IResponse<T>> => {
     return await request('POST', endpoint, body);
   },
   delete: async <T>(endpoint: string): Promise<IResponse<T>> => {
@@ -19,13 +22,14 @@ const request = async <T>(
   body?: any,
 ): Promise<IResponse<T>> => {
   const token = await getToken();
+  const contentTypeHeader = getContentTypeHeader(body);
 
   const requestOptions: RequestInit = {
     method,
-    body: body ? JSON.stringify(body) : null,
+    body: body instanceof FormData ? body : JSON.stringify(body),
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      ...contentTypeHeader,
     },
     next: {
       tags: [endpoint],
