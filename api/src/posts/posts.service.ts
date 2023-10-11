@@ -39,19 +39,6 @@ export class PostsService {
             image: true,
           },
         },
-        comments: {
-          orderBy: {
-            createdAt: 'desc',
-          },
-          include: {
-            user: {
-              select: {
-                username: true,
-                image: true,
-              },
-            },
-          },
-        },
         _count: {
           select: {
             likes: true,
