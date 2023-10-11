@@ -11,3 +11,4 @@ export * from './addLike.service';
 export * from './deleteLike.service';
 export * from './createPost.service';
 export * from './getNotifications.service';
+export * from './getComments.service';
