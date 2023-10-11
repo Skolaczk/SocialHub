@@ -3,21 +3,16 @@
 import { FormField } from '@/components';
 import { CameraIcon } from '@/assets/icons';
 import Image from 'next/image';
-import { IUserWithNotifications } from '@/services';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useCallback, useState } from 'react';
-import { IError } from '@/interfaces';
+import { IError, IUser } from '@/interfaces';
 import { useDropzone } from 'react-dropzone';
 import { useRouter } from 'next/navigation';
 import { editUserAction } from '@/actions';
 import { editUserSchema, EditUserSchema } from './utils';
 
-export const EditProfileForm = ({
-  username,
-  bio,
-  image,
-}: IUserWithNotifications) => {
+export const EditProfileForm = ({ username, bio, image }: IUser) => {
   const router = useRouter();
   const [file, setFile] = useState<(File & { preview: string }) | null>();
   const [error, setError] = useState<IError | null>();
