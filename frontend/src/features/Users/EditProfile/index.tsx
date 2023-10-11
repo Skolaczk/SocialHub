@@ -1,8 +1,8 @@
 import { ModalHeader } from '@/components';
 import { EditProfileForm } from './EditProfileForm';
-import { IUserWithNotifications } from '@/services';
+import { IUser } from '@/interfaces';
 
-export const EditProfile = (user: IUserWithNotifications) => {
+export const EditProfile = (user: IUser) => {
   return (
     <div className="modal-background">
       <div className="modal p-5 max-w-xl md:h-auto md:p-8">

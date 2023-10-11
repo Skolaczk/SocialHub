@@ -15,16 +15,6 @@ export class UsersService {
   findOneById(id: number): Promise<User> {
     return this.prisma.user.findFirst({
       where: { id },
-      include: {
-        notifications: {
-          include: {
-            sender: { select: { id: true, username: true, image: true } },
-          },
-          orderBy: {
-            createdAt: 'desc',
-          },
-        },
-      },
     });
   }
 
