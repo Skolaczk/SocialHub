@@ -11,6 +11,12 @@ export const api = {
   ): Promise<IResponse<T>> => {
     return await request('POST', endpoint, body);
   },
+  patch: async <T>(
+    endpoint: string,
+    body?: FormData | any,
+  ): Promise<IResponse<T>> => {
+    return await request('PATCH', endpoint, body);
+  },
   delete: async <T>(endpoint: string): Promise<IResponse<T>> => {
     return await request('DELETE', endpoint);
   },

@@ -5,6 +5,7 @@ import { AuthSchema } from '@/components/AuthForm/utils';
 import { cookies } from 'next/headers';
 import { revalidateTag } from 'next/cache';
 import { createPost } from '@/services';
+import { editUser } from '@/services/editUser.service';
 
 export const getUsersByUsernameAction = async (username: string) => {
   return await getUsersByUsername(username);
@@ -37,4 +38,11 @@ export const createCommentAction = async (
 
 export const createPostAction = async (formData: FormData) => {
   await createPost(formData);
+};
+
+export const editUserAction = async (formData: FormData) => {
+  const { data, error } = await editUser(formData);
+
+  revalidateTag('users/me');
+  return { data, error };
 };
