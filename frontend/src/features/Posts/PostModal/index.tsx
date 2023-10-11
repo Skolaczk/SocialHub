@@ -3,8 +3,11 @@ import { IPost } from '@/interfaces';
 import { ModalHeader } from '@/components';
 import { AddCommentForm } from './AddCommentForm';
 import { CommentsList } from './CommentsList';
+import { getComments } from '@/services';
 
-export const PostModal = (post: IPost) => {
+export const PostModal = async (post: IPost) => {
+  const comments = await getComments(post.id);
+
   return (
     <>
       <div className="modal-background">
@@ -12,7 +15,7 @@ export const PostModal = (post: IPost) => {
           <ModalHeader heading="post" />
           <Post {...post} />
           <AddCommentForm postId={post.id} />
-          <CommentsList comments={post.comments} />
+          {comments && <CommentsList comments={comments} />}
         </div>
       </div>
     </>

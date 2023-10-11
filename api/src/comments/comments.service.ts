@@ -13,6 +13,16 @@ export class CommentsService {
     private postsService: PostsService,
   ) {}
 
+  findAll(postId: number) {
+    return this.prisma.comment.findMany({
+      where: { postId },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      include: { user: { select: { id: true, username: true, image: true } } },
+    });
+  }
+
   async create(data: CreateComment): Promise<Comment> {
     const { userId } = await this.postsService.findOne(data.postId);
 
