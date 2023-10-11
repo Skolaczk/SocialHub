@@ -9,6 +9,9 @@ export class PostsService {
 
   findAll(): Promise<Post[]> {
     return this.prisma.post.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
       include: {
         user: {
           select: {
@@ -37,6 +40,9 @@ export class PostsService {
           },
         },
         comments: {
+          orderBy: {
+            createdAt: 'desc',
+          },
           include: {
             user: {
               select: {

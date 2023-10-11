@@ -6,7 +6,7 @@ interface IBody {
   content: string;
 }
 
-export const createComment = async (body: IBody): Promise<IComment> => {
-  const { data } = await api.post('comments', body);
+export const createComment = async (body: IBody) => {
+  const { data } = await api.post<IComment>('comments', body);
   return data;
 };

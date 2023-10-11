@@ -1,29 +1,34 @@
 'use client';
 
 import { UploadIcon, XIcon } from '@/assets/icons';
-import { useFormik } from 'formik';
-import { createPost } from '@/services';
+import { FormField } from '@/components';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
+import { createPostAction } from '@/actions';
 import { useRouter } from 'next/navigation';
-import { initialValues, validationSchema } from './utils';
+import { useDropzone } from 'react-dropzone';
+import { createPostSchema, CreatePostSchema } from './utils';
 
 export const CreatePostForm = () => {
   const router = useRouter();
   const [image, setImage] = useState<File | null>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreatePostSchema>({ resolver: zodResolver(createPostSchema) });
 
-  const { values, handleChange, handleSubmit, resetForm } = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: async ({ content }) => {
-      if (image) {
-        await createPost({ content, image });
-        setImage(null);
-        resetForm();
-        router.back();
-      }
-    },
-  });
+  const onSubmit = async ({ content }: CreatePostSchema) => {
+    if (!image) return;
+
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('content', content);
+
+    await createPostAction(formData);
+    router.push('/');
+  };
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setImage(acceptedFiles[0]);
@@ -37,7 +42,7 @@ export const CreatePostForm = () => {
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col items-center w-full gap-y-5 mt-8"
     >
       <div
@@ -62,17 +67,12 @@ export const CreatePostForm = () => {
         </div>
       )}
       <div className="flex flex-col w-full">
-        <label htmlFor="content" className="mb-2">
-          Content
-        </label>
-        <textarea
-          id="content"
-          name="content"
-          onChange={handleChange}
-          value={values.content}
-          className="resize-none bg-neutral-100 dark:bg-neutral-500 rounded-sm p-2 h-24"
-          placeholder="Type content ..."
-        ></textarea>
+        <FormField
+          label="content"
+          error={errors.content?.message}
+          register={register('content')}
+          isTextarea
+        />
       </div>
       <button
         type="submit"

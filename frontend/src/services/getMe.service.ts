@@ -1,7 +1,7 @@
 import { api } from '@/api';
 import { INotification, IUser } from '@/interfaces';
 
-interface IUserWithNotifications extends IUser {
+export interface IUserWithNotifications extends IUser {
   notifications: INotification[];
 }
 

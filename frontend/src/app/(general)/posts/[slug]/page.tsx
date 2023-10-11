@@ -1,7 +1,7 @@
 import { PostModal } from '@/features';
 import { IParam } from '@/interfaces';
-import { getPost } from '@/services';
 import { notFound } from 'next/navigation';
+import { getPost } from '@/services';
 
 const Post = async ({ params }: IParam) => {
   const post = await getPost(+params.slug);

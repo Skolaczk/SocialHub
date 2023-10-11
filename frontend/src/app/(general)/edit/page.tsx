@@ -1,10 +1,10 @@
-import { getMe } from '@/services';
 import { EditProfile } from '@/features';
+import { getMe } from '@/services';
 
 const Edit = async () => {
   const user = await getMe();
 
-  return <EditProfile {...user} />;
+  return user && <EditProfile {...user} />;
 };
 
 export default Edit;

@@ -1,8 +1,6 @@
-'use client';
-
 import { LikeIcon } from '@/assets/icons';
-import { useState } from 'react';
-import { createLike, deleteLike } from '@/services';
+import { addLike, deleteLike } from '@/services';
+import { revalidateTag } from 'next/cache';
 
 interface IProps {
   id: number;
@@ -11,27 +9,24 @@ interface IProps {
 }
 
 export const AddLike = ({ id, isLiked, likes }: IProps) => {
-  const [isLikedByUser, setIsLikedByUser] = useState(isLiked);
-  const [likesCounter, setLikesCounter] = useState(likes);
+  const addLikeAction = async () => {
+    'use server';
+    try {
+      isLiked ? await deleteLike(id) : await addLike(id);
+    } catch (e) {}
 
-  const handleLike = async () => {
-    if (isLikedByUser) {
-      await deleteLike(id);
-      setLikesCounter((prevState) => prevState - 1);
-      setIsLikedByUser(false);
-    } else {
-      await createLike(id);
-      setLikesCounter((prevState) => prevState + 1);
-      setIsLikedByUser(true);
-    }
+    revalidateTag(`posts/${id}`);
+    revalidateTag(`posts`);
   };
 
   return (
     <div className="flex items-center gap-1">
-      <button type="button" onClick={handleLike}>
-        <LikeIcon isLiked={isLikedByUser} />
-      </button>
-      <p>{likesCounter}</p>
+      <form action={addLikeAction} className="flex items-center">
+        <button type="submit">
+          <LikeIcon isLiked={isLiked} />
+        </button>
+      </form>
+      <p>{likes}</p>
     </div>
   );
 };

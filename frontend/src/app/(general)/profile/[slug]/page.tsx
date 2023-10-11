@@ -1,7 +1,7 @@
-import { getUser } from '@/services';
 import { IParam } from '@/interfaces';
 import { PostsGrid, UsersProfile } from '@/features';
 import { notFound } from 'next/navigation';
+import { getUser } from '@/services';
 
 const Profile = async ({ params }: IParam) => {
   const user = await getUser(params.slug);

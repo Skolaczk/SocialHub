@@ -1,30 +1,52 @@
-import axios from 'axios';
+import { baseURL, getContentTypeHeader, getToken } from './utils';
+import { IError, IResponse } from '@/interfaces';
 
-const isServer = typeof window === 'undefined';
-const baseURL = process.env.NEXT_PUBLIC_API_URL;
+export const api = {
+  get: async <T>(endpoint: string): Promise<IResponse<T>> => {
+    return await request('GET', endpoint);
+  },
+  post: async <T>(
+    endpoint: string,
+    body?: FormData | any,
+  ): Promise<IResponse<T>> => {
+    return await request('POST', endpoint, body);
+  },
+  patch: async <T>(
+    endpoint: string,
+    body?: FormData | any,
+  ): Promise<IResponse<T>> => {
+    return await request('PATCH', endpoint, body);
+  },
+  delete: async <T>(endpoint: string): Promise<IResponse<T>> => {
+    return await request('DELETE', endpoint);
+  },
+};
 
-export const api = axios.create({
-  baseURL,
-});
+const request = async <T>(
+  method: string,
+  endpoint: string,
+  body?: any,
+): Promise<IResponse<T>> => {
+  const token = await getToken();
+  const contentTypeHeader = getContentTypeHeader(body);
 
-api.interceptors.request.use(async (config) => {
-  if (isServer) {
-    const { cookies } = await import('next/headers'),
-      token = cookies().get('token')?.value;
+  const requestOptions: RequestInit = {
+    method,
+    body: body instanceof FormData ? body : JSON.stringify(body),
+    headers: {
+      Authorization: `Bearer ${token}`,
+      ...contentTypeHeader,
+    },
+    next: {
+      tags: [endpoint],
+    },
+  };
 
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
-    }
+  const res = await fetch(`${baseURL}${endpoint}`, requestOptions);
+
+  if (res.ok) {
+    return { data: (await res.json()) as T };
   } else {
-    const token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
-      '$1',
-    );
-
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
-    }
+    return { error: (await res.json()) as IError };
   }
-
-  return config;
-});
+};

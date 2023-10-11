@@ -1,5 +1,3 @@
-'use client';
-
 import { notFound } from 'next/navigation';
 import { LogoDesktopIcon } from '@/assets/icons';
 import { AuthForm } from '@/components';

@@ -1,10 +1,11 @@
 'use client';
 
 import { FormField } from '../FormField';
-import { useFormik } from 'formik';
-import { login } from '@/services';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginAction } from '@/actions';
 import { useRouter } from 'next/navigation';
-import { getValidationSchema, initialValues, setTokenToCookies } from './utils';
+import { AuthSchema, authSchema } from './utils';
 import { useState } from 'react';
 
 interface IProps {
@@ -12,49 +13,46 @@ interface IProps {
 }
 
 export const AuthForm = ({ isSignUp }: IProps) => {
+  const [error, setError] = useState<string | undefined>();
   const router = useRouter();
-  const [error, setError] = useState('');
-  const { handleSubmit, values, handleChange, errors, touched, resetForm } =
-    useFormik({
-      initialValues,
-      validationSchema: getValidationSchema(isSignUp),
-      onSubmit: async (body) => {
-        const { data, error } = await login(isSignUp, body);
-        if (data) {
-          setTokenToCookies(data.access_token);
-          router.push('/');
-        }
+  const {
+    handleSubmit,
+    formState: { errors },
+    register,
+  } = useForm<AuthSchema>({
+    resolver: zodResolver(authSchema(isSignUp)),
+  });
 
-        if (error) {
-          setError(error.message);
-        }
-      },
-    });
+  const onSubmit = async (data: AuthSchema) => {
+    const errorMessage = await loginAction(isSignUp, data);
+
+    if (!errorMessage) {
+      router.push('/');
+    }
+
+    setError(errorMessage);
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col w-full">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full">
       <FormField
-        type="text"
+        type="email"
         label="email"
-        value={values.email}
-        onChange={handleChange}
-        error={touched.email && errors.email}
+        register={register('email')}
+        error={errors.email?.message}
       />
       {isSignUp && (
         <FormField
-          type="text"
           label="username"
-          value={values.username}
-          onChange={handleChange}
-          error={touched.username && errors.username}
+          register={register('username')}
+          error={errors.username?.message}
         />
       )}
       <FormField
         type="password"
         label="password"
-        value={values.password}
-        onChange={handleChange}
-        error={touched.password && errors.password}
+        register={register('password')}
+        error={errors.password?.message}
       />
       <button type="submit" className="bg-primary p-2 rounded-sm mt-5 mb-3">
         {isSignUp ? 'Register' : 'Login'}
