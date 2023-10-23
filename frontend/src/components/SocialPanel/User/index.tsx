@@ -1,6 +1,7 @@
 import { IUser } from '@/interfaces';
 import Image from 'next/image';
 import Link from 'next/link';
+import { logOutAction } from '@/actions';
 
 interface IProps {
   user: IUser;
@@ -8,12 +9,6 @@ interface IProps {
 }
 
 export const User = ({ user, buttonText }: IProps) => {
-  // const logOutAction = async () => {
-  //   'use server';
-  //   cookies().delete('token');
-  //   redirect('/sign-in');
-  // };
-
   return (
     <div className="flex items-center justify-between">
       <Link
@@ -30,11 +25,11 @@ export const User = ({ user, buttonText }: IProps) => {
         <p>{user.username}</p>
       </Link>
       {buttonText && (
-        // <form action={buttonText === 'Log out' ? logOutAction : undefined}>
-        <button type="submit" className="text-primary font-bold text-sm">
-          {buttonText}
-        </button>
-        // </form>
+        <form action={buttonText === 'Log out' ? logOutAction : undefined}>
+          <button type="submit" className="text-primary font-bold text-sm">
+            {buttonText}
+          </button>
+        </form>
       )}
     </div>
   );

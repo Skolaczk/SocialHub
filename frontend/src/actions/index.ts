@@ -10,6 +10,7 @@ import { AuthSchema } from '@/components/AuthForm/utils';
 import { cookies } from 'next/headers';
 import { revalidateTag } from 'next/cache';
 import { createPost } from '@/services';
+import { redirect } from 'next/navigation';
 
 export const getUsersByUsernameAction = async (username: string) => {
   return await getUsersByUsername(username);
@@ -49,4 +50,9 @@ export const editUserAction = async (formData: FormData) => {
 
   revalidateTag('users/me');
   return { data, error };
+};
+
+export const logOutAction = async () => {
+  cookies().delete('token');
+  redirect('/sign-in');
 };
