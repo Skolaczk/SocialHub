@@ -2,8 +2,7 @@ import { IUser } from '@/interfaces';
 import Image from 'next/image';
 import Link from 'next/link';
 import { revalidateTag } from 'next/cache';
-import { deleteFollow } from '@/services/deleteFollow.service';
-import { addFollow } from '@/services/addFollow.service';
+import { addFollow, deleteFollow } from '@/services';
 
 interface IProps {
   user: IUser;
