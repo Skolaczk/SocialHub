@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { MoonIcon } from '@/assets/icons';
+import { logOutAction } from '@/actions';
 
 export const OptionsModal = () => {
   const { theme, setTheme } = useTheme();
@@ -81,9 +82,14 @@ export const OptionsModal = () => {
             <div className="bg-white rounded-full w-3 h-3" />
           </button>
         </div>
-        <button className="text-center w-full p-2 text-black dark:text-white">
-          Log out
-        </button>
+        <form action={logOutAction}>
+          <button
+            type="submit"
+            className="text-center w-full p-2 text-black dark:text-white"
+          >
+            Log out
+          </button>
+        </form>
       </div>
     </>
   );
