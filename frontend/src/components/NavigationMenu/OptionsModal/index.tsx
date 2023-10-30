@@ -8,6 +8,7 @@ import { logOutAction } from '@/actions';
 export const OptionsModal = () => {
   const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const [isSwitchMoved, setIsSwitchMoved] = useState(false);
   const optionsRef = useRef<HTMLDivElement>(null);
 
   const openOptions = useCallback(() => setIsOpen(true), []);
@@ -77,15 +78,22 @@ export const OptionsModal = () => {
           <button
             type="button"
             className="bg-primary p-1 w-10 rounded-full"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            onClick={() => {
+              setTheme(theme === 'dark' ? 'light' : 'dark');
+              setIsSwitchMoved((prevState) => !prevState);
+            }}
           >
-            <div className="bg-white rounded-full w-3 h-3" />
+            <div
+              className={`bg-white rounded-full w-3 h-3 transition-all duration-300 transform ${
+                isSwitchMoved ? 'translate-x-[19px]' : 'translate-x-0'
+              }`}
+            />
           </button>
         </div>
         <form action={logOutAction}>
           <button
             type="submit"
-            className="text-center w-full p-2 text-black dark:text-white"
+            className="text-center w-full p-2 text-black dark:text-white text-sm"
           >
             Log out
           </button>
