@@ -12,3 +12,4 @@ export * from './XIcon';
 export * from './UploadIcon';
 export * from './SpinnerIcon';
 export * from './CameraIcon';
+export * from './MoonIcon';
