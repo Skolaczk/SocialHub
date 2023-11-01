@@ -1,25 +1,34 @@
 'use client';
 
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { IUser } from '@/interfaces';
-import debounce from 'lodash.debounce';
 import { UsersList } from './UsersList';
 import { getUsersByUsernameAction } from '@/actions';
 
 export const SearchBar = () => {
+  const [value, setValue] = useState('');
+  const [debouncedValue, setDebouncedValue] = useState('');
   const [users, setUsers] = useState<IUser[]>();
 
-  const debouncedSearch = debounce(async (username: string) => {
-    if (username) {
-      setUsers(await getUsersByUsernameAction(username));
-    } else {
-      setUsers([]);
-    }
-  }, 300);
-
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    debouncedSearch(event.target.value);
+    setValue(event.target.value);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), 300);
+
+    return () => clearTimeout(timer);
+  }, [value]);
+
+  useEffect(() => {
+    (async () => {
+      if (debouncedValue) {
+        setUsers(await getUsersByUsernameAction(debouncedValue));
+      } else {
+        setUsers([]);
+      }
+    })();
+  }, [debouncedValue]);
 
   return (
     <div className="flex flex-col items-center relative">
@@ -29,6 +38,7 @@ export const SearchBar = () => {
         id="username"
         placeholder="Search"
         onChange={handleChange}
+        value={value}
         className="bg-neutral-100 dark:bg-neutral-500 w-full max-w-2xl rounded-sm p-2 text-sm"
       />
       <UsersList users={users} />
