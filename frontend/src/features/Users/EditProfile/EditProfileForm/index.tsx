@@ -39,7 +39,7 @@ export const EditProfileForm = ({ username, bio, image }: IUser) => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     maxFiles: 1,
-    accept: { 'image/*': ['.jpeg', '.jpg', '.png'] },
+    accept: { 'image/jpeg': [], 'image/png': [] },
   });
 
   const onSubmit = async ({ username, bio }: EditUserSchema) => {
