@@ -37,7 +37,7 @@ export const CreatePostForm = () => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     maxFiles: 1,
-    accept: { 'image/*': ['.jpeg', '.jpg', '.png'] },
+    accept: { 'image/jpeg': [], 'image/png': [] },
   });
 
   return (
