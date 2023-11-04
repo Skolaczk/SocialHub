@@ -1,10 +1,10 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { MoonIcon } from '@/assets/icons';
 import { logOutAction } from '@/actions';
-import { useOnClickOutside, useOpenClose } from '@/hooks';
+import { useOnClickEsc, useOnClickOutside, useOpenClose } from '@/hooks';
 
 export const OptionsModal = () => {
   const { theme, setTheme } = useTheme();
@@ -12,20 +12,7 @@ export const OptionsModal = () => {
   const [isSwitchMoved, setIsSwitchMoved] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const closeModalByEsc = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === 'Escape') close();
-    },
-    [close],
-  );
-
-  useEffect(() => {
-    document.addEventListener('keydown', closeModalByEsc);
-
-    return () => {
-      document.removeEventListener('keydown', closeModalByEsc);
-    };
-  }, [closeModalByEsc]);
+  useOnClickEsc(close);
 
   useOnClickOutside(ref, close, 'button');
 

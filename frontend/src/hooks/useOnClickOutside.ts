@@ -17,7 +17,7 @@ export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
         fn();
       }
     },
-    [fn, ref],
+    [selector, fn, ref],
   );
 
   useEffect(() => {
