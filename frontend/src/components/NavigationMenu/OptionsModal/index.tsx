@@ -1,62 +1,25 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { MoonIcon } from '@/assets/icons';
 import { logOutAction } from '@/actions';
+import { useOnClickEsc, useOnClickOutside, useOpenClose } from '@/hooks';
 
 export const OptionsModal = () => {
   const { theme, setTheme } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, close, toggle } = useOpenClose();
   const [isSwitchMoved, setIsSwitchMoved] = useState(false);
-  const optionsRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const openOptions = useCallback(() => setIsOpen(true), []);
+  useOnClickEsc(close);
 
-  const closeOptions = useCallback(() => setIsOpen(false), []);
-
-  const closeModalByEsc = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === 'Escape') closeOptions();
-    },
-    [closeOptions],
-  );
-
-  useEffect(() => {
-    document.addEventListener('keydown', closeModalByEsc);
-
-    return () => {
-      document.removeEventListener('keydown', closeModalByEsc);
-    };
-  }, [closeModalByEsc]);
-
-  const handleClickOutside = useCallback(
-    (event: MouseEvent) => {
-      if (!isOpen) return;
-
-      if (
-        optionsRef.current &&
-        !optionsRef.current.contains(event.target as Node) &&
-        !(event.target as HTMLElement).closest('button')
-      ) {
-        closeOptions();
-      }
-    },
-    [isOpen, closeOptions, optionsRef],
-  );
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [handleClickOutside]);
+  useOnClickOutside(ref, close, 'button');
 
   return (
     <>
       <button
-        onClick={openOptions}
+        onClick={toggle}
         type="button"
         className="hidden w-9 h-9 absolute bottom-5 md:block"
       >
@@ -65,7 +28,7 @@ export const OptionsModal = () => {
         <div className="h-0.5 w-1/2 rounded-full bg-black dark:bg-white" />
       </button>
       <div
-        ref={optionsRef}
+        ref={ref}
         className={`bg-neutral-100 dark:bg-neutral-500 absolute bottom-20 rounded-sm ${
           !isOpen ? 'hidden' : ''
         }`}

@@ -4,21 +4,16 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { IUser } from '@/interfaces';
 import { UsersList } from './UsersList';
 import { getUsersByUsernameAction } from '@/actions';
+import { useDebounce } from '@/hooks';
 
 export const SearchBar = () => {
   const [value, setValue] = useState('');
-  const [debouncedValue, setDebouncedValue] = useState('');
   const [users, setUsers] = useState<IUser[]>();
+  const debouncedValue = useDebounce(value, 300);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => setDebouncedValue(value), 300);
-
-    return () => clearTimeout(timer);
-  }, [value]);
 
   useEffect(() => {
     (async () => {
