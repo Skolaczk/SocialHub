@@ -4,13 +4,13 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { MoonIcon } from '@/assets/icons';
 import { logOutAction } from '@/actions';
-import { useOpenClose } from '@/hooks';
+import { useOnClickOutside, useOpenClose } from '@/hooks';
 
 export const OptionsModal = () => {
   const { theme, setTheme } = useTheme();
   const { isOpen, open, close } = useOpenClose();
   const [isSwitchMoved, setIsSwitchMoved] = useState(false);
-  const optionsRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const closeModalByEsc = useCallback(
     (event: KeyboardEvent) => {
@@ -27,33 +27,12 @@ export const OptionsModal = () => {
     };
   }, [closeModalByEsc]);
 
-  const handleClickOutside = useCallback(
-    (event: MouseEvent) => {
-      if (!isOpen) return;
-
-      if (
-        optionsRef.current &&
-        !optionsRef.current.contains(event.target as Node) &&
-        !(event.target as HTMLElement).closest('button')
-      ) {
-        close();
-      }
-    },
-    [isOpen, close, optionsRef],
-  );
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [handleClickOutside]);
+  useOnClickOutside(ref, close, 'button');
 
   return (
     <>
       <button
-        onClick={open}
+        onClick={isOpen ? close : open}
         type="button"
         className="hidden w-9 h-9 absolute bottom-5 md:block"
       >
@@ -62,7 +41,7 @@ export const OptionsModal = () => {
         <div className="h-0.5 w-1/2 rounded-full bg-black dark:bg-white" />
       </button>
       <div
-        ref={optionsRef}
+        ref={ref}
         className={`bg-neutral-100 dark:bg-neutral-500 absolute bottom-20 rounded-sm ${
           !isOpen ? 'hidden' : ''
         }`}
