@@ -8,7 +8,7 @@ import { useOnClickOutside, useOpenClose } from '@/hooks';
 
 export const OptionsModal = () => {
   const { theme, setTheme } = useTheme();
-  const { isOpen, open, close } = useOpenClose();
+  const { isOpen, close, toggle } = useOpenClose();
   const [isSwitchMoved, setIsSwitchMoved] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -32,7 +32,7 @@ export const OptionsModal = () => {
   return (
     <>
       <button
-        onClick={isOpen ? close : open}
+        onClick={toggle}
         type="button"
         className="hidden w-9 h-9 absolute bottom-5 md:block"
       >
