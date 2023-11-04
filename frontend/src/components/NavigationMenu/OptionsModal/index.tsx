@@ -4,22 +4,19 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { MoonIcon } from '@/assets/icons';
 import { logOutAction } from '@/actions';
+import { useOpenClose } from '@/hooks';
 
 export const OptionsModal = () => {
   const { theme, setTheme } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, open, close } = useOpenClose();
   const [isSwitchMoved, setIsSwitchMoved] = useState(false);
   const optionsRef = useRef<HTMLDivElement>(null);
 
-  const openOptions = useCallback(() => setIsOpen(true), []);
-
-  const closeOptions = useCallback(() => setIsOpen(false), []);
-
   const closeModalByEsc = useCallback(
     (event: KeyboardEvent) => {
-      if (event.key === 'Escape') closeOptions();
+      if (event.key === 'Escape') close();
     },
-    [closeOptions],
+    [close],
   );
 
   useEffect(() => {
@@ -39,10 +36,10 @@ export const OptionsModal = () => {
         !optionsRef.current.contains(event.target as Node) &&
         !(event.target as HTMLElement).closest('button')
       ) {
-        closeOptions();
+        close();
       }
     },
-    [isOpen, closeOptions, optionsRef],
+    [isOpen, close, optionsRef],
   );
 
   useEffect(() => {
@@ -56,7 +53,7 @@ export const OptionsModal = () => {
   return (
     <>
       <button
-        onClick={openOptions}
+        onClick={open}
         type="button"
         className="hidden w-9 h-9 absolute bottom-5 md:block"
       >
