@@ -1,7 +1,8 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
+
 import { LogoDesktopIcon } from '@/assets/icons';
 import { AuthForm } from '@/components';
-import Link from 'next/link';
 import { IParam } from '@/interfaces';
 
 const auth = {
@@ -18,11 +19,11 @@ const Auth = ({ params }: IParam) => {
 
   return (
     <div className="flex">
-      <div className="flex flex-col items-center mx-auto p-7 w-full max-w-md h-screen md:justify-center">
+      <div className="mx-auto flex h-screen w-full max-w-md flex-col items-center p-7 md:justify-center">
         <div className="xl:hidden">
           <LogoDesktopIcon width="200" height="40" />
         </div>
-        <h1 className="text-2xl font-medium tracking-widest uppercase mt-5">
+        <h1 className="mt-5 text-2xl font-medium uppercase tracking-widest">
           {isSignUp ? 'create account' : 'login to account'}
         </h1>
         <AuthForm isSignUp={isSignUp} />
@@ -41,14 +42,14 @@ const Auth = ({ params }: IParam) => {
             </Link>
           </p>
         )}
-        <p className="mt-5 text-neutral-300 text-center text-sm">
+        <p className="mt-5 text-center text-sm text-neutral-300">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
           consectetur, consequatur impedit in nulla officia quos tempora.
           Accusamus assumenda aut distinctio inventore, iusto officiis quidem
           recusandae sit velit, veritatis voluptas?
         </p>
       </div>
-      <div className="hidden xl:flex w-1/2 justify-center items-center bg-primary">
+      <div className="hidden w-1/2 items-center justify-center bg-primary xl:flex">
         <LogoDesktopIcon width="500" height="200" fill="white" />
       </div>
     </div>

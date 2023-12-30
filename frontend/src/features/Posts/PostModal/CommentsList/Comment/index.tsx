@@ -1,6 +1,7 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import moment from 'moment/moment';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { IComment } from '@/interfaces';
 
 export const Comment = (comment: IComment) => {
@@ -23,7 +24,7 @@ export const Comment = (comment: IComment) => {
           >
             {comment.user.username}
           </Link>
-          <span className="text-neutral-300 dark:text-neutral-200 text-xs relative before:absolute before:h-1 before:w-1 before:bg-neutral-200 before:rounded-full before:-left-2 before:top-1/2 before:-translate-y-1/2">
+          <span className="relative text-xs text-neutral-300 before:absolute before:-left-2 before:top-1/2 before:h-1 before:w-1 before:-translate-y-1/2 before:rounded-full before:bg-neutral-200 dark:text-neutral-200">
             {moment(comment.createdAt).fromNow()}
           </span>
         </div>

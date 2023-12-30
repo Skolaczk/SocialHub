@@ -7,8 +7,8 @@ const Notifications = async () => {
   return (
     <>
       {notifications && (
-        <div className="flex flex-col items-center mt-8 mb-14 md:ml-20 xl:ml-0">
-          <h2 className="text-xl font-medium tracking-widest uppercase mb-2">
+        <div className="mb-14 mt-8 flex flex-col items-center md:ml-20 xl:ml-0">
+          <h2 className="mb-2 text-xl font-medium uppercase tracking-widest">
             notifications
           </h2>
           <NotificationsList notifications={notifications} />

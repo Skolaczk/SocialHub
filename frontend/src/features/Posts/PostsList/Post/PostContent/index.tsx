@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import { IPost } from '@/interfaces';
 import Link from 'next/link';
+
 import { AddLike } from '@/features/Posts/PostsList/Post/AddLike';
+import { IPost } from '@/interfaces';
 
 export const PostContent = ({
   id,
@@ -20,7 +21,7 @@ export const PostContent = ({
           width={0}
           height={0}
           sizes="100vw"
-          className="w-full h-auto"
+          className="h-auto w-full"
         />
       </Link>
       <div className="flex items-center justify-between p-5 text-sm">

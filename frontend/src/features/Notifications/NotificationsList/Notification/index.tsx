@@ -1,14 +1,16 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import moment from 'moment/moment';
-import { INotification } from '@/interfaces';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { getNotificationMessage } from './utils';
+
+import { INotification } from '@/interfaces';
 
 export const Notification = (notification: INotification) => {
   const message = getNotificationMessage(notification.type);
 
   return (
-    <div className="flex items-center gap-2 justify-between px-5 py-3 [&:not(:last-child)]:border-b border-neutral-100 dark:border-neutral-900 xs:gap-0">
+    <div className="flex items-center justify-between gap-2 border-neutral-100 px-5 py-3 dark:border-neutral-900 xs:gap-0 [&:not(:last-child)]:border-b">
       <div className="flex items-center gap-2">
         <Link href={`/profile/${notification.sender.username}`}>
           <Image
@@ -28,7 +30,7 @@ export const Notification = (notification: INotification) => {
           </Link>
           <span>{message}</span>
         </p>
-        <span className="hidden xs:block ml-1 text-neutral-200 text-sm relative before:absolute before:h-1 before:w-1 before:bg-neutral-200 before:rounded-full before:-left-2 before:top-1/2 before:-translate-y-1/2">
+        <span className="relative ml-1 hidden text-sm text-neutral-200 before:absolute before:-left-2 before:top-1/2 before:h-1 before:w-1 before:-translate-y-1/2 before:rounded-full before:bg-neutral-200 xs:block">
           {moment(notification.createdAt).fromNow()}
         </span>
       </div>
@@ -38,7 +40,7 @@ export const Notification = (notification: INotification) => {
             ? `/profile/${notification.sender.username}`
             : `/posts/${notification.postId}`
         }
-        className="text-primary font-bold"
+        className="font-bold text-primary"
       >
         Show
       </Link>

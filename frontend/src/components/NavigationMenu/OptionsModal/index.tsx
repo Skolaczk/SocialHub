@@ -2,8 +2,9 @@
 
 import { useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
-import { MoonIcon } from '@/assets/icons';
+
 import { logOutAction } from '@/actions';
+import { MoonIcon } from '@/assets/icons';
 import { useOnClickEsc, useOnClickOutside, useOpenClose } from '@/hooks';
 
 export const OptionsModal = () => {
@@ -21,33 +22,33 @@ export const OptionsModal = () => {
       <button
         onClick={toggle}
         type="button"
-        className="hidden w-9 h-9 absolute bottom-5 md:block"
+        className="absolute bottom-5 hidden h-9 w-9 md:block"
       >
         <div className="h-0.5 w-3/4 rounded-full bg-black dark:bg-white" />
-        <div className="h-0.5 w-full rounded-full bg-black dark:bg-white my-2" />
+        <div className="my-2 h-0.5 w-full rounded-full bg-black dark:bg-white" />
         <div className="h-0.5 w-1/2 rounded-full bg-black dark:bg-white" />
       </button>
       <div
         ref={ref}
-        className={`bg-neutral-100 dark:bg-neutral-500 absolute bottom-20 rounded-sm ${
-          !isOpen ? 'hidden' : ''
+        className={`absolute bottom-20 left-5 hidden w-[225px] rounded-sm bg-neutral-100 dark:bg-neutral-500 md:block ${
+          !isOpen ? 'md:hidden' : ''
         }`}
       >
-        <div className="p-3 flex items-center gap-8 border-b border-neutral-200 dark:border-neutral-300">
+        <div className="flex justify-between gap-8 border-b border-neutral-200 p-3 dark:border-neutral-300">
           <div className="flex items-center gap-2">
             <MoonIcon />
             <p>dark mode</p>
           </div>
           <button
             type="button"
-            className="bg-primary p-1 w-10 rounded-full"
+            className="w-10 rounded-full bg-primary p-1"
             onClick={() => {
               setTheme(theme === 'dark' ? 'light' : 'dark');
               setIsSwitchMoved((prevState) => !prevState);
             }}
           >
             <div
-              className={`bg-white rounded-full w-3 h-3 transition-all duration-300 transform ${
+              className={`h-3 w-3 transform rounded-full bg-white transition-all duration-300 ${
                 isSwitchMoved ? 'translate-x-[19px]' : 'translate-x-0'
               }`}
             />
@@ -56,7 +57,7 @@ export const OptionsModal = () => {
         <form action={logOutAction}>
           <button
             type="submit"
-            className="text-center w-full p-2 text-black dark:text-white text-sm"
+            className="w-full p-2 text-center text-sm text-black dark:text-white"
           >
             Log out
           </button>

@@ -1,16 +1,18 @@
 'use server';
 
+import { revalidateTag } from 'next/cache';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
 import {
   createComment,
   editUser,
   getUsersByUsername,
   login,
 } from '../services';
+
 import { AuthSchema } from '@/components/AuthForm/utils';
-import { cookies } from 'next/headers';
-import { revalidateTag } from 'next/cache';
 import { createPost } from '@/services';
-import { redirect } from 'next/navigation';
 
 export const getUsersByUsernameAction = async (username: string) => {
   return await getUsersByUsername(username);

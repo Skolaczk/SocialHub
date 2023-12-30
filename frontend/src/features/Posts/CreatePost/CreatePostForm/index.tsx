@@ -1,14 +1,16 @@
 'use client';
 
-import { UploadIcon, XIcon } from '@/assets/icons';
-import { FormField } from '@/components';
+import { useCallback, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useCallback, useState } from 'react';
-import { createPostAction } from '@/actions';
 import { useRouter } from 'next/navigation';
-import { useDropzone } from 'react-dropzone';
-import { createPostSchema, CreatePostSchema } from './utils';
+
+import { CreatePostSchema, createPostSchema } from './utils';
+
+import { createPostAction } from '@/actions';
+import { UploadIcon, XIcon } from '@/assets/icons';
+import { FormField } from '@/components';
 
 export const CreatePostForm = () => {
   const router = useRouter();
@@ -43,30 +45,30 @@ export const CreatePostForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center w-full gap-y-5 mt-8"
+      className="mt-8 flex w-full flex-col items-center gap-y-5"
     >
       <div
         {...getRootProps()}
-        className="flex flex-col items-center py-10 w-full border border-dashed border-primary rounded-sm"
+        className="flex w-full flex-col items-center rounded-sm border border-dashed border-primary py-10"
       >
         <input {...getInputProps()} />
         <UploadIcon />
-        <p className="text-neutral-500 dark:text-neutral-100 my-1">
+        <p className="my-1 text-neutral-500 dark:text-neutral-100">
           Drop your image here, or browse
         </p>
-        <span className="text-neutral-200 dark:text-neutral-300 text-sm">
+        <span className="text-sm text-neutral-200 dark:text-neutral-300">
           PNG, JPG are allowed
         </span>
       </div>
       {image && (
-        <div className="flex justify-between items-center w-full bg-neutral-100 dark:bg-neutral-500 rounded-sm p-2">
+        <div className="flex w-full items-center justify-between rounded-sm bg-neutral-100 p-2 dark:bg-neutral-500">
           <p>{image.name}</p>
           <button onClick={() => setImage(null)}>
             <XIcon />
           </button>
         </div>
       )}
-      <div className="flex flex-col w-full">
+      <div className="flex w-full flex-col">
         <FormField
           label="content"
           error={errors.content?.message}
@@ -76,7 +78,7 @@ export const CreatePostForm = () => {
       </div>
       <button
         type="submit"
-        className="bg-primary w-full p-2 rounded-sm text-white dark:black xs:w-fit xs:px-20"
+        className="dark:black w-full rounded-sm bg-primary p-2 text-white xs:w-fit xs:px-20"
       >
         Create
       </button>

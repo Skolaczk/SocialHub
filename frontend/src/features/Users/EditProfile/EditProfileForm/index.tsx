@@ -1,16 +1,18 @@
 'use client';
 
-import { FormField } from '@/components';
-import { CameraIcon } from '@/assets/icons';
-import Image from 'next/image';
+import { useCallback, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useCallback, useState } from 'react';
-import { IError, IUser } from '@/interfaces';
-import { useDropzone } from 'react-dropzone';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+
+import { EditUserSchema, editUserSchema } from './utils';
+
 import { editUserAction } from '@/actions';
-import { editUserSchema, EditUserSchema } from './utils';
+import { CameraIcon } from '@/assets/icons';
+import { FormField } from '@/components';
+import { IError, IUser } from '@/interfaces';
 
 export const EditProfileForm = ({ username, bio, image }: IUser) => {
   const router = useRouter();
@@ -58,7 +60,7 @@ export const EditProfileForm = ({ username, bio, image }: IUser) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-      <div {...getRootProps()} className="flex justify-center relative mt-5">
+      <div {...getRootProps()} className="relative mt-5 flex justify-center">
         <input {...getInputProps()} />
         <Image
           src={file ? file.preview : image}
@@ -66,7 +68,7 @@ export const EditProfileForm = ({ username, bio, image }: IUser) => {
           width={0}
           height={0}
           sizes="100vw"
-          className="rounded-full w-24 h-24 brightness-50"
+          className="h-24 w-24 rounded-full brightness-50"
         />
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <CameraIcon />
@@ -77,7 +79,7 @@ export const EditProfileForm = ({ username, bio, image }: IUser) => {
         register={register('username')}
         error={errors.username?.message}
       />
-      <div className="flex flex-col w-full">
+      <div className="flex w-full flex-col">
         <FormField
           label="bio"
           error={errors.bio?.message}
@@ -88,12 +90,12 @@ export const EditProfileForm = ({ username, bio, image }: IUser) => {
       <div className="flex justify-center">
         <button
           type="submit"
-          className="bg-primary mt-5 w-full p-2 rounded-sm text-white xs:w-fit xs:px-20"
+          className="mt-5 w-full rounded-sm bg-primary p-2 text-white xs:w-fit xs:px-20"
         >
           Save
         </button>
       </div>
-      <p className="text-center text-danger mt-5">{error?.message}</p>
+      <p className="mt-5 text-center text-danger">{error?.message}</p>
     </form>
   );
 };

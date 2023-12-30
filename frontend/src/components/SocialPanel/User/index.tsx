@@ -1,7 +1,8 @@
-import { IUser } from '@/interfaces';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { logOutAction } from '@/actions';
+import { IUser } from '@/interfaces';
 
 interface IProps {
   user: IUser;
@@ -26,7 +27,7 @@ export const User = ({ user, buttonText }: IProps) => {
       </Link>
       {buttonText && (
         <form action={buttonText === 'Log out' ? logOutAction : undefined}>
-          <button type="submit" className="text-primary font-bold text-sm">
+          <button type="submit" className="text-sm font-bold text-primary">
             {buttonText}
           </button>
         </form>

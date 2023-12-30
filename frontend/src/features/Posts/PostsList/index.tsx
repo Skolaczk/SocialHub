@@ -1,16 +1,15 @@
 import { Post } from './Post';
+
 import { IPost } from '@/interfaces';
 
 interface IProps {
-  posts: IPost[];
+  posts: IPost[] | undefined;
 }
 
 export const PostsList = ({ posts }: IProps) => {
   return (
-    <div className="flex items-center flex-col mb-14 md:mt-8 md:ml-20 xl:ml-0">
-      {posts.map((post) => (
-        <Post key={post.id} {...post} />
-      ))}
+    <div className="mb-14 flex flex-col items-center md:ml-20 md:mt-8 xl:ml-0">
+      {posts?.map((post) => <Post key={post.id} {...post} />)}
     </div>
   );
 };
