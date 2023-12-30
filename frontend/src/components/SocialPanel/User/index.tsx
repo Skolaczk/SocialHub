@@ -26,7 +26,7 @@ export const User = ({ user, buttonText }: IProps) => {
       </Link>
       {buttonText && (
         <form action={buttonText === 'Log out' ? logOutAction : undefined}>
-          <button type="submit" className="text-primary font-bold text-sm">
+          <button type="submit" className="text-sm font-bold text-primary">
             {buttonText}
           </button>
         </form>

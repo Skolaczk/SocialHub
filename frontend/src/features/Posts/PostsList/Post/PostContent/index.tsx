@@ -20,7 +20,7 @@ export const PostContent = ({
           width={0}
           height={0}
           sizes="100vw"
-          className="w-full h-auto"
+          className="h-auto w-full"
         />
       </Link>
       <div className="flex items-center justify-between p-5 text-sm">

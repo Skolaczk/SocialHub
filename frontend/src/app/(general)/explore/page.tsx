@@ -6,11 +6,11 @@ const Explore = async () => {
   const posts = await getPosts();
 
   return (
-    <div className="flex items-center flex-col mt-8 mb-14 md:ml-20 xl:ml-0">
-      <div className="md:hidden w-full px-5">
+    <div className="mb-14 mt-8 flex flex-col items-center md:ml-20 xl:ml-0">
+      <div className="w-full px-5 md:hidden">
         <SearchBar />
       </div>
-      <h2 className="text-xl font-medium tracking-widest uppercase my-5 md:mt-0">
+      <h2 className="my-5 text-xl font-medium uppercase tracking-widest md:mt-0">
         explore
       </h2>
       <PostsGrid posts={posts} />

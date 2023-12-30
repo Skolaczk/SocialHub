@@ -4,7 +4,7 @@ import { ModalHeader } from '@/components';
 export const CreatePost = () => {
   return (
     <div className="modal-background">
-      <div className="modal p-5 max-w-3xl md:h-auto md:p-8">
+      <div className="modal max-w-3xl p-5 md:h-auto md:p-8">
         <ModalHeader heading="create post" />
         <CreatePostForm />
       </div>

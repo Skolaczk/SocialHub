@@ -1,15 +1,15 @@
 @tailwind base;
 
 @layer base {
-    body {
-        @apply dark:bg-black dark:text-white
-    }
+  body {
+    @apply dark:bg-black dark:text-white;
+  }
 
-    svg {
-        @apply fill-black stroke-black dark:fill-white dark:stroke-white
-    }
+  svg {
+    @apply fill-black stroke-black dark:fill-white dark:stroke-white;
+  }
 
-    button {
-        @apply text-white
-    }
+  button {
+    @apply text-white;
+  }
 }

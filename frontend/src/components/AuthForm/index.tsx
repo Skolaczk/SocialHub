@@ -34,7 +34,7 @@ export const AuthForm = ({ isSignUp }: IProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex w-full flex-col">
       <FormField
         type="email"
         label="email"
@@ -54,7 +54,7 @@ export const AuthForm = ({ isSignUp }: IProps) => {
         register={register('password')}
         error={errors.password?.message}
       />
-      <button type="submit" className="bg-primary p-2 rounded-sm mt-5 mb-3">
+      <button type="submit" className="mb-3 mt-5 rounded-sm bg-primary p-2">
         {isSignUp ? 'Register' : 'Login'}
       </button>
       {error && <p className="text-center text-danger">{error}</p>}

@@ -23,7 +23,7 @@ export const NavigationItem = ({ label, href, order, icon }: IProps) => {
       {icon}
       <span
         className={`hidden xl:block  ${
-          isActive ? 'text-primary-500 font-bold' : ''
+          isActive ? 'font-bold text-primary-500' : ''
         }`}
       >
         {label}

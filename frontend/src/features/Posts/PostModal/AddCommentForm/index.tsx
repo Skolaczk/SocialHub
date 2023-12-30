@@ -19,10 +19,10 @@ export const AddCommentForm = ({ postId }: IProps) => {
           await createCommentAction(formData, postId);
           formRef.current?.reset();
         }}
-        className="flex items-center px-5 my-5 gap-1"
+        className="my-5 flex items-center gap-1 px-5"
       >
         <input
-          className="bg-transparent w-full text-sm"
+          className="w-full bg-transparent text-sm"
           type="text"
           id="content"
           name="content"

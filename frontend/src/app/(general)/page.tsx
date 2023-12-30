@@ -11,7 +11,7 @@ const Home = async () => {
       <div className="flex justify-center pt-5 md:hidden">
         <LogoDesktopIcon />
       </div>
-      <div className="hidden md:block mt-8 md:ml-20 xl:ml-0">
+      <div className="mt-8 hidden md:ml-20 md:block xl:ml-0">
         <SearchBar />
       </div>
       <PostsList posts={posts} />

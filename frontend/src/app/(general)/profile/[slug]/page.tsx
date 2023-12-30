@@ -11,8 +11,8 @@ const Profile = async ({ params }: IParam) => {
   }
 
   return (
-    <div className="flex justify-center mb-14 md:mt-8 md:ml-20 xl:ml-0">
-      <div className="max-w-2xl w-full">
+    <div className="mb-14 flex justify-center md:ml-20 md:mt-8 xl:ml-0">
+      <div className="w-full max-w-2xl">
         <UsersProfile user={user} />
         <PostsGrid posts={user.posts} />
       </div>

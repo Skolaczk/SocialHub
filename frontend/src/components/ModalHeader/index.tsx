@@ -12,14 +12,14 @@ export const ModalHeader = ({ heading }: IProps) => {
 
   return (
     <div
-      className={`flex justify-between items-center ${
+      className={`flex items-center justify-between ${
         heading === 'post' && 'p-5'
       }`}
     >
       <button onClick={() => router.back()} className="md:invisible">
         <ArrowLeftIcon />
       </button>
-      <h1 className="text-xl font-medium tracking-widest uppercase">
+      <h1 className="text-xl font-medium uppercase tracking-widest">
         {heading}
       </h1>
       <button onClick={() => router.back()} className="invisible md:visible">

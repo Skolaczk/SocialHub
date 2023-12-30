@@ -30,15 +30,15 @@ export const UsersProfile = ({ user }: IProps) => {
           width={0}
           height={0}
           sizes="100vw"
-          className="rounded-full w-16 h-16 xs:w-32 xs:h-32"
+          className="h-16 w-16 rounded-full xs:h-32 xs:w-32"
         />
         <div>
-          <div className="hidden xs:flex gap-3">
+          <div className="hidden gap-3 xs:flex">
             <h1 className="text-xl font-medium">{user.username}</h1>
             {user.isCurrentUserProfile ? (
               <Link
                 href="/edit"
-                className="rounded-sm py-1 px-5 bg-primary text-white"
+                className="rounded-sm bg-primary px-5 py-1 text-white"
               >
                 Edit profile
               </Link>
@@ -46,7 +46,7 @@ export const UsersProfile = ({ user }: IProps) => {
               <form action={followAction}>
                 <button
                   type="submit"
-                  className={`rounded-sm py-1 px-5 ${
+                  className={`rounded-sm px-5 py-1 ${
                     user.isFollowing
                       ? 'bg-neutral-100 dark:bg-neutral-500'
                       : 'bg-primary'
@@ -64,19 +64,19 @@ export const UsersProfile = ({ user }: IProps) => {
                 className="flex flex-col items-center xs:flex-row-reverse"
               >
                 <span className="font-bold">{value}</span>
-                <span className="hidden xs:block mr-1">:</span>
+                <span className="mr-1 hidden xs:block">:</span>
                 <span className="first-letter:uppercase">{key}</span>
               </div>
             ))}
           </div>
-          <p className="hidden xs:inline text-sm">{user.bio}</p>
+          <p className="hidden text-sm xs:inline">{user.bio}</p>
         </div>
       </div>
-      <p className="text-sm mt-2 mb-5 xs:hidden">{user.bio}</p>
+      <p className="mb-5 mt-2 text-sm xs:hidden">{user.bio}</p>
       {user.isCurrentUserProfile ? (
         <Link
           href="/edit"
-          className="block text-center w-full rounded-sm p-1 bg-primary xs:hidden text-white"
+          className="block w-full rounded-sm bg-primary p-1 text-center text-white xs:hidden"
         >
           Edit profile
         </Link>

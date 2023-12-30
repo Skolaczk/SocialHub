@@ -26,7 +26,7 @@ export const SearchBar = () => {
   }, [debouncedValue]);
 
   return (
-    <div className="flex flex-col items-center relative">
+    <div className="relative flex flex-col items-center">
       <input
         type="text"
         name="username"
@@ -34,7 +34,7 @@ export const SearchBar = () => {
         placeholder="Search"
         onChange={handleChange}
         value={value}
-        className="bg-neutral-100 dark:bg-neutral-500 w-full max-w-2xl rounded-sm p-2 text-sm"
+        className="w-full max-w-2xl rounded-sm bg-neutral-100 p-2 text-sm dark:bg-neutral-500"
       />
       <UsersList users={users} />
     </div>

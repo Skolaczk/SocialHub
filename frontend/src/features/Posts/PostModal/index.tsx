@@ -11,7 +11,7 @@ export const PostModal = async (post: IPost) => {
   return (
     <>
       <div className="modal-background">
-        <div className="modal max-w-xl overflow-y-scroll md:h-[90vh] md:overflow-y-auto md:scrollbar">
+        <div className="modal md:scrollbar max-w-xl overflow-y-scroll md:h-[90vh] md:overflow-y-auto">
           <ModalHeader heading="post" />
           <Post {...post} />
           <AddCommentForm postId={post.id} />

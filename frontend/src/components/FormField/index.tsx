@@ -27,7 +27,7 @@ export const FormField = ({
           placeholder={label}
           id={label}
           rows={5}
-          className={`my-1.5 resize-none p-2 rounded-sm bg-neutral-100 dark:bg-neutral-500 border-danger ${
+          className={`my-1.5 resize-none rounded-sm border-danger bg-neutral-100 p-2 dark:bg-neutral-500 ${
             error && 'border'
           }`}
         ></textarea>
@@ -37,13 +37,13 @@ export const FormField = ({
           type={type}
           id={label}
           placeholder={label}
-          className={`my-1.5 p-2 rounded-sm bg-neutral-100 dark:bg-neutral-500 text-sm border-danger ${
+          className={`my-1.5 rounded-sm border-danger bg-neutral-100 p-2 text-sm dark:bg-neutral-500 ${
             error && 'border'
           }`}
         />
       )}
 
-      {error && <span className="text-danger text-sm">{error}</span>}
+      {error && <span className="text-sm text-danger">{error}</span>}
     </>
   );
 };

@@ -9,8 +9,8 @@ interface IProps {
 
 export const UsersList = ({ users, title, buttonText }: IProps) => {
   return (
-    <div className="flex flex-col gap-5 w-[211px]">
-      <h3 className="text-neutral-200 font-medium">{title}</h3>
+    <div className="flex w-[211px] flex-col gap-5">
+      <h3 className="font-medium text-neutral-200">{title}</h3>
       {users &&
         users.map((user) => (
           <User key={user.id} user={user} buttonText={buttonText} />
