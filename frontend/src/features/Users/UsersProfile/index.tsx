@@ -36,7 +36,10 @@ export const UsersProfile = ({ user }: IProps) => {
           <div className="hidden xs:flex gap-3">
             <h1 className="text-xl font-medium">{user.username}</h1>
             {user.isCurrentUserProfile ? (
-              <Link href="/edit" className="rounded-sm py-1 px-5 bg-primary">
+              <Link
+                href="/edit"
+                className="rounded-sm py-1 px-5 bg-primary text-white"
+              >
                 Edit profile
               </Link>
             ) : (
@@ -73,7 +76,7 @@ export const UsersProfile = ({ user }: IProps) => {
       {user.isCurrentUserProfile ? (
         <Link
           href="/edit"
-          className="block text-center w-full rounded-sm p-1 bg-primary xs:hidden"
+          className="block text-center w-full rounded-sm p-1 bg-primary xs:hidden text-white"
         >
           Edit profile
         </Link>

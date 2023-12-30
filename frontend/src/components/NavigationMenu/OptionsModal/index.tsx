@@ -29,11 +29,11 @@ export const OptionsModal = () => {
       </button>
       <div
         ref={ref}
-        className={`bg-neutral-100 dark:bg-neutral-500 absolute bottom-20 rounded-sm ${
-          !isOpen ? 'hidden' : ''
+        className={`hidden md:block bg-neutral-100 dark:bg-neutral-500 absolute left-5 w-[225px] bottom-20 rounded-sm ${
+          !isOpen ? 'md:hidden' : ''
         }`}
       >
-        <div className="p-3 flex items-center gap-8 border-b border-neutral-200 dark:border-neutral-300">
+        <div className="p-3 flex justify-between gap-8 border-b border-neutral-200 dark:border-neutral-300">
           <div className="flex items-center gap-2">
             <MoonIcon />
             <p>dark mode</p>

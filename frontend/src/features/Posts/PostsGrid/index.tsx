@@ -3,13 +3,13 @@ import { IPost } from '@/interfaces';
 import Link from 'next/link';
 
 interface IProps {
-  posts: IPost[];
+  posts: IPost[] | undefined;
 }
 
 export const PostsGrid = ({ posts }: IProps) => {
   return (
     <div className="grid grid-cols-3 justify-center w-full max-w-2xl gap-1">
-      {posts.map(({ id, image }) => (
+      {posts?.map(({ id, image }) => (
         <Link href={`/posts/${id}`} key={id}>
           <Image
             src={image}
