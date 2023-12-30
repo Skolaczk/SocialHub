@@ -1,5 +1,6 @@
-import { IComment } from '@/interfaces';
 import { Comment } from './Comment';
+
+import { IComment } from '@/interfaces';
 
 interface IProps {
   comments: IComment[];

@@ -1,7 +1,8 @@
 'use client';
 
-import { ArrowLeftIcon, XIcon } from '@/assets/icons';
 import { useRouter } from 'next/navigation';
+
+import { ArrowLeftIcon, XIcon } from '@/assets/icons';
 
 interface IProps {
   heading: 'post' | 'create post' | 'edit profile';

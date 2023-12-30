@@ -1,7 +1,8 @@
-import { IUser } from '@/interfaces';
+import { revalidateTag } from 'next/cache';
 import Image from 'next/image';
 import Link from 'next/link';
-import { revalidateTag } from 'next/cache';
+
+import { IUser } from '@/interfaces';
 import { addFollow, deleteFollow } from '@/services';
 
 interface IProps {

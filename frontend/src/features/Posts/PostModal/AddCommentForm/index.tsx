@@ -1,8 +1,9 @@
 'use client';
 
-import { SendArrowIcon } from '@/assets/icons';
-import { createCommentAction } from '@/actions';
 import { useRef } from 'react';
+
+import { createCommentAction } from '@/actions';
+import { SendArrowIcon } from '@/assets/icons';
 
 interface IProps {
   postId: number;

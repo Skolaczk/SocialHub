@@ -1,8 +1,9 @@
-import { Post } from '@/features/Posts/PostsList/Post';
-import { IPost } from '@/interfaces';
-import { ModalHeader } from '@/components';
 import { AddCommentForm } from './AddCommentForm';
 import { CommentsList } from './CommentsList';
+
+import { ModalHeader } from '@/components';
+import { Post } from '@/features/Posts/PostsList/Post';
+import { IPost } from '@/interfaces';
 import { getComments } from '@/services';
 
 export const PostModal = async (post: IPost) => {

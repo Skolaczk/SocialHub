@@ -1,5 +1,5 @@
-import { UseFormRegisterReturn } from 'react-hook-form';
 import { ComponentProps } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface IProps {
   type?: ComponentProps<'input'>['type'];

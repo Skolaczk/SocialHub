@@ -1,7 +1,8 @@
-import { IUser } from '@/interfaces';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { logOutAction } from '@/actions';
+import { IUser } from '@/interfaces';
 
 interface IProps {
   user: IUser;

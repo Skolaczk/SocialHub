@@ -1,6 +1,7 @@
 import { Logo } from './Logo';
 import { Navigation } from './Navigation';
 import { OptionsModal } from './OptionsModal';
+
 import { getMe } from '@/services';
 
 export const NavigationMenu = async () => {

@@ -1,6 +1,7 @@
-import { IParam } from '@/interfaces';
-import { PostsGrid, UsersProfile } from '@/features';
 import { notFound } from 'next/navigation';
+
+import { PostsGrid, UsersProfile } from '@/features';
+import { IParam } from '@/interfaces';
 import { getUser } from '@/services';
 
 const Profile = async ({ params }: IParam) => {

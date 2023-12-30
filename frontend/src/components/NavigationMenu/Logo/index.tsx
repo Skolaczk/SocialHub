@@ -1,5 +1,6 @@
-import { LogoDesktopIcon, LogoIcon } from '@/assets/icons';
 import Link from 'next/link';
+
+import { LogoDesktopIcon, LogoIcon } from '@/assets/icons';
 
 export const Logo = () => {
   return (

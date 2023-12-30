@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import { IPost } from '@/interfaces';
 import Link from 'next/link';
+
+import { IPost } from '@/interfaces';
 
 interface IProps {
   posts: IPost[] | undefined;

@@ -1,14 +1,16 @@
 'use client';
 
-import { UploadIcon, XIcon } from '@/assets/icons';
-import { FormField } from '@/components';
+import { useCallback, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useCallback, useState } from 'react';
-import { createPostAction } from '@/actions';
 import { useRouter } from 'next/navigation';
-import { useDropzone } from 'react-dropzone';
-import { createPostSchema, CreatePostSchema } from './utils';
+
+import { CreatePostSchema, createPostSchema } from './utils';
+
+import { createPostAction } from '@/actions';
+import { UploadIcon, XIcon } from '@/assets/icons';
+import { FormField } from '@/components';
 
 export const CreatePostForm = () => {
   const router = useRouter();

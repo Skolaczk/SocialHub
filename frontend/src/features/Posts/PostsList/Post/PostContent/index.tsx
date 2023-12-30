@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import { IPost } from '@/interfaces';
 import Link from 'next/link';
+
 import { AddLike } from '@/features/Posts/PostsList/Post/AddLike';
+import { IPost } from '@/interfaces';
 
 export const PostContent = ({
   id,

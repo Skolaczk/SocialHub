@@ -1,6 +1,7 @@
-import { IUser } from '@/interfaces';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { IUser } from '@/interfaces';
 
 interface IProps {
   users: IUser[] | undefined;

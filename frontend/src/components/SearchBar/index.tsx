@@ -1,10 +1,12 @@
 'use client';
 
 import { ChangeEvent, useEffect, useState } from 'react';
-import { IUser } from '@/interfaces';
+
 import { UsersList } from './UsersList';
+
 import { getUsersByUsernameAction } from '@/actions';
 import { useDebounce } from '@/hooks';
+import { IUser } from '@/interfaces';
 
 export const SearchBar = () => {
   const [value, setValue] = useState('');

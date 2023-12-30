@@ -1,4 +1,5 @@
 import { baseURL, getContentTypeHeader, getToken } from './utils';
+
 import { IError, IResponse } from '@/interfaces';
 
 export const api = {

@@ -1,4 +1,5 @@
 import { Post } from './Post';
+
 import { IPost } from '@/interfaces';
 
 interface IProps {

@@ -1,12 +1,14 @@
 'use client';
 
-import { FormField } from '../FormField';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { loginAction } from '@/actions';
 import { useRouter } from 'next/navigation';
+
+import { FormField } from '../FormField';
 import { AuthSchema, authSchema } from './utils';
-import { useState } from 'react';
+
+import { loginAction } from '@/actions';
 
 interface IProps {
   isSignUp: boolean;

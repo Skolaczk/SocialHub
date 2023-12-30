@@ -1,4 +1,5 @@
 import { CreatePostForm } from './CreatePostForm';
+
 import { ModalHeader } from '@/components';
 
 export const CreatePost = () => {

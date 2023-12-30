@@ -1,16 +1,18 @@
 'use client';
 
-import { FormField } from '@/components';
-import { CameraIcon } from '@/assets/icons';
-import Image from 'next/image';
+import { useCallback, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useCallback, useState } from 'react';
-import { IError, IUser } from '@/interfaces';
-import { useDropzone } from 'react-dropzone';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+
+import { EditUserSchema, editUserSchema } from './utils';
+
 import { editUserAction } from '@/actions';
-import { editUserSchema, EditUserSchema } from './utils';
+import { CameraIcon } from '@/assets/icons';
+import { FormField } from '@/components';
+import { IError, IUser } from '@/interfaces';
 
 export const EditProfileForm = ({ username, bio, image }: IUser) => {
   const router = useRouter();

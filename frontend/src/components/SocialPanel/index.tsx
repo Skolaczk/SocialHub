@@ -1,5 +1,6 @@
 import { User } from './User';
 import { UsersList } from './UsersList';
+
 import { getMe, getUsers } from '@/services';
 
 export const SocialPanel = async () => {

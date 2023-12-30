@@ -1,7 +1,9 @@
-import '@/styles/globals.css';
 import { ReactNode } from 'react';
-import { Inter } from 'next/font/google';
 import { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+
+import '@/styles/globals.css';
+
 import { ThemeProvider } from '@/context';
 
 const inter = Inter({

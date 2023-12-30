@@ -1,8 +1,10 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import moment from 'moment/moment';
-import { INotification } from '@/interfaces';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { getNotificationMessage } from './utils';
+
+import { INotification } from '@/interfaces';
 
 export const Notification = (notification: INotification) => {
   const message = getNotificationMessage(notification.type);

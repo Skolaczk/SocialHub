@@ -1,6 +1,7 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import moment from 'moment/moment';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { IComment } from '@/interfaces';
 
 export const Comment = (comment: IComment) => {

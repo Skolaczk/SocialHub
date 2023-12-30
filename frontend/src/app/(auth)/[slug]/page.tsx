@@ -1,7 +1,8 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
+
 import { LogoDesktopIcon } from '@/assets/icons';
 import { AuthForm } from '@/components';
-import Link from 'next/link';
 import { IParam } from '@/interfaces';
 
 const auth = {

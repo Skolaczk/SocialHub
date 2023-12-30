@@ -1,6 +1,6 @@
+import { LogoDesktopIcon } from '@/assets/icons';
 import { SearchBar } from '@/components';
 import { PostsList } from '@/features';
-import { LogoDesktopIcon } from '@/assets/icons';
 import { getPosts } from '@/services';
 
 const Home = async () => {

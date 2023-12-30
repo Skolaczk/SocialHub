@@ -2,8 +2,9 @@
 
 import { useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
-import { MoonIcon } from '@/assets/icons';
+
 import { logOutAction } from '@/actions';
+import { MoonIcon } from '@/assets/icons';
 import { useOnClickEsc, useOnClickOutside, useOpenClose } from '@/hooks';
 
 export const OptionsModal = () => {

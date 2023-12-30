@@ -1,6 +1,7 @@
+import { revalidateTag } from 'next/cache';
+
 import { LikeIcon } from '@/assets/icons';
 import { addLike, deleteLike } from '@/services';
-import { revalidateTag } from 'next/cache';
 
 interface IProps {
   id: number;

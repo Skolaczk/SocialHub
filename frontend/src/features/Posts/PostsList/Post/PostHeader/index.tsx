@@ -1,6 +1,7 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import moment from 'moment/moment';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { IPost } from '@/interfaces';
 
 export const PostHeader = ({ user, createdAt }: IPost) => {
