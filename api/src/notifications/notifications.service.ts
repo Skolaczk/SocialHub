@@ -9,6 +9,9 @@ export class NotificationsService {
 
   findAll(userId: number): Promise<Notification[]> {
     return this.prisma.notification.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
       where: { userId },
       include: { sender: true },
     });
