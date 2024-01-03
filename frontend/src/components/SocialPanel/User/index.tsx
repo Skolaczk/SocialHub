@@ -1,7 +1,10 @@
+'use client';
+
+import { deleteCookie } from 'cookies-next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-import { logOutAction } from '@/actions';
 import { IUser } from '@/interfaces';
 
 interface IProps {
@@ -10,6 +13,13 @@ interface IProps {
 }
 
 export const User = ({ user, buttonText }: IProps) => {
+  const router = useRouter();
+
+  const logOut = async () => {
+    deleteCookie('token');
+    router.push('/sign-in');
+  };
+
   return (
     <div className="flex items-center justify-between">
       <Link
@@ -26,11 +36,13 @@ export const User = ({ user, buttonText }: IProps) => {
         <p>{user.username}</p>
       </Link>
       {buttonText && (
-        <form action={buttonText === 'Log out' ? logOutAction : undefined}>
-          <button type="submit" className="text-sm font-bold text-primary">
-            {buttonText}
-          </button>
-        </form>
+        <button
+          type="button"
+          onClick={logOut}
+          className="text-sm font-bold text-primary"
+        >
+          {buttonText}
+        </button>
       )}
     </div>
   );

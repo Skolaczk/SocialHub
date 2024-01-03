@@ -2,7 +2,6 @@
 
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 import {
   createComment,
@@ -52,9 +51,4 @@ export const editUserAction = async (formData: FormData) => {
 
   revalidateTag('users/me');
   return { data, error };
-};
-
-export const logOutAction = async () => {
-  cookies().delete('token');
-  redirect('/sign-in');
 };
