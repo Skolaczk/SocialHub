@@ -8,7 +8,13 @@ export class NotificationsService {
   constructor(private prisma: PrismaService) {}
 
   findAll(userId: number): Promise<Notification[]> {
-    return this.prisma.notification.findMany({ where: { userId } });
+    return this.prisma.notification.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+      where: { userId },
+      include: { sender: true },
+    });
   }
 
   create(data: CreateNotification) {
