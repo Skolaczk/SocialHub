@@ -1,9 +1,10 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { deleteCookie } from 'cookies-next';
+import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 
-import { logOutAction } from '@/actions';
 import { MoonIcon } from '@/assets/icons';
 import { useOnClickEsc, useOnClickOutside, useOpenClose } from '@/hooks';
 
@@ -12,6 +13,12 @@ export const OptionsModal = () => {
   const { isOpen, close, toggle } = useOpenClose();
   const [isSwitchMoved, setIsSwitchMoved] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
+  const logOut = async () => {
+    deleteCookie('token');
+    router.push('/sign-in');
+  };
 
   useOnClickEsc(close);
 
@@ -54,14 +61,13 @@ export const OptionsModal = () => {
             />
           </button>
         </div>
-        <form action={logOutAction}>
-          <button
-            type="submit"
-            className="w-full p-2 text-center text-sm text-black dark:text-white"
-          >
-            Log out
-          </button>
-        </form>
+        <button
+          onClick={logOut}
+          type="button"
+          className="w-full p-2 text-center text-sm text-black dark:text-white"
+        >
+          Log out
+        </button>
       </div>
     </>
   );

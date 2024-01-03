@@ -1,7 +1,7 @@
 import { AddCommentForm } from './AddCommentForm';
 import { CommentsList } from './CommentsList';
 
-import { ModalHeader } from '@/components';
+import { ModalHeader } from '@/components/ModalHeader';
 import { Post } from '@/features/Posts/PostsList/Post';
 import { IPost } from '@/interfaces';
 import { getComments } from '@/services';

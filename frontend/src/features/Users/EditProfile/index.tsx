@@ -1,6 +1,6 @@
 import { EditProfileForm } from './EditProfileForm';
 
-import { ModalHeader } from '@/components';
+import { ModalHeader } from '@/components/ModalHeader';
 import { IUser } from '@/interfaces';
 
 export const EditProfile = (user: IUser) => {
