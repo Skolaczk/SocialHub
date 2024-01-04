@@ -42,9 +42,10 @@ export class UsersController {
     return this.usersService.findAllByUsername(username);
   }
 
+  @UseGuards(JwtGuard)
   @Get()
-  findRandom(): Promise<User[]> {
-    return this.usersService.findRandom();
+  findRandom(@GetUser() user: User): Promise<User[]> {
+    return this.usersService.findRandom(user.id);
   }
 
   @Patch()
