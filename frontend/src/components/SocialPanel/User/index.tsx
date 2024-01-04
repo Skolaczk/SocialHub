@@ -9,10 +9,10 @@ import { IUser } from '@/interfaces';
 
 interface IProps {
   user: IUser;
-  buttonText?: 'Log out' | 'Follow';
+  isButton?: boolean;
 }
 
-export const User = ({ user, buttonText }: IProps) => {
+export const User = ({ user, isButton }: IProps) => {
   const router = useRouter();
 
   const logOut = async () => {
@@ -35,13 +35,13 @@ export const User = ({ user, buttonText }: IProps) => {
         />
         <p>{user.username}</p>
       </Link>
-      {buttonText && (
+      {isButton && (
         <button
           type="button"
           onClick={logOut}
           className="text-sm font-bold text-primary"
         >
-          {buttonText}
+          Log out
         </button>
       )}
     </div>

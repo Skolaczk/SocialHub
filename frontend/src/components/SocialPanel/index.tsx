@@ -9,13 +9,8 @@ export const SocialPanel = async () => {
 
   return (
     <div className="fixed right-0 top-0 hidden h-screen flex-col gap-8 border-l border-neutral-100 px-6 py-8 dark:border-neutral-900 xl:flex">
-      {user && <User user={user} buttonText="Log out" />}
+      {user && <User user={user} isButton />}
       <UsersList users={randomUsers} title="Your friends" />
-      <UsersList
-        users={randomUsers}
-        title="Suggestions for you"
-        buttonText="Follow"
-      />
     </div>
   );
 };
