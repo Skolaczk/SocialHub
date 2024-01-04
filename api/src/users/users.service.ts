@@ -60,8 +60,15 @@ export class UsersService {
     });
   }
 
-  findRandom(): Promise<User[]> {
-    return this.prisma.user.findMany({ take: 5 });
+  findRandom(id: number): Promise<User[]> {
+    return this.prisma.user.findMany({
+      take: 5,
+      where: {
+        id: {
+          not: id,
+        },
+      },
+    });
   }
 
   async edit(id: number, data: EditUserData): Promise<User> {

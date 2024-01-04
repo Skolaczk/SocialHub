@@ -4,16 +4,16 @@ import { IUser } from '@/interfaces';
 interface IProps {
   users: IUser[] | undefined;
   title: string;
-  buttonText?: 'Log out' | 'Follow';
+  isButton?: boolean;
 }
 
-export const UsersList = ({ users, title, buttonText }: IProps) => {
+export const UsersList = ({ users, title, isButton }: IProps) => {
   return (
     <div className="flex w-[211px] flex-col gap-5">
       <h3 className="font-medium text-neutral-200">{title}</h3>
       {users &&
         users.map((user) => (
-          <User key={user.id} user={user} buttonText={buttonText} />
+          <User key={user.id} user={user} isButton={isButton} />
         ))}
     </div>
   );
