@@ -44,8 +44,20 @@ export class UsersController {
 
   @UseGuards(JwtGuard)
   @Get()
-  findRandom(@GetUser() user: User): Promise<User[]> {
-    return this.usersService.findRandom(user.id);
+  async findAll(@GetUser() currentUser: User) {
+    const users = await this.usersService.findAll();
+
+    const usersWithFollowingStatus = await Promise.all(
+      users.map(async (user) => {
+        const isFollowing = !!(await this.followsService.findOne({
+          followerId: user.id,
+          followingId: currentUser.id,
+        }));
+        return { ...user, isFollowing };
+      }),
+    );
+
+    return usersWithFollowingStatus.filter((user) => user.isFollowing);
   }
 
   @Patch()

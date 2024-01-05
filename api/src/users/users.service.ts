@@ -7,10 +7,14 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { User } from '@prisma/client';
 import { SignUpDto } from 'src/auth/dto';
 import { EditUserData } from 'src/users/types';
+import { FollowsService } from 'src/follows/follows.service';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private followsService: FollowsService,
+  ) {}
 
   findOneById(id: number): Promise<User> {
     return this.prisma.user.findFirst({
@@ -29,6 +33,10 @@ export class UsersService {
         },
       },
     });
+  }
+
+  findAll(): Promise<User[]> {
+    return this.prisma.user.findMany();
   }
 
   findOneByEmail(email: string): Promise<User> {
@@ -57,17 +65,6 @@ export class UsersService {
   create(data: SignUpDto): Promise<User> {
     return this.prisma.user.create({
       data,
-    });
-  }
-
-  findRandom(id: number): Promise<User[]> {
-    return this.prisma.user.findMany({
-      take: 5,
-      where: {
-        id: {
-          not: id,
-        },
-      },
     });
   }
 
