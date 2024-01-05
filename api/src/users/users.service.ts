@@ -35,6 +35,10 @@ export class UsersService {
     });
   }
 
+  findAll(): Promise<User[]> {
+    return this.prisma.user.findMany();
+  }
+
   findOneByEmail(email: string): Promise<User> {
     return this.prisma.user.findFirst({ where: { email } });
   }
@@ -62,10 +66,6 @@ export class UsersService {
     return this.prisma.user.create({
       data,
     });
-  }
-
-  findFriends(id: number) {
-    return this.followsService.findAllById(id);
   }
 
   async edit(id: number, data: EditUserData): Promise<User> {
