@@ -3,7 +3,7 @@ import { RefObject, useCallback, useEffect } from 'react';
 export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
   ref: RefObject<T>,
   fn: () => void,
-  selector: string,
+  selector?: string,
 ) => {
   const handleClickOutside = useCallback(
     (event: MouseEvent) => {
@@ -12,7 +12,7 @@ export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
       if (
         el &&
         !el.contains(event.target as Node) &&
-        !(event.target as HTMLElement).closest(selector)
+        (!selector || !(event.target as HTMLElement).closest(selector))
       ) {
         fn();
       }

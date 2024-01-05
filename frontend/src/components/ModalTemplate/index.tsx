@@ -18,7 +18,7 @@ export const ModalTemplate = ({
   const classNameMerged = useMergedClassName('modal', className);
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(modalRef, router.back, 'button');
+  useOnClickOutside(modalRef, router.back);
 
   return (
     <div className="modal-background">
