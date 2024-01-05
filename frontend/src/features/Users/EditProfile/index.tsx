@@ -1,15 +1,15 @@
 import { EditProfileForm } from './EditProfileForm';
 
-import { ModalHeader } from '@/components/ModalHeader';
+import { ModalTemplate } from '@/components/ModalTemplate';
 import { IUser } from '@/interfaces';
 
 export const EditProfile = (user: IUser) => {
   return (
-    <div className="modal-background">
-      <div className="modal max-w-xl p-5 md:h-auto md:p-8">
-        <ModalHeader heading="edit profile" />
-        <EditProfileForm {...user} />
-      </div>
-    </div>
+    <ModalTemplate
+      heading="edit profile"
+      className="max-w-xl p-5 md:h-auto md:p-8"
+    >
+      <EditProfileForm {...user} />
+    </ModalTemplate>
   );
 };

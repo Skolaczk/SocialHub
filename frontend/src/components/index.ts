@@ -4,3 +4,4 @@ export * from './FormField';
 export * from './AuthForm';
 export * from './SocialPanel';
 export * from './ModalHeader';
+export * from './ModalTemplate';
