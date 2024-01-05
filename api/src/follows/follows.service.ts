@@ -20,6 +20,13 @@ export class FollowsService {
     });
   }
 
+  findAllById(id: number) {
+    return this.prisma.follow.findMany({
+      where: { followingId: id },
+      include: { follower: true },
+    });
+  }
+
   async create(data: CreateFollow) {
     const follow = await this.findOne(data);
 

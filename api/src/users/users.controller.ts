@@ -44,8 +44,8 @@ export class UsersController {
 
   @UseGuards(JwtGuard)
   @Get()
-  findRandom(@GetUser() user: User): Promise<User[]> {
-    return this.usersService.findRandom(user.id);
+  findFriends(@GetUser() user: User) {
+    return this.usersService.findFriends(user.id);
   }
 
   @Patch()
