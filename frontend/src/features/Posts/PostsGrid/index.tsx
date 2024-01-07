@@ -14,11 +14,10 @@ export const PostsGrid = ({ posts }: IProps) => {
         <Link href={`/posts/${id}`} key={id}>
           <Image
             src={image}
-            alt=""
-            width={0}
-            height={0}
-            sizes="100vw"
-            className="aspect-[1/1] h-auto w-full object-cover"
+            alt="post image"
+            width={225}
+            height={225}
+            className="aspect-square h-auto w-full object-cover"
           />
         </Link>
       ))}

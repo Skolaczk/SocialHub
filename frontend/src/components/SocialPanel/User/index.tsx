@@ -1,10 +1,10 @@
 'use client';
 
 import { deleteCookie } from 'cookies-next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { ProfileBadge } from '@/components';
 import { IUser } from '@/interfaces';
 
 interface IProps {
@@ -26,14 +26,7 @@ export const User = ({ user, isButton }: IProps) => {
         href={`/profile/${user.username}`}
         className="flex items-center gap-2"
       >
-        <Image
-          src={user.image}
-          alt=""
-          width={30}
-          height={30}
-          className="rounded-full"
-        />
-        <p>{user.username}</p>
+        <ProfileBadge image={user.image} username={user.username} />
       </Link>
       {isButton && (
         <button

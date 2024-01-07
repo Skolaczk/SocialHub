@@ -4,7 +4,7 @@ import { ComponentProps, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { ModalHeader } from '@/components';
-import { useMergedClassName, useOnClickOutside } from '@/hooks';
+import { useMergedClassName, useOnClickEsc, useOnClickOutside } from '@/hooks';
 
 interface IProps {
   heading: 'post' | 'create post' | 'edit profile';
@@ -18,12 +18,17 @@ export const ModalTemplate = ({
   const classNameMerged = useMergedClassName('modal', className);
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(modalRef, router.back);
+
+  const goBack = () => router.back();
+
+  useOnClickOutside(modalRef, goBack);
+
+  useOnClickEsc(goBack);
 
   return (
     <div className="modal-background">
       <div ref={modalRef} className={classNameMerged}>
-        <ModalHeader heading={heading} />
+        <ModalHeader heading={heading} goBack={goBack} />
         {children}
       </div>
     </div>

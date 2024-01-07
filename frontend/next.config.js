@@ -7,6 +7,10 @@ const nextConfig = {
         hostname: 'socialhub-api.onrender.com',
       },
       {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
         protocol: 'https',
         hostname: 'i.postimg.cc',
       },

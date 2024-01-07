@@ -1,21 +1,13 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 import { ArrowLeftIcon, XIcon } from '@/assets/icons';
-import { useOnClickEsc } from '@/hooks';
 
 interface IProps {
   heading: 'post' | 'create post' | 'edit profile';
+  goBack: () => void;
 }
 
-export const ModalHeader = ({ heading }: IProps) => {
-  const router = useRouter();
-
-  const goBack = () => router.back();
-
-  useOnClickEsc(goBack);
-
+export const ModalHeader = ({ heading, goBack }: IProps) => {
   return (
     <div
       className={`flex items-center justify-between ${
