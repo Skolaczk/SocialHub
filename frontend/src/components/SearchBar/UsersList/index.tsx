@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
+import { ProfileBadge } from '@/components';
 import { IUser } from '@/interfaces';
 
 interface IProps {
@@ -42,14 +42,7 @@ export const UsersList = ({ users, selectedUserIndex }: IProps) => {
                 : ''
             } flex items-center gap-2 border-neutral-100 p-2 hover:bg-neutral-200 dark:border-neutral-900 dark:hover:bg-neutral-400 [&:not(:last-child)]:border-b`}
           >
-            <Image
-              src={image}
-              alt=""
-              width={30}
-              height={30}
-              className="rounded-full"
-            />
-            <p>{username}</p>
+            <ProfileBadge image={image} username={username} />
           </Link>
         ))}
     </div>

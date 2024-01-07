@@ -17,10 +17,9 @@ export const PostContent = ({
       <Link href={`/posts/${id}`}>
         <Image
           src={image}
-          alt=""
-          width={0}
-          height={0}
-          sizes="100vw"
+          alt="post image"
+          width={600}
+          height={600}
           className="h-auto w-full"
         />
       </Link>

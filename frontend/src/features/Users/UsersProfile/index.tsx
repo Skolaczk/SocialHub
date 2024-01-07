@@ -27,10 +27,9 @@ export const UsersProfile = ({ user }: IProps) => {
       <div className="flex items-center justify-between xs:justify-start xs:gap-8">
         <Image
           src={user.image}
-          alt=""
-          width={0}
-          height={0}
-          sizes="100vw"
+          alt="user photo"
+          width={128}
+          height={128}
           className="h-16 w-16 rounded-full xs:h-32 xs:w-32"
         />
         <div>
