@@ -2,6 +2,7 @@
 <h2 align="center">Frontend</h2>
 
 ### Installation 💾
+My node version is 19.8.1 <br />
 Download the project to your computer and install needed packages with command:
 
 ```bash
