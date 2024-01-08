@@ -1,5 +1,6 @@
-<h3 align="center">![Frame1.svg](..%2F..%2F..%2FUsers%2FHARDPC%2FDesktop%2FFrame1.svg)</h3>
-<h2 align="center">Backend</h2>
+![Frame4](https://github.com/Skolaczk/SocialHub/assets/76774237/7320a366-4a9a-4c5d-9696-7c930f9967c6)
+
+## Backend
 
 ### Installation 💾
 My node version is 19.8.1 <br />
