@@ -1,5 +1,6 @@
-<h3 align="center">![Frame1.svg](..%2F..%2F..%2FUsers%2FHARDPC%2FDesktop%2FFrame1.svg)</h3>
-<h2 align="center">Frontend</h2>
+![Frame4](https://github.com/Skolaczk/SocialHub/assets/76774237/43e2de3a-5c6d-4f8d-bdee-72af55916d01)
+
+## Frontend
 
 ### Installation 💾
 My node version is 19.8.1 <br />
