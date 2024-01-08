@@ -1,12 +1,14 @@
 import moment from 'moment/moment';
 import Link from 'next/link';
 
+import { OptionsMenu } from './OptionsMenu';
+
 import { ProfileBadge } from '@/components';
 import { IPost } from '@/interfaces';
 
-export const PostHeader = ({ user, createdAt }: IPost) => {
+export const PostHeader = ({ id, user, createdAt }: IPost) => {
   return (
-    <div className="flex items-center justify-between p-5">
+    <div className="relative flex items-center justify-between p-5">
       <div className="flex items-center gap-3">
         <Link
           href={`/profile/${user.username}`}
@@ -18,11 +20,7 @@ export const PostHeader = ({ user, createdAt }: IPost) => {
           {moment(createdAt).fromNow()}
         </span>
       </div>
-      <button type="button" className="flex gap-1">
-        <div className="h-1 w-1 rounded-full bg-black dark:bg-white" />
-        <div className="h-1 w-1 rounded-full bg-black dark:bg-white" />
-        <div className="h-1 w-1 rounded-full bg-black dark:bg-white" />
-      </button>
+      <OptionsMenu id={id} />
     </div>
   );
 };
