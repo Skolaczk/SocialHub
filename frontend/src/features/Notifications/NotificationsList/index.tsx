@@ -13,7 +13,7 @@ export const NotificationsList = ({ notifications }: IProps) => {
           <Notification key={notification.id} {...notification} />
         ))
       ) : (
-        <h2>No notifications</h2>
+        <h2 className="text-center">No notifications</h2>
       )}
     </div>
   );
