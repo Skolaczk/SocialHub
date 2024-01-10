@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
-    "prepare": "husky install"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",
