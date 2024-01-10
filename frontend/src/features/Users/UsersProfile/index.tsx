@@ -81,16 +81,18 @@ export const UsersProfile = ({ user }: IProps) => {
           Edit profile
         </Link>
       ) : (
-        <button
-          type="button"
-          className={`w-full rounded-sm p-1 xs:hidden ${
-            user.isFollowing
-              ? 'bg-neutral-100 dark:bg-neutral-500'
-              : 'bg-primary'
-          }`}
-        >
-          {user.isFollowing ? 'Unfollow' : 'Follow'}
-        </button>
+        <form action={followAction}>
+          <button
+            type="submit"
+            className={`w-full rounded-sm p-1 xs:hidden ${
+              user.isFollowing
+                ? 'bg-neutral-100 dark:bg-neutral-500'
+                : 'bg-primary'
+            }`}
+          >
+            {user.isFollowing ? 'Unfollow' : 'Follow'}
+          </button>
+        </form>
       )}
     </div>
   );
