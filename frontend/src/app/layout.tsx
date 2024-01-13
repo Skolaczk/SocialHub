@@ -14,8 +14,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'SocialHub',
-  description: 'SocialHub app',
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}`),
+  title: {
+    default: 'SocialHub',
+    template: '%s • SocialHub',
+  },
+  description:
+    'SocialHub is a next-generation social media app developed using Next.js and Nest.js. It offers a modern interface and seamless user experience for connecting and exploring content.',
+  alternates: {
+    canonical: '/',
+  },
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {

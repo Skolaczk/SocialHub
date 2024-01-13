@@ -4,6 +4,32 @@ import { PostsGrid, UsersProfile } from '@/features';
 import { IParam } from '@/interfaces';
 import { getUser } from '@/services';
 
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { slug: string };
+}) => {
+  try {
+    const user = await getUser(params.slug);
+    if (!user) {
+      return {
+        title: 'Not found',
+      };
+    }
+
+    return {
+      title: user.username,
+      alternates: {
+        canonical: `/profile/${user.username}`,
+      },
+    };
+  } catch (e) {
+    return {
+      title: 'Not found',
+    };
+  }
+};
+
 const Profile = async ({ params }: IParam) => {
   const user = await getUser(params.slug);
 

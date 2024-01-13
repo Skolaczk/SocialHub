@@ -1,6 +1,15 @@
+import { Metadata } from 'next';
+
 import { SearchBar } from '@/components';
 import { PostsGrid } from '@/features';
 import { getPosts } from '@/services';
+
+export const metadata: Metadata = {
+  title: 'Explore',
+  alternates: {
+    canonical: '/explore',
+  },
+};
 
 const Explore = async () => {
   const posts = await getPosts();
