@@ -14,8 +14,8 @@ export const editUser = async (formData: FormData) => {
 };
 
 export const getMe = async () => {
-  const { data } = await api.get<IUser>('users/me');
-  return data;
+  const { data, error } = await api.get<IUser>('users/me');
+  return { data, error };
 };
 
 export const getUser = async (username: string) => {
