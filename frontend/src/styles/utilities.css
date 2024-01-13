@@ -1,0 +1,11 @@
+@tailwind utilities;
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded bg-neutral-200 dark:bg-neutral-300;
+  }
+}

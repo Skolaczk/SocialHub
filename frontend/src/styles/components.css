@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+  .modal-background {
+    @apply fixed left-0 top-0 z-10 flex h-screen w-full items-center justify-center bg-neutral-500 bg-opacity-50 backdrop-blur-sm;
+  }
+
+  .modal {
+    @apply z-20 h-screen w-full bg-white dark:bg-black md:rounded;
+  }
+}
