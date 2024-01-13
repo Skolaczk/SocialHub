@@ -4,7 +4,7 @@ import { UsersList } from './UsersList';
 import { getMe, getUsers } from '@/services';
 
 export const SocialPanel = async () => {
-  const user = await getMe();
+  const { data: user } = await getMe();
   const randomUsers = await getUsers();
 
   return (

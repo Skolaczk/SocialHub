@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const Edit = async () => {
-  const user = await getMe();
+  const { data: user } = await getMe();
 
   return user && <EditProfile {...user} />;
 };
