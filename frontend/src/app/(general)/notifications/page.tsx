@@ -1,5 +1,14 @@
+import { Metadata } from 'next';
+
 import { NotificationsList } from '@/features';
 import { getNotifications } from '@/services';
+
+export const metadata: Metadata = {
+  title: 'Notifications',
+  alternates: {
+    canonical: '/notifications',
+  },
+};
 
 const Notifications = async () => {
   const notifications = await getNotifications();

@@ -5,7 +5,7 @@ SocialHub is a next-generation social media app developed using Next.js and Nest
 
 ## Live 📍
 
-Link to the live version: https://socialhub.vercel.app
+Link to the live version: [https://socialhub-ms.vercel.app](https://socialhub-ms.vercel.app/)
 
 ## Installation 💾
 Frontend: https://github.com/Skolaczk/SocialHub/blob/develop/frontend/README.md <br />
