@@ -31,6 +31,11 @@ Next generate prisma schema:
 $ npx prisma generate
 ```
 
+And apply migrations
+```bash
+$ npx prisma migrate dev
+```
+
 Then start the project on the local server with the command:
 
 ```bash
