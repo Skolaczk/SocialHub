@@ -14,6 +14,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 1,
     '@typescript-eslint/no-non-null-asserted-optional-chain': 1,
     'no-empty': 1,
+    'prettier/prettier': 1,
     'simple-import-sort/imports': [
       2,
       {
