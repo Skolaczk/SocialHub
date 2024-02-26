@@ -5,7 +5,7 @@ import { deleteCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 
-import { MoonIcon } from '@/assets/icons';
+import { Icons } from '@/components';
 import { useOnClickEsc, useOnClickOutside, useOpenClose } from '@/hooks';
 
 export const OptionsModal = () => {
@@ -43,7 +43,7 @@ export const OptionsModal = () => {
       >
         <div className="flex justify-between gap-8 border-b border-neutral-200 p-3 dark:border-neutral-300">
           <div className="flex items-center gap-2">
-            <MoonIcon />
+            <Icons.sunMoon />
             <p>dark mode</p>
           </div>
           <button

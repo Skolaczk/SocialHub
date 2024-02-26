@@ -6,7 +6,7 @@
   }
 
   svg {
-    @apply fill-black stroke-black dark:fill-white dark:stroke-white;
+    @apply text-black dark:text-white;
   }
 
   button {

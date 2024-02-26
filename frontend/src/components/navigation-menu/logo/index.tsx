@@ -1,15 +1,15 @@
 import Link from 'next/link';
 
-import { LogoDesktopIcon, LogoIcon } from '@/assets/icons';
+import { Icons } from '@/components';
 
 export const Logo = () => {
   return (
     <Link href="/" className="hidden justify-center md:flex">
       <span className="xl:hidden">
-        <LogoIcon />
+        <Icons.logoSmall />
       </span>
       <span className="hidden xl:block">
-        <LogoDesktopIcon />
+        <Icons.logoLarge />
       </span>
     </Link>
   );

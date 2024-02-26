@@ -9,8 +9,7 @@ import { useRouter } from 'next/navigation';
 import { CreatePostSchema, createPostSchema } from './utils';
 
 import { createPostAction } from '@/actions';
-import { UploadIcon, XIcon } from '@/assets/icons';
-import { FormField } from '@/components';
+import { FormField, Icons } from '@/components';
 
 export const CreatePostForm = () => {
   const router = useRouter();
@@ -52,7 +51,7 @@ export const CreatePostForm = () => {
         className="flex w-full flex-col items-center rounded-sm border border-dashed border-primary py-10"
       >
         <input {...getInputProps()} />
-        <UploadIcon />
+        <Icons.upload className="h-16 w-16 stroke-1 !text-primary" />
         <p className="my-1 text-neutral-500 dark:text-neutral-100">
           Drop your image here, or browse
         </p>
@@ -64,7 +63,7 @@ export const CreatePostForm = () => {
         <div className="flex w-full items-center justify-between rounded-sm bg-neutral-100 p-2 dark:bg-neutral-500">
           <p>{image.name}</p>
           <button onClick={() => setImage(null)}>
-            <XIcon />
+            <Icons.x />
           </button>
         </div>
       )}
