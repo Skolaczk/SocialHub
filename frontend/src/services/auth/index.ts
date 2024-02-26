@@ -1,5 +1,6 @@
+import { AuthSchema } from '../../components/auth-form/utils';
+
 import { api } from '@/api';
-import { AuthSchema } from '@/components/AuthForm/utils';
 import { IResponse } from '@/interfaces';
 
 interface IAccessToken {

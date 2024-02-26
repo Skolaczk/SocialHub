@@ -1,4 +1,4 @@
-import { baseURL, getContentTypeHeader, getToken } from './utils';
+import { baseUrl, getContentTypeHeader, getToken } from './utils';
 
 import { IError, IResponse } from '@/interfaces';
 
@@ -43,7 +43,7 @@ const request = async <T>(
     },
   };
 
-  const res = await fetch(`${baseURL}${endpoint}`, requestOptions);
+  const res = await fetch(`${baseUrl}${endpoint}`, requestOptions);
 
   if (res.ok) {
     return { data: (await res.json()) as T };
