@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 
 import { createCommentAction } from '@/actions';
-import { SendArrowIcon } from '@/assets/icons';
+import { Icons } from '@/components';
 
 interface IProps {
   postId: number;
@@ -30,7 +30,7 @@ export const AddCommentForm = ({ postId }: IProps) => {
           placeholder="Add comment ..."
         />
         <button type="submit">
-          <SendArrowIcon />
+          <Icons.send className="!text-primary" />
         </button>
       </form>
     </>

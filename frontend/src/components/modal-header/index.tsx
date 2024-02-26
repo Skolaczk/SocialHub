@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowLeftIcon, XIcon } from '@/assets/icons';
+import { Icons } from '@/components';
 
 interface IProps {
   heading: 'post' | 'create post' | 'edit profile';
@@ -15,13 +15,13 @@ export const ModalHeader = ({ heading, goBack }: IProps) => {
       }`}
     >
       <button onClick={goBack} className="md:invisible">
-        <ArrowLeftIcon />
+        <Icons.arrowLeft />
       </button>
       <h1 className="text-xl font-medium uppercase tracking-widest">
         {heading}
       </h1>
       <button onClick={goBack} className="invisible md:visible">
-        <XIcon isBig />
+        <Icons.x />
       </button>
     </div>
   );

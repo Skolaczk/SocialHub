@@ -5,13 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import { NavigationItem } from './navigation-item';
 
-import {
-  CreateIcon,
-  ExploreIcon,
-  HomeIcon,
-  NotificationsIcon,
-  ProfileIcon,
-} from '@/assets/icons';
+import { Icons } from '@/components';
 
 interface IProps {
   readonly username: string;
@@ -26,32 +20,48 @@ export const Navigation = ({ username }: IProps) => {
         label="Home"
         href="/"
         order="order-1"
-        icon={<HomeIcon isActive={pathname === '/'} />}
+        icon={
+          <Icons.home className={pathname === '/' ? 'stroke-primary' : ''} />
+        }
       />
       <NavigationItem
         label="Explore"
         href="/explore"
         order="order-2"
-        icon={<ExploreIcon isActive={pathname === '/explore'} />}
+        icon={
+          <Icons.compass
+            className={pathname === '/explore' ? 'stroke-primary' : ''}
+          />
+        }
       />
       <NavigationItem
         label="Notifications"
         href="/notifications"
         order="order-4"
-        icon={<NotificationsIcon isActive={pathname === '/notifications'} />}
+        icon={
+          <Icons.bell
+            className={pathname === '/notifications' ? 'stroke-primary' : ''}
+          />
+        }
       />
       <NavigationItem
         label="Profile"
         href={`/profile/${username}`}
         order="order-5"
-        icon={<ProfileIcon isActive={pathname === `/profile/${username}`} />}
+        icon={
+          <Icons.user
+            className={
+              pathname === `/profile/${username}` ? 'stroke-primary' : ''
+            }
+          />
+        }
       />
       <Link
         href="/create"
         className="order-3 md:order-last xl:w-full xl:rounded-sm xl:bg-primary xl:py-2 xl:text-center"
       >
         <span className="xl:hidden">
-          <CreateIcon />
+          <Icons.create />
         </span>
         <span className="hidden text-white xl:block">Create</span>
       </Link>

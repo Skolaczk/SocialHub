@@ -7,3 +7,4 @@ export * from './modal-header';
 export * from './modal-template';
 export * from './profile-badge';
 export * from './theme-provider';
+export * from './icons';

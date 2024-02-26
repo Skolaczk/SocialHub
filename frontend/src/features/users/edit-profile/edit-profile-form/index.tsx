@@ -10,8 +10,7 @@ import { useRouter } from 'next/navigation';
 import { EditUserSchema, editUserSchema } from './utils';
 
 import { editUserAction } from '@/actions';
-import { CameraIcon } from '@/assets/icons';
-import { FormField } from '@/components';
+import { FormField, Icons } from '@/components';
 import { IError, IUser } from '@/interfaces';
 
 export const EditProfileForm = ({ username, bio, image }: IUser) => {
@@ -71,7 +70,7 @@ export const EditProfileForm = ({ username, bio, image }: IUser) => {
           className="h-24 w-24 rounded-full brightness-50"
         />
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <CameraIcon />
+          <Icons.camera />
         </div>
       </div>
       <FormField

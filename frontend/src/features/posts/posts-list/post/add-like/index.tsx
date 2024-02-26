@@ -1,6 +1,6 @@
 import { revalidateTag } from 'next/cache';
 
-import { LikeIcon } from '@/assets/icons';
+import { Icons } from '@/components';
 import { addLike, deleteLike } from '@/services';
 
 interface IProps {
@@ -24,7 +24,7 @@ export const AddLike = ({ id, isLiked, likes }: IProps) => {
     <div className="flex items-center gap-1">
       <form action={addLikeAction} className="flex items-center">
         <button type="submit">
-          <LikeIcon isLiked={isLiked} />
+          <Icons.heart className={isLiked ? 'fill-danger-600' : ''} />
         </button>
       </form>
       <p>{likes}</p>
