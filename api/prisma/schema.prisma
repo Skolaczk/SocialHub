@@ -24,7 +24,7 @@ model User {
   likes             Like[]
   followers         Follow[]       @relation("Follower")
   following         Follow[]       @relation("Following")
-  notifications     Notification[] @relation("User")
+  notifications     Notification[] @relation("user")
   notificationsSend Notification[] @relation("Sender")
 }
 
@@ -75,7 +75,7 @@ model Notification {
   postId    Int?
   post      Post?    @relation(fields: [postId], references: [id])
   userId    Int
-  user      User     @relation("User", fields: [userId], references: [id])
+  user      User     @relation("user", fields: [userId], references: [id])
   senderId  Int
   sender    User     @relation("Sender", fields: [senderId], references: [id])
   createdAt DateTime @default(now())

@@ -1,3 +1,3 @@
-export * from './Posts';
-export * from './Notifications';
-export * from './Users';
+export * from './posts';
+export * from './notifications';
+export * from './users';

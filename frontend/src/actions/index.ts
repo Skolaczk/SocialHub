@@ -3,6 +3,7 @@
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
+import { AuthSchema } from '../components/auth-form/utils';
 import {
   createComment,
   editUser,
@@ -10,7 +11,6 @@ import {
   login,
 } from '../services';
 
-import { AuthSchema } from '@/components/AuthForm/utils';
 import { createPost } from '@/services';
 
 export const getUsersByUsernameAction = async (username: string) => {

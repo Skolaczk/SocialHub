@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google';
 
 import '@/styles/globals.css';
 
-import { ThemeProvider } from '@/context';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const inter = Inter({
   weight: ['400', '500', '600', '700'],
