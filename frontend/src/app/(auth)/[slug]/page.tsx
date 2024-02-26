@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { LogoDesktopIcon } from '@/assets/icons';
+import { Icons } from '@/components';
 import { AuthForm } from '@/components/auth-form';
 import { IParam } from '@/interfaces';
 
@@ -21,7 +21,7 @@ const Auth = ({ params }: IParam) => {
     <div className="flex">
       <div className="mx-auto flex h-screen w-full max-w-md flex-col items-center p-7 md:justify-center">
         <div className="xl:hidden">
-          <LogoDesktopIcon width="200" height="40" />
+          <Icons.logoLarge className="w-48 h-10" />
         </div>
         <h1 className="mt-5 text-2xl font-medium uppercase tracking-widest">
           {isSignUp ? 'create account' : 'login to account'}
@@ -50,7 +50,7 @@ const Auth = ({ params }: IParam) => {
         </p>
       </div>
       <div className="hidden w-1/2 items-center justify-center bg-primary xl:flex">
-        <LogoDesktopIcon width="500" height="200" fill="white" />
+        <Icons.logoLarge className="h-48 w-[500px]" />
       </div>
     </div>
   );
