@@ -1,35 +1,27 @@
-import { ReactNode } from 'react';
-import { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-
 import '@/styles/globals.css';
 
-import { ThemeProvider } from '@/components/theme-provider';
+import { PropsWithChildren } from 'react';
+import type { Metadata } from 'next';
 
-const inter = Inter({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  display: 'fallback',
-  adjustFontFallback: true,
-});
+import { ThemeProvider } from '@/components';
+import { siteConfig } from '@/lib/constant';
+import { fontSans } from '@/lib/fonts';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}`),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'SocialHub',
-    template: '%s • SocialHub',
+    default: siteConfig.title,
+    template: `%s • ${siteConfig.title}`,
   },
-  description:
-    'SocialHub is a next-generation social media app developed using Next.js and Nest.js. It offers a modern interface and seamless user experience for connecting and exploring content.',
-  alternates: {
-    canonical: '/',
-  },
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  robots: { index: true, follow: true },
 };
 
-const RootLayout = ({ children }: { children: ReactNode }) => {
+const RootLayout = ({ children }: PropsWithChildren) => {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={fontSans.className}>
         <ThemeProvider attribute="class">{children}</ThemeProvider>
       </body>
     </html>

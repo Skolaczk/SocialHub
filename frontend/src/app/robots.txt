@@ -1,4 +1,0 @@
-User-Agent: *
-Allow: /
-
-Sitemap: https://socialhub-ms.vercel.app/sitemap.xml
