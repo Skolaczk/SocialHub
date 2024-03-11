@@ -3,7 +3,7 @@ import '@/styles/globals.css';
 import { PropsWithChildren } from 'react';
 import type { Metadata } from 'next';
 
-import { ThemeProvider } from '@/components';
+import { ThemeProvider, Toaster } from '@/components';
 import { siteConfig } from '@/lib/constant';
 import { fontSans } from '@/lib/fonts';
 
@@ -22,7 +22,10 @@ const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={fontSans.className}>
-        <ThemeProvider attribute="class">{children}</ThemeProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

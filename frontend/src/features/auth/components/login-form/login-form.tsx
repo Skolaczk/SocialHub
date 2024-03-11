@@ -18,16 +18,27 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  useToast,
 } from '@/components';
+import { loginAction } from '@/features/auth';
 
 export const LoginForm = () => {
   const form = useForm<TLoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
     defaultValues,
   });
+  const { toast } = useToast();
 
-  const onSubmit = (values: TLoginFormSchema) => {
-    console.log(values);
+  const onSubmit = async (values: TLoginFormSchema) => {
+    const error = await loginAction(values);
+
+    if (!error) return;
+
+    toast({
+      variant: 'destructive',
+      title: 'Oops! Something went wrong.',
+      description: error.message,
+    });
   };
 
   return (
@@ -40,7 +51,7 @@ export const LoginForm = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="email" {...field} />
+                <Input type="email" placeholder="email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -53,7 +64,7 @@ export const LoginForm = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="password" {...field} />
+                <Input type="password" placeholder="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -3,10 +3,11 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { login, TLoginCommand } from '@/features/auth';
+import { TRegisterCommand } from '@/features/auth';
+import { register } from '@/features/auth/services/register';
 
-export const loginAction = async (body: TLoginCommand) => {
-  const { data, error } = await login(body);
+export const registerAction = async (body: TRegisterCommand) => {
+  const { data, error } = await register(body);
 
   if (error) return error;
 

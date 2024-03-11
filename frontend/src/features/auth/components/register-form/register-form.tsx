@@ -18,17 +18,28 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  useToast,
 } from '@/components';
+import { registerAction } from '@/features/auth';
 
 export const RegisterForm = () => {
   const form = useForm<TRegisterFormSchema>({
     resolver: zodResolver(loginFormSchema),
     defaultValues,
   });
+  const { toast } = useToast();
 
-  function onSubmit(values: TRegisterFormSchema) {
-    console.log(values);
-  }
+  const onSubmit = async (values: TRegisterFormSchema) => {
+    const error = await registerAction(values);
+
+    if (!error) return;
+
+    toast({
+      variant: 'destructive',
+      title: 'Oops! Something went wrong.',
+      description: error.message,
+    });
+  };
 
   return (
     <Form {...form}>
@@ -40,7 +51,7 @@ export const RegisterForm = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="email" {...field} />
+                <Input type="email" placeholder="email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -66,7 +77,7 @@ export const RegisterForm = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="password" {...field} />
+                <Input type="password" placeholder="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

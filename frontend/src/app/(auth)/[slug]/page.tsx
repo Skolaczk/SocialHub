@@ -18,6 +18,9 @@ const AuthPage = ({ params }: { params: { slug: string } }) => {
 
   return (
     <div className="flex">
+      <div className="xl:bg-primary hidden xl:flex xl:w-1/2 xl:items-center xl:justify-center">
+        <Icons.logo className="h-48 w-[500px] text-white" />
+      </div>
       <div className="mx-auto flex h-screen w-full max-w-md flex-col items-center p-7 md:justify-center">
         <Icons.logo className="h-10 w-48 xl:hidden" />
         <h1 className="my-5 text-center text-2xl font-medium uppercase tracking-widest">
@@ -45,9 +48,6 @@ const AuthPage = ({ params }: { params: { slug: string } }) => {
           Accusamus assumenda aut distinctio inventore, iusto officiis quidem
           recusandae sit velit, veritatis voluptas?
         </p>
-      </div>
-      <div className="xl:bg-primary hidden xl:flex xl:w-1/2 xl:items-center xl:justify-center">
-        <Icons.logo className="h-48 w-[500px] text-white" />
       </div>
     </div>
   );
