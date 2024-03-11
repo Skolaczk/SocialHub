@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   defaultValues,
   loginFormSchema,
-  TLoginFormSchema,
+  TRegisterFormSchema,
 } from './validation-schema';
 
 import {
@@ -20,15 +20,15 @@ import {
   Input,
 } from '@/components';
 
-export const LoginForm = () => {
-  const form = useForm<TLoginFormSchema>({
+export const RegisterForm = () => {
+  const form = useForm<TRegisterFormSchema>({
     resolver: zodResolver(loginFormSchema),
     defaultValues,
   });
 
-  const onSubmit = (values: TLoginFormSchema) => {
+  function onSubmit(values: TRegisterFormSchema) {
     console.log(values);
-  };
+  }
 
   return (
     <Form {...form}>
@@ -41,6 +41,19 @@ export const LoginForm = () => {
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input placeholder="email" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="username" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
