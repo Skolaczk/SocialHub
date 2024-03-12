@@ -2,7 +2,7 @@ import { Button } from '@/components';
 
 const Home = () => {
   return (
-    <section>
+    <section className="flex justify-center">
       <h1>socialhub</h1>
       <Button>click</Button>
     </section>

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 export const defaultValues = {
-  email: '',
-  password: '',
+  email: 'test@gmail.com',
+  password: 'Test123!',
 };
 
 export const loginFormSchema = z.object({
