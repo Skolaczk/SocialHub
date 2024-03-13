@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { NavMenu } from './/nav-menu';
+import { NavMenu } from './nav-menu';
 import { NavbarDropdownMenu } from './navbar-dropdown-menu';
 
 import { Icons } from '@/components';
