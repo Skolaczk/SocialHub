@@ -8,7 +8,9 @@ import { Button } from '@/components';
 import { logoutAction } from '@/features/auth';
 import { TUser } from '@/features/users';
 
-type TUserCardProps = TUser & { isCurrentUser?: boolean };
+type TUserCardProps = Pick<TUser, 'username' | 'image'> & {
+  isCurrentUser?: boolean;
+};
 
 export const UserCard = ({
   username,

@@ -1,6 +1,4 @@
-import { UserCard } from './user-card';
-
-import { getMe, getUsers } from '@/features/users';
+import { getMe, getUsers, UserCard } from '@/features/users';
 
 export const UserPanel = async () => {
   const { data: user } = await getMe();

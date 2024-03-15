@@ -1,12 +1,13 @@
-import { Button } from '@/components';
+import { Icons } from '@/components';
+import { PostsList } from '@/features/posts';
 
-const Home = () => {
+const HomePage = () => {
   return (
-    <section className="flex justify-center">
-      <h1>socialhub</h1>
-      <Button>click</Button>
-    </section>
+    <div className="flex flex-col items-center md:ml-20 md:mt-4 xl:ml-0">
+      <Icons.logo className="my-5 md:hidden" />
+      <PostsList />
+    </div>
   );
 };
 
-export default Home;
+export default HomePage;
