@@ -1,3 +1,5 @@
+import { TPost } from '@/features/posts';
+
 export type TUser = {
   bio: string;
   createdAt: string;
@@ -6,7 +8,7 @@ export type TUser = {
   image: string;
   updatedAt: string;
   username: string;
-  // posts: IPost[];
+  posts: TPost[];
   _count: {
     posts: number;
     followers: number;

@@ -3,13 +3,14 @@ import { notFound } from 'next/navigation';
 
 import { Icons } from '@/components';
 import { LoginForm, RegisterForm } from '@/features/auth';
+import { TParams } from '@/lib/types';
 
 const authPages = {
   SIGN_IN: 'sign-in',
   SIGN_UP: 'sign-up',
 };
 
-const AuthPage = ({ params }: { params: { slug: string } }) => {
+const AuthPage = ({ params }: TParams) => {
   const isSignUp = params.slug === authPages.SIGN_UP;
 
   if (params.slug !== authPages.SIGN_UP && params.slug !== authPages.SIGN_IN) {

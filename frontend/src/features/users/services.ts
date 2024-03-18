@@ -8,3 +8,7 @@ export const getMe = async () => {
 export const getUsers = async () => {
   return await api<TUser[]>('users');
 };
+
+export const getUser = async (username: string) => {
+  return await api<TUser>(`users/${username}`);
+};
