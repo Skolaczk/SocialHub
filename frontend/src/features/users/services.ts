@@ -12,3 +12,7 @@ export const getUsers = async () => {
 export const getUser = async (username: string) => {
   return await api<TUser>(`users/${username}`);
 };
+
+export const getUsersByUsername = async (username: string) => {
+  return await api<TUser[]>(`users?username=${username}`, { method: 'POST' });
+};

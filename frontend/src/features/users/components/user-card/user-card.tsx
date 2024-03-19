@@ -34,7 +34,7 @@ export const UserCard = ({
           height={32}
           className="aspect-square rounded-full"
         />
-        <p className="">{username}</p>
+        <p>{username}</p>
       </Link>
       {isCurrentUser && (
         <Button onClick={logout} variant="link">

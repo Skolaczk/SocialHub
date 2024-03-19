@@ -18,7 +18,7 @@ export const UserProfile = ({
         alt="user avatar"
         width={150}
         height={150}
-        className="rounded-full"
+        className="aspect-square rounded-full"
       />
       <h1 className="text-xl font-medium">{username}</h1>
       <div className="flex gap-5">

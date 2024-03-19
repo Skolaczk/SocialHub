@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import { Button, Icons } from '@/components';
+import { UserSearchSheet } from '@/features/users';
 
 type TNavMenuProps = {
   username: string | undefined;
@@ -15,12 +16,7 @@ export const NavMenu = ({ username }: TNavMenuProps) => {
           <span className="hidden text-base xl:block">Home</span>
         </Link>
       </Button>
-      <Button variant="ghost" className="font-normal xl:justify-start" asChild>
-        <Link href="/search" className="flex items-center gap-4">
-          <Icons.search />
-          <span className="hidden text-base xl:block">Search</span>
-        </Link>
-      </Button>
+      <UserSearchSheet />
       <Button
         variant="ghost"
         className="order-4 font-normal md:order-3 xl:justify-start"
