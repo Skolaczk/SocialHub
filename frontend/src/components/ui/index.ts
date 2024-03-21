@@ -6,3 +6,4 @@ export * from './toaster';
 export * from './use-toast';
 export * from './dropdown-menu';
 export * from './sheet';
+export * from './drawer';

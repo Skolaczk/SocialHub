@@ -18,7 +18,7 @@ export const NotificationsListSheet = async () => {
       <SheetTrigger asChild>
         <Button
           variant="ghost"
-          className="flex items-center gap-4 font-normal xl:justify-start"
+          className="order-4 flex items-center gap-4 font-normal xl:justify-start"
         >
           <Icons.bell />
           <span className="hidden text-base xl:block">Notifications</span>

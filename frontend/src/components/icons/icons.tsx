@@ -11,6 +11,7 @@ import {
   Moon,
   PlusSquare,
   Search,
+  SendHorizonal,
   Sun,
   SunMoon,
   User,
@@ -31,6 +32,7 @@ export const Icons = {
   heart: Heart,
   dot: Dot,
   copy: Copy,
+  sendHorizontal: SendHorizonal,
   ellipsis: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

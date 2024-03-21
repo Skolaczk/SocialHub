@@ -1,14 +1,15 @@
 import moment from 'moment/moment';
 import Image from 'next/image';
 
+import { CommentsListDrawer } from './comments-list-drawer';
 import { PostsListItemDropdown } from './posts-list-item-dropdown';
 
 import { Icons } from '@/components';
-import { TPost } from '@/features/posts';
+import { getComments, TPost } from '@/features/posts';
 import { UserCard } from '@/features/users';
 import { cn } from '@/lib/utils';
 
-export const PostsListItem = ({
+export const PostsListItem = async ({
   id,
   user,
   content,
@@ -17,6 +18,8 @@ export const PostsListItem = ({
   isLiked,
   _count,
 }: TPost) => {
+  const { data: comments } = await getComments(id);
+
   return (
     <div className="max-w-xl [&:not(:last-child)]:border-b">
       <div className="flex items-center justify-between p-4">
@@ -38,7 +41,7 @@ export const PostsListItem = ({
           />
           {_count.likes}
         </span>
-        <span>{_count.comments} comments</span>
+        {comments && <CommentsListDrawer comments={comments} />}
       </div>
     </div>
   );

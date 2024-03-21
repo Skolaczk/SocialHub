@@ -10,7 +10,7 @@ const UserPage = async ({ params }: TParams) => {
   if (!user) notFound();
 
   return (
-    <div className="flex flex-col items-center space-y-8 px-5 pt-8 md:ml-20 xl:ml-0">
+    <div className="flex flex-col items-center space-y-8 pt-8 md:ml-20 xl:ml-0">
       <UserProfile {...user} />
       <PostsListGrid posts={user.posts} />
     </div>

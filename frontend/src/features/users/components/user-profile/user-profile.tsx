@@ -12,7 +12,7 @@ export const UserProfile = ({
   isFollowing,
 }: TUser) => {
   return (
-    <div className="flex w-full flex-col items-center gap-2 sm:max-w-xs">
+    <div className="flex w-full flex-col items-center gap-2 px-5 sm:max-w-xs">
       <Image
         src={image}
         alt="user avatar"
