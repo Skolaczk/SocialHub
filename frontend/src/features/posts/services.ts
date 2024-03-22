@@ -1,4 +1,4 @@
-import { TComment, TPost } from '@/features/posts';
+import { TComment, TCreateCommentCommand, TPost } from '@/features/posts';
 import { api } from '@/lib/api';
 
 export const getPosts = async () => {
@@ -6,5 +6,17 @@ export const getPosts = async () => {
 };
 
 export const getComments = async (postId: number) => {
-  return await api<TComment[]>(`comments?postId=${postId}`);
+  return await api<TComment[]>(`comments?postId=${postId}`, {
+    next: { tags: [`comments/${postId}`] },
+  });
+};
+
+export const createComment = async (body: TCreateCommentCommand) => {
+  return await api('comments', {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 };

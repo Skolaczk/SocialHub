@@ -1,8 +1,10 @@
 'use client';
 
+import { useOptimistic } from 'react';
+
+import { AddCommentForm } from './add-comment-form';
 import { CommentsListItem } from './comments-list-item';
 
-import { Button, Icons, Input } from '@/components';
 import {
   Drawer,
   DrawerContent,
@@ -10,18 +12,28 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@/components/ui/drawer';
+} from '@/components';
 import { TComment } from '@/features/posts';
+import { TUser } from '@/features/users';
 import { useMediaQuery } from '@/hooks';
 
 type TPostsListItemCommentsProps = {
   comments: TComment[];
+  postId: number;
+  user: TUser;
 };
 
 export const CommentsListDrawer = ({
   comments,
+  postId,
+  user,
 }: TPostsListItemCommentsProps) => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
+
+  const [optimisticComments, addOptimisticComment] = useOptimistic(
+    comments,
+    (state, newComment: TComment) => [newComment, ...state]
+  );
 
   if (isDesktop) return <span>{comments.length} comments</span>;
 
@@ -34,9 +46,9 @@ export const CommentsListDrawer = ({
         <DrawerHeader>
           <DrawerTitle>Comments</DrawerTitle>
         </DrawerHeader>
-        {comments.length ? (
+        {optimisticComments.length ? (
           <div className="scrollbar mt-2 h-[50vh] space-y-3 overflow-y-auto px-4">
-            {comments.map((comment) => (
+            {optimisticComments.map((comment) => (
               <CommentsListItem key={comment.id} {...comment} />
             ))}
           </div>
@@ -48,11 +60,12 @@ export const CommentsListDrawer = ({
             </p>
           </div>
         )}
-        <DrawerFooter className="flex-row">
-          <Input placeholder="Add a comment" />
-          <Button variant="ghost" size="icon">
-            <Icons.sendHorizontal className="text-primary" />
-          </Button>
+        <DrawerFooter>
+          <AddCommentForm
+            user={user}
+            postId={postId}
+            addOptimisticComment={addOptimisticComment}
+          />
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

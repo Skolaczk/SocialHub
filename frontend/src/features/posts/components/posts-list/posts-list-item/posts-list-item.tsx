@@ -6,7 +6,7 @@ import { PostsListItemDropdown } from './posts-list-item-dropdown';
 
 import { Icons } from '@/components';
 import { getComments, TPost } from '@/features/posts';
-import { UserCard } from '@/features/users';
+import { getMe, UserCard } from '@/features/users';
 import { cn } from '@/lib/utils';
 
 export const PostsListItem = async ({
@@ -19,6 +19,7 @@ export const PostsListItem = async ({
   _count,
 }: TPost) => {
   const { data: comments } = await getComments(id);
+  const { data: currentUser } = await getMe();
 
   return (
     <div className="max-w-xl [&:not(:last-child)]:border-b">
@@ -41,7 +42,13 @@ export const PostsListItem = async ({
           />
           {_count.likes}
         </span>
-        {comments && <CommentsListDrawer comments={comments} />}
+        {comments && (
+          <CommentsListDrawer
+            comments={comments}
+            postId={id}
+            user={currentUser!}
+          />
+        )}
       </div>
     </div>
   );

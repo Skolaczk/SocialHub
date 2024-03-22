@@ -17,12 +17,15 @@ export type TComment = {
   id: number;
   content: string;
   createdAt: string;
-  updatedAt: string;
-  userId: number;
   postId: number;
   user: {
     id: number;
     username: string;
     image: string;
   };
+};
+
+export type TCreateCommentCommand = {
+  content: string;
+  postId: number;
 };

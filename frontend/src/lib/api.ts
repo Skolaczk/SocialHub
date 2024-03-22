@@ -24,8 +24,11 @@ export const api = async <T>(
   const res = await fetch(`${baseUrl}${endpoint}`, {
     headers: {
       Authorization: `Bearer ${token}`,
+      ...init?.headers,
     },
-    ...init,
+    method: init?.method,
+    body: init?.body,
+    next: { tags: init?.next?.tags },
   });
 
   if (res.ok) return { data: await res.json() };
