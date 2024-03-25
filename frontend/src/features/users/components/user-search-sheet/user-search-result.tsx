@@ -32,33 +32,42 @@ export const UserSearchResult = ({
 
   return (
     <div ref={ref} className="scrollbar mt-4 h-full space-y-1 overflow-y-auto">
-      {users.map(({ id, username, image }, idx) => (
-        <SheetClose key={id} asChild>
-          <Button
-            tabIndex={-1}
-            variant="ghost"
-            className={cn(
-              'w-full justify-start',
-              selectedUserIndex === idx && 'bg-accent'
-            )}
-            asChild
-          >
-            <Link
-              href={`/user/${username}`}
-              className="flex items-center gap-3"
+      {users.length ? (
+        users.map(({ id, username, image }, idx) => (
+          <SheetClose key={id} asChild>
+            <Button
+              tabIndex={-1}
+              variant="ghost"
+              className={cn(
+                'w-full justify-start',
+                selectedUserIndex === idx && 'bg-accent'
+              )}
+              asChild
             >
-              <Image
-                src={image}
-                alt="user avatar"
-                width={32}
-                height={32}
-                className="aspect-square rounded-full"
-              />
-              <p className="text-base font-normal">{username}</p>
-            </Link>
-          </Button>
-        </SheetClose>
-      ))}
+              <Link
+                href={`/user/${username}`}
+                className="flex items-center gap-3"
+              >
+                <Image
+                  src={image}
+                  alt="user avatar"
+                  width={32}
+                  height={32}
+                  className="aspect-square rounded-full"
+                />
+                <p className="text-base font-normal">{username}</p>
+              </Link>
+            </Button>
+          </SheetClose>
+        ))
+      ) : (
+        <div className="flex h-full flex-col items-center justify-center">
+          <h3 className="text-lg font-medium">No users yet</h3>
+          <p className="text-muted-foreground text-sm">
+            Try searching for users
+          </p>
+        </div>
+      )}
     </div>
   );
 };

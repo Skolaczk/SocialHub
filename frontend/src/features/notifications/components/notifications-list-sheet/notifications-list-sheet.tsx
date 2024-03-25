@@ -24,16 +24,24 @@ export const NotificationsListSheet = async () => {
           <span className="hidden text-base xl:block">Notifications</span>
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-full pb-28">
+      <SheetContent className="w-full pb-10">
         <SheetHeader>
           <SheetTitle>Notifications</SheetTitle>
         </SheetHeader>
-        <div className="mt-1">
-          {notifications &&
-            notifications.map((notification) => (
+        {notifications?.length ? (
+          <div className="scrollbar mt-1 h-full overflow-y-auto">
+            {notifications.map((notification) => (
               <NotificationsListItem key={notification.id} {...notification} />
             ))}
-        </div>
+          </div>
+        ) : (
+          <div className="flex h-full flex-col items-center justify-center">
+            <h3 className="text-lg font-medium">No notifications yet</h3>
+            <p className="text-muted-foreground text-sm">
+              Find follows, comments and likes
+            </p>
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   );
