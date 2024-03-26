@@ -1,9 +1,13 @@
+'use client';
+
+import { useOptimistic } from 'react';
 import Image from 'next/image';
 
-import { Button } from '@/components';
-import { TUser } from '@/features/users';
+import { Button, useToast } from '@/components';
+import { addFollowAction, deleteFollowAction, TUser } from '@/features/users';
 
 export const UserProfile = ({
+  id,
   image,
   bio,
   _count,
@@ -11,6 +15,12 @@ export const UserProfile = ({
   username,
   isFollowing,
 }: TUser) => {
+  const { toast } = useToast();
+  const [optimisticIsFollowing, changeOptimisticIsFollowing] = useOptimistic(
+    isFollowing,
+    (state) => !state
+  );
+
   return (
     <div className="flex w-full flex-col items-center gap-2 px-5 sm:max-w-xs">
       <Image
@@ -33,12 +43,39 @@ export const UserProfile = ({
       {isCurrentUserProfile ? (
         <Button className="w-full">Edit</Button>
       ) : (
-        <Button
+        <form
           className="w-full"
-          variant={isFollowing ? 'secondary' : 'default'}
+          action={async () => {
+            if (optimisticIsFollowing) {
+              const error = await deleteFollowAction(id, username);
+
+              if (error)
+                toast({
+                  variant: 'destructive',
+                  title: 'Oops! Something went wrong.',
+                  description: error.message,
+                });
+            } else {
+              const error = await addFollowAction(id, username);
+
+              if (error)
+                toast({
+                  variant: 'destructive',
+                  title: 'Oops! Something went wrong.',
+                  description: error.message,
+                });
+            }
+
+            changeOptimisticIsFollowing(!optimisticIsFollowing);
+          }}
         >
-          {isFollowing ? 'Unfollow' : 'Follow'}
-        </Button>
+          <Button
+            className="w-full"
+            variant={isFollowing ? 'secondary' : 'default'}
+          >
+            {isFollowing ? 'Unfollow' : 'Follow'}
+          </Button>
+        </form>
       )}
     </div>
   );

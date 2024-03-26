@@ -10,9 +10,19 @@ export const getUsers = async () => {
 };
 
 export const getUser = async (username: string) => {
-  return await api<TUser>(`users/${username}`);
+  return await api<TUser>(`users/${username}`, {
+    next: { tags: [`users/${username}`] },
+  });
 };
 
 export const getUsersByUsername = async (username: string) => {
   return await api<TUser[]>(`users?username=${username}`, { method: 'POST' });
+};
+
+export const addFollow = async (userId: number) => {
+  return await api<TUser[]>(`follows/${userId}`, { method: 'POST' });
+};
+
+export const deleteFollow = async (userId: number) => {
+  return await api<TUser[]>(`follows/${userId}`, { method: 'DELETE' });
 };
