@@ -46,6 +46,8 @@ export const UserProfile = ({
         <form
           className="w-full"
           action={async () => {
+            changeOptimisticIsFollowing(!optimisticIsFollowing);
+
             if (optimisticIsFollowing) {
               const error = await deleteFollowAction(id, username);
 
@@ -65,8 +67,6 @@ export const UserProfile = ({
                   description: error.message,
                 });
             }
-
-            changeOptimisticIsFollowing(!optimisticIsFollowing);
           }}
         >
           <Button
