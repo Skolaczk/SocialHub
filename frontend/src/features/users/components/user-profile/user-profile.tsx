@@ -71,9 +71,9 @@ export const UserProfile = ({
         >
           <Button
             className="w-full"
-            variant={isFollowing ? 'secondary' : 'default'}
+            variant={optimisticIsFollowing ? 'secondary' : 'default'}
           >
-            {isFollowing ? 'Unfollow' : 'Follow'}
+            {optimisticIsFollowing ? 'Unfollow' : 'Follow'}
           </Button>
         </form>
       )}
