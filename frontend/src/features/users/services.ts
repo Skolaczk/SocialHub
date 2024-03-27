@@ -20,9 +20,9 @@ export const getUsersByUsername = async (username: string) => {
 };
 
 export const addFollow = async (userId: number) => {
-  return await api<TUser[]>(`follows/${userId}`, { method: 'POST' });
+  return await api(`follows/${userId}`, { method: 'POST' });
 };
 
 export const deleteFollow = async (userId: number) => {
-  return await api<TUser[]>(`follows/${userId}`, { method: 'DELETE' });
+  return await api(`follows/${userId}`, { method: 'DELETE' });
 };

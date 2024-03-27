@@ -16,10 +16,34 @@ export const UserProfile = ({
   isFollowing,
 }: TUser) => {
   const { toast } = useToast();
-  const [optimisticIsFollowing, changeOptimisticIsFollowing] = useOptimistic(
+  const [optimisticIsFollowing, setOptimisticIsFollowing] = useOptimistic(
     isFollowing,
     (state) => !state
   );
+
+  const followAction = async () => {
+    setOptimisticIsFollowing(!optimisticIsFollowing);
+
+    if (optimisticIsFollowing) {
+      const error = await deleteFollowAction(id, username);
+
+      if (error)
+        toast({
+          variant: 'destructive',
+          title: 'Oops! Something went wrong.',
+          description: error.message,
+        });
+    } else {
+      const error = await addFollowAction(id, username);
+
+      if (error)
+        toast({
+          variant: 'destructive',
+          title: 'Oops! Something went wrong.',
+          description: error.message,
+        });
+    }
+  };
 
   return (
     <div className="flex w-full flex-col items-center gap-2 px-5 sm:max-w-xs">
@@ -43,32 +67,7 @@ export const UserProfile = ({
       {isCurrentUserProfile ? (
         <Button className="w-full">Edit</Button>
       ) : (
-        <form
-          className="w-full"
-          action={async () => {
-            changeOptimisticIsFollowing(!optimisticIsFollowing);
-
-            if (optimisticIsFollowing) {
-              const error = await deleteFollowAction(id, username);
-
-              if (error)
-                toast({
-                  variant: 'destructive',
-                  title: 'Oops! Something went wrong.',
-                  description: error.message,
-                });
-            } else {
-              const error = await addFollowAction(id, username);
-
-              if (error)
-                toast({
-                  variant: 'destructive',
-                  title: 'Oops! Something went wrong.',
-                  description: error.message,
-                });
-            }
-          }}
-        >
+        <form className="w-full" action={followAction}>
           <Button
             className="w-full"
             variant={optimisticIsFollowing ? 'secondary' : 'default'}

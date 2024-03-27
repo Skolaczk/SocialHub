@@ -6,8 +6,8 @@ import { PostsListItemDropdown } from './posts-list-item-dropdown';
 
 import { Icons } from '@/components';
 import { getComments, TPost } from '@/features/posts';
+import { AddLikeButton } from '@/features/posts/components/posts-list/posts-list-item/add-like-button';
 import { getMe, UserCard } from '@/features/users';
-import { cn } from '@/lib/utils';
 
 export const PostsListItem = async ({
   id,
@@ -36,12 +36,7 @@ export const PostsListItem = async ({
       <p className="px-4 pb-4">{content}</p>
       <Image src={image} alt="post image" width={600} height={600} />
       <div className="flex items-center justify-between p-4 text-sm">
-        <span className="flex items-center gap-1">
-          <Icons.heart
-            className={cn('size-5', isLiked && 'fill-primary stroke-primary')}
-          />
-          {_count.likes}
-        </span>
+        <AddLikeButton isLiked={isLiked} _count={_count} id={id} />
         {comments && (
           <CommentsListDrawer
             comments={comments}
