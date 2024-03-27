@@ -22,7 +22,9 @@ export const addLikeAction = async (postId: number) => {
     const { error } = await addLike(postId);
 
     if (error) return error;
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
 
   revalidateTag('posts');
 };
