@@ -20,11 +20,18 @@ export const UserProfile = ({
     isFollowing,
     (state) => !state
   );
+  const [optimisticFollowersCount, setOptimisticFollowersCount] = useOptimistic(
+    _count.followers,
+    (state, value: number) => {
+      return state + value;
+    }
+  );
 
   const followAction = async () => {
     setOptimisticIsFollowing(!optimisticIsFollowing);
 
     if (optimisticIsFollowing) {
+      setOptimisticFollowersCount(-1);
       const error = await deleteFollowAction(id, username);
 
       if (error)
@@ -34,6 +41,7 @@ export const UserProfile = ({
           description: error.message,
         });
     } else {
+      setOptimisticFollowersCount(1);
       const error = await addFollowAction(id, username);
 
       if (error)
@@ -58,7 +66,9 @@ export const UserProfile = ({
       <div className="flex gap-5">
         {Object.entries(_count).map(([key, value]) => (
           <div key={key} className="flex flex-col items-center">
-            <span className="font-medium">{value}</span>
+            <span className="font-medium">
+              {key === 'followers' ? optimisticFollowersCount : value}
+            </span>
             <span className="first-letter:uppercase">{key}</span>
           </div>
         ))}
