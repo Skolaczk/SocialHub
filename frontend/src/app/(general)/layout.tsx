@@ -1,13 +1,14 @@
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
-import { NavigationMenu, SocialPanel } from '@/components';
+import { Navbar } from '@/components';
+import { UserPanel } from '@/features/users';
 
-const GeneralLayout = ({ children }: { children: ReactNode }) => {
+const GeneralLayout = async ({ children }: PropsWithChildren) => {
   return (
     <>
-      <NavigationMenu />
+      <Navbar />
       {children}
-      <SocialPanel />
+      <UserPanel />
     </>
   );
 };

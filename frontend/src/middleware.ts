@@ -1,14 +1,11 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-import { getMe } from '@/services';
-
-export async function middleware(request: NextRequest) {
+export const middleware = async (request: NextRequest) => {
   const url = request.nextUrl.clone();
   const token = request.cookies.get('token');
-  const { error } = await getMe();
 
-  if (token && !error) {
+  if (token) {
     if (url.pathname === '/sign-in' || url.pathname === '/sign-up') {
       return NextResponse.rewrite(new URL('/', request.url));
     }
@@ -24,4 +21,4 @@ export async function middleware(request: NextRequest) {
       }
     }
   }
-}
+};

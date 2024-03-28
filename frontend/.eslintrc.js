@@ -6,36 +6,40 @@ module.exports = {
     'eslint:recommended',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:tailwindcss/recommended',
   ],
   plugins: ['simple-import-sort', 'prettier', '@typescript-eslint'],
   rules: {
-    'sort-imports': [2, { ignoreCase: true, ignoreDeclarationSort: true }],
-    '@typescript-eslint/no-var-requires': 0,
-    '@typescript-eslint/no-explicit-any': 1,
-    '@typescript-eslint/no-non-null-asserted-optional-chain': 1,
-    'no-empty': 1,
-    'prettier/prettier': 1,
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+    'sort-imports': 'off',
+    'tailwindcss/no-custom-classname': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
     'simple-import-sort/imports': [
       2,
       {
         groups: [
+          ['^.+\\.s?css$'],
           [
             `^(${require('module').builtinModules.join('|')})(/|$)`,
             '^react',
             '^@?\\w',
           ],
-          [
-            '^layout(/.*|$)',
-            '^common(/.*|$)',
-            '^components(/.*|$)',
-            '^containers(/.*|$)',
-          ],
-          ['^utils(/.*|$)', '^hooks(/.*|$)'],
+          ['^components(/.*|$)'],
+          ['^lib(/.*|$)', '^hooks(/.*|$)'],
           ['^\\.'],
-          ['^models(/.*|$)'],
-          ['^.+\\.s?css$'],
         ],
       },
     ],
+  },
+  settings: {
+    tailwindcss: {
+      callees: ['cn'],
+      config: 'tailwind.config.js',
+    },
   },
 };

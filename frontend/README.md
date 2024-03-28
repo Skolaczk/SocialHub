@@ -11,8 +11,8 @@ $ npm install
 ```
 Then create .env.local file:
 ```bash
-NEXT_PUBLIC_API_LOCAL_URL='http://localhost:8000/'
-NEXT_PUBLIC_LOCAL_URL='http://localhost:3000/'
+APP_URL='http://localhost:3000/'
+API_URL='http://localhost:8000/'
 
 ```
 

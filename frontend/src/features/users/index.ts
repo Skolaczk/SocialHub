@@ -1,2 +1,4 @@
-export * from './user-profile';
-export * from './edit-profile';
+export * from './types';
+export * from './services';
+export * from './components';
+export * from './actions';
